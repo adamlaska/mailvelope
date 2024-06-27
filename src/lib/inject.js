@@ -8,10 +8,9 @@ import * as sub from '../controller/sub.controller';
 import {str2bool, matchPattern2RegExString, sortAndDeDup} from './util';
 import browser from 'webextension-polyfill';
 import {prefs, getWatchList} from '../modules/prefs';
-import {measureWatchListHit} from './analytics';
 
 // watchlist match patterns as regex for URL
-let watchlistRegex;
+export let watchlistRegex;
 
 export async function initScriptInjection() {
   try {
@@ -92,7 +91,6 @@ async function injectOpenTabs(filterURL) {
       if (!match) {
         continue;
       }
-      measureWatchListHit(tab.url);
       browser.tabs.executeScript(tab.id, {file: 'content-scripts/cs-mailvelope.js', frameId: frame.frameId})
       .catch(() => {});
       browser.tabs.insertCSS(tab.id, {frameId: frame.frameId})
@@ -106,7 +104,6 @@ function watchListNavigationHandler(details) {
     // request is not related to a tab
     return;
   }
-  measureWatchListHit(details.url);
   browser.tabs.executeScript(details.tabId, {file: 'content-scripts/cs-mailvelope.js', frameId: details.frameId})
   .catch(() => {});
   browser.tabs.insertCSS(details.tabId, {frameId: details.frameId})
@@ -124,10 +121,6 @@ export function initAuthRequestApi() {
 
 async function authRequest({tabId, url}) {
   const tab = await browser.tabs.get(tabId);
-  const match = watchlistRegex.some(urlRegex => urlRegex.test(tab.url));
-  if (match) {
-    return;
-  }
   const tmpApiUrl = new URL(url);
   const api = str2bool(tmpApiUrl.searchParams.get('api') || false);
   const targetUrl = new URL(tab.url);
@@ -136,6 +129,6 @@ async function authRequest({tabId, url}) {
   if (hostname.startsWith('www.')) {
     hostname = hostname.slice(4);
   }
-  const authDomainCtrl = sub.factory.get('authDomainCont');
-  authDomainCtrl.setFrame({hostname, protocol, api, tabId});
+  const authDomainCtrl = sub.factory.get('authDomainDialog');
+  authDomainCtrl.authorizeDomain({hostname, protocol, api, tabId, url: tab.url});
 }

@@ -30,6 +30,7 @@ import Keyring from './keyring/Keyring';
 import Encrypt from './encrypt/Encrypt';
 import Decrypt from './decrypt/Decrypt';
 import Settings from './settings/Settings';
+import AnalyticsConsent from './settings/AnalyticsConsent';
 
 import './app.scss';
 
@@ -143,11 +144,12 @@ class App extends React.Component {
             <Route path="/encrypt" component={Encrypt} />
             <Route path="/decrypt" component={Decrypt} />
             <Route path="/settings" render={() => <Settings prefs={this.state.prefs} onChangePrefs={this.handleChangePrefs} />} />
+            <Route path="/analytics-consent" component={AnalyticsConsent} />
           </AppOptions.Provider>
         </main>
         <footer className="container-lg">
           <div className="d-flex justify-content-between">
-            <p><span className="pr-2">&copy; 2012-2022</span><a className="text-reset" href="https://www.mailvelope.com/de/about" target="_blank" rel="noreferrer noopener" tabIndex="0">Mailvelope GmbH</a></p>
+            <p><span className="pr-2">&copy; 2024</span><a className="text-reset" href="https://mailvelope.com/about" target="_blank" rel="noreferrer noopener" tabIndex="0">Mailvelope GmbH</a></p>
             <p id="version" className="d-sm-none d-md-block">{this.state.version}</p>
           </div>
         </footer>

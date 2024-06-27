@@ -1,6 +1,67 @@
 Mailvelope Changelog
 ====================
 
+v5.2.0
+-------
+__Jun 27, 2024__
+
+  * Measure onboarding success with opt-in for 1% of users (Clean Insights)
+  * Auto text wrap in display container for cleartext signed messages
+  * Fix duplicate key entries in the keyring after reload of GnuPG keyring
+  * Add better hint when GnuPG is installed but not detected
+  * Use crypto.randomUUID() for unique identifiers
+
+v5.1.2
+-------
+__Feb 14, 2024__
+
+  * Fix click on links in decrypted message leading to page loading errors
+  * Update dependencies
+
+v5.1.1
+-------
+__Oct 13, 2023__
+
+  * [Gmail] Fix detection of encrypted attachments
+
+v5.1.0
+-------
+__Jul 11, 2023__
+
+  * Support signature verification independent of sender identity
+  * Display signature verification results in the file decryption UI
+  * Warn about signature inconsistency between message and attachments
+  * Improve detection of messages with detached signatures
+  * Fix key import not updating existing keys properly
+  * Fix undefined password in private key backup after prior usage of password cache
+
+v5.0.1
+-------
+__Apr 19, 2023__
+
+  * Replace QR code library
+  * Fix showing only first email address of key in recipient selection of Mailvelope editor
+  * Fix unknown signature has fingerprint instead keyId (GnuPG backend)
+
+v5.0.0
+-------
+__Apr 2, 2023__
+
+  * Upgrade to OpenPGP.js v5
+  * Fix timeout error when loading large GnuPG keyrings
+
+v4.7.1
+-------
+__Nov 19, 2022__
+
+  * [Gmail] Fix Gmail API re-authentication required after browser restart
+
+v4.7.0
+-------
+__Nov 8, 2022__
+
+  * [Gmail] Migrate deprecated OAuth out-of-band flow to browser.identity API
+
 v4.6.1
 -------
 __Sep 9, 2022__

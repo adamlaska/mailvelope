@@ -5,7 +5,7 @@
 
 import mvelo from '../lib/lib-mvelo';
 import * as l10n from '../lib/l10n';
-import {getHash, mapError} from '../lib/util';
+import {getUUID, mapError} from '../lib/util';
 import {DISPLAY_INLINE} from '../lib/constants';
 import {prefs} from '../modules/prefs';
 import {getKeyringWithPrivKey} from '../modules/keyring';
@@ -23,7 +23,7 @@ export default class DecryptController extends sub.SubController {
     super(port);
     if (!port) {
       this.mainType = 'decryptCont';
-      this.id = getHash();
+      this.id = getUUID();
     }
     this.armored = null;
     this.message = null;
@@ -74,7 +74,7 @@ export default class DecryptController extends sub.SubController {
     if (msg.options && msg.options.senderAddress) {
       this.sender = msg.options.senderAddress;
     }
-    if (msg.keyringId) {
+    if (msg.keyringId ?? msg.allKeyrings) {
       this.keyringId = msg.keyringId;
     }
     this.armored = msg.data;
@@ -85,16 +85,16 @@ export default class DecryptController extends sub.SubController {
     }
   }
 
-  async canUnlockKey(armoredText, keyringId) {
+  async canUnlockKey(armoredMessage, keyringId) {
     try {
-      this.message = await model.readMessage({armoredText});
-      const encryptionKeyIds = this.message.getEncryptionKeyIds();
+      this.message = await model.readMessage({armoredMessage});
+      const encryptionKeyIds = this.message.getEncryptionKeyIDs();
       const keyring = getKeyringWithPrivKey(encryptionKeyIds, keyringId);
       if (!keyring) {
         throw model.noKeyFoundError(encryptionKeyIds);
       }
       const key = keyring.getPrivateKeyByIds(encryptionKeyIds);
-      const isKeyCached = isCached(key.primaryKey.getFingerprint());
+      const isKeyCached = isCached(key.getFingerprint());
       return isKeyCached;
     } catch (error) {
       if (this.ports.dDialog) {
@@ -127,8 +127,9 @@ export default class DecryptController extends sub.SubController {
         unlockKey: this.unlockKey.bind(this),
         senderAddress: this.sender,
         uiLogSource: 'security_log_viewer',
-        lookupKey: rotation => lookupKey({keyringId, email: this.sender, rotation})
+        lookupKey: keyringId ? rotation => lookupKey({keyringId, email: this.sender, rotation}) : undefined
       });
+      this.signatures = signatures;
       const ports = this.ports;
       const handlers = {
         noEvent: true,

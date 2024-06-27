@@ -57,12 +57,6 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
-            cwd: 'node_modules/qrcodejs/',
-            src: 'qrcode.js',
-            dest: 'build/tmp/dep/qrcodejs/'
-          },
-          {
-            expand: true,
             cwd: 'node_modules/angular/',
             src: ['angular.min.js', 'angular-csp.css'],
             dest: 'build/tmp/dep/angular/'
@@ -72,12 +66,6 @@ module.exports = function(grunt) {
             cwd: 'node_modules/ng-tags-input/build/',
             src: ['ng-tags-input.min.js', 'ng-tags-input.min.css', 'ng-tags-input.bootstrap.min.css'],
             dest: 'build/tmp/dep/ng-tags-input/'
-          },
-          {
-            expand: true,
-            flatten: true,
-            src: ['node_modules/openpgp/dist/openpgp.js', 'node_modules/openpgp/dist/openpgp.worker.js'],
-            dest: 'build/tmp/dep/'
           }
         ]
       },
@@ -270,6 +258,9 @@ module.exports = function(grunt) {
       },
       karma_test_dev: {
         command: 'node --max_old_space_size=4608 node_modules/karma/bin/karma start --single-run --browsers ChromeHeadless test/karma.conf.js --dev'
+      },
+      karma_test_debug: {
+        command: 'node --max_old_space_size=4608 node_modules/karma/bin/karma start --browsers Chrome test/karma.conf.js --dev'
       }
     },
 
@@ -328,4 +319,6 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['shell:karma_test']);
 
   grunt.registerTask('test-dev', ['shell:karma_test_dev']);
+
+  grunt.registerTask('test-debug', ['shell:karma_test_debug']);
 };

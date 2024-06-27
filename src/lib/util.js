@@ -59,15 +59,8 @@ export function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// random hash generator
-export function getHash() {
-  let result = '';
-  const buf = new Uint16Array(6);
-  window.crypto.getRandomValues(buf);
-  for (let i = 0; i < buf.length; i++) {
-    result += buf[i].toString(16);
-  }
-  return result;
+export function getUUID() {
+  return crypto.randomUUID().replaceAll('-', '');
 }
 
 export function encodeHTML(text) {
@@ -388,13 +381,12 @@ export function firstParent(element, selector) {
   }
 }
 
-export function isWebEx() {
-  return typeof browser !== 'undefined';
-}
-
-export function isCRX() {
-  return typeof browser === 'undefined' && typeof chrome !== 'undefined';
-}
+const brands =  navigator && navigator.userAgentData && navigator.userAgentData.brands;
+export const brand = !brands ? {other: true} : {
+  chrome: brands.some(({brand}) => brand === 'Google Chrome'),
+  edge: brands.some(({brand}) => brand === 'Microsoft Edge'),
+  chromium: brands.some(({brand}) => brand === 'Chromium')
+};
 
 export function parseViewName(viewName) {
   const pair = viewName.split('-');

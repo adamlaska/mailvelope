@@ -4,11 +4,11 @@
  */
 
 import mvelo from '../lib/lib-mvelo';
-import {getHash} from '../lib/util';
+import {getUUID} from '../lib/util';
 import * as sub from './sub.controller';
 import * as prefs from '../modules/prefs';
 import {getAll as getAllKeyring} from '../modules/keyring';
-import {ci} from '../lib/analytics';
+import {shouldSeeConsentDialog} from '../lib/analytics';
 
 export default class MenuController extends sub.SubController {
   constructor(port) {
@@ -18,18 +18,7 @@ export default class MenuController extends sub.SubController {
     this.on('browser-action', this.onBrowserAction);
     this.on('get-prefs', () => prefs.prefs);
     this.on('get-is-setup-done', this.getIsSetupDone);
-    this.on('get-is-bg-customized', this.getIsBGCustomized);
-    this.on('grant-consent', ({campaignId}) => ci.grantCampaign(campaignId));
-    this.on('deny-consent', ({campaignId}) => ci.denyCampaign(campaignId));
-    this.on('get-consent', ({campaignId}) => ci.isCampaignCurrentlyGranted(campaignId));
-    this.on('has-granted-or-denied-consent', this.hasGrantedOrDeniedConsent);
-  }
-
-  async hasGrantedOrDeniedConsent({campaignId}) {
-    if (ci.campaignConsents.indexOf(campaignId) === -1) {
-      return false;
-    }
-    return true;
+    this.on('analytics-consent', this.analyticsConsent);
   }
 
   onBrowserAction({action}) {
@@ -49,8 +38,8 @@ export default class MenuController extends sub.SubController {
       case 'manage-keys':
         this.openApp('/keyring');
         break;
-      case 'setup-keys':
-        this.openApp('/keyring/setup');
+      case 'lets-start':
+        this.analyticsConsent();
         break;
       case 'encrypt-file':
         this.openApp('/encrypt');
@@ -64,10 +53,6 @@ export default class MenuController extends sub.SubController {
       case 'email-providers':
         this.openApp('/settings/watchlist');
         break;
-      case 'setup-new-bg':
-        this.cleanupPrefs();
-        this.openApp('/settings/security-background');
-        break;
       default:
         console.log('unknown browser action');
     }
@@ -77,11 +62,6 @@ export default class MenuController extends sub.SubController {
     // check if at least one keyring has a private key
     const hasPrivateKey = getAllKeyring().some(keyring => keyring.hasPrivateKey());
     return {isSetupDone: hasPrivateKey};
-  }
-
-  getIsBGCustomized() {
-    // check for old security bg values in local storage
-    return {isBGCustomized: !Object.keys(prefs.prefs.security).some(key => key.includes('secureBgnd'))};
   }
 
   async cleanupPrefs() {
@@ -99,9 +79,17 @@ export default class MenuController extends sub.SubController {
       }
       const domain = mvelo.util.getDomain(tab.url);
       const protocol = mvelo.util.getProtocol(tab.url);
-      const slotId = getHash();
+      const slotId = getUUID();
       sub.setAppDataSlot(slotId, {domain, protocol});
       mvelo.tabs.loadAppTab(`?slotId=${slotId}#/settings/watchlist/push`);
     });
+  }
+
+  analyticsConsent() {
+    if (shouldSeeConsentDialog()) {
+      this.openApp('/analytics-consent');
+    } else {
+      this.openApp('/keyring/setup');
+    }
   }
 }

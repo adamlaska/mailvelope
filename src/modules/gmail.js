@@ -7,34 +7,34 @@ import browser from 'webextension-polyfill';
 import {goog} from './closure-library/closure/goog/emailaddress';
 import mvelo from '../lib/lib-mvelo';
 import {MvError, deDup, str2ab, ab2hex} from '../lib/util';
-import {matchPattern2RegExString, getHash, base64EncodeUrl, base64DecodeUrl, byteCount, dataURL2str} from '../lib/util';
+import {getUUID, base64EncodeUrl, base64DecodeUrl, byteCount, dataURL2str} from '../lib/util';
 import {buildMailWithHeader, filterBodyParts} from './mime';
 import * as mailreader from '../lib/mail-reader';
 
-const CLIENT_ID = '119074447949-tna0do7hlleq779oihbsosrk6he4di06.apps.googleusercontent.com';
+const CLIENT_ID = browser.runtime.getManifest().oauth2.client_id;
+const CLIENT_SECRET = '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';
 const GOOGLE_API_HOST = 'https://accounts.google.com';
 const GOOGLE_OAUTH_STORE = 'mvelo.oauth.gmail';
 export const GMAIL_SCOPE_USER_EMAIL = 'https://www.googleapis.com/auth/userinfo.email';
 export const GMAIL_SCOPE_READONLY = 'https://www.googleapis.com/auth/gmail.readonly';
 export const GMAIL_SCOPE_SEND = 'https://www.googleapis.com/auth/gmail.send';
-const GMAIL_SCOPES_DEFAULT = [GMAIL_SCOPE_USER_EMAIL];
+const GMAIL_SCOPES_DEFAULT = ['openid', GMAIL_SCOPE_USER_EMAIL];
 const MVELO_BILLING_API_HOST = 'https://license.mailvelope.com';
 
 export const MAIL_QUOTA = 25 * 1024 * 1024;
 
 export async function getMessage({msgId, email, accessToken, format = 'full', metaHeaders = []}) {
-  const init = {
+  const options = {
     method: 'GET',
-    async: true,
     headers: {
       Authorization: `Bearer ${accessToken}`,
-      'Accept': 'application/json'
+      Accept: 'application/json'
     },
-    'contentType': 'json'
+    contentType: 'json'
   };
   return fetchJSON(
     `https://www.googleapis.com/gmail/v1/users/${email}/messages/${msgId}?format=${format}${metaHeaders.map(header => `&metadataHeaders=${header}`).join('')}`,
-    init
+    options
   );
 }
 
@@ -50,37 +50,35 @@ export async function getAttachment({email, msgId, attachmentId, fileName, acces
     const msg = await getMessage({msgId, email, accessToken});
     ({body: {attachmentId}} = msg.payload.parts.find(part => part.filename === fileName));
   }
-  const init = {
+  const options = {
     method: 'GET',
-    async: true,
     headers: {
       Authorization: `Bearer ${accessToken}`,
-      'Accept': 'application/json'
+      Accept: 'application/json'
     },
-    'contentType': 'json'
+    contentType: 'json'
   };
   const {data, size} = await fetchJSON(
     `https://www.googleapis.com/gmail/v1/users/${email}/messages/${msgId}/attachments/${attachmentId}`,
-    init
+    options
   );
   return {data: `data:application/octet-stream;base64,${base64DecodeUrl(data)}`, size, mimeType: 'application/octet-stream'};
 }
 
 export async function sendMessage({email, message, accessToken}) {
-  const init = {
+  const options = {
     method: 'POST',
-    async: true,
     body: message,
     mode: 'cors',
     headers: {
       'Content-Type': 'message/rfc822',
       'Content-Length': byteCount(message),
-      'Authorization': `Bearer ${accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
     }
   };
   return fetchJSON(
     `https://www.googleapis.com/upload/gmail/v1/users/${email}/messages/send?uploadType=media`,
-    init
+    options
   );
 }
 
@@ -91,39 +89,38 @@ export async function sendMessageMeta({email, message, threadId, accessToken}) {
   if (threadId) {
     data.threadId = threadId;
   }
-  const init = {
+  const options = {
     method: 'POST',
-    async: true,
     body: JSON.stringify(data),
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': `Bearer ${accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
     }
   };
   return fetchJSON(
     ` https://www.googleapis.com/gmail/v1/users/${email}/messages/send`,
-    init
+    options
   );
 }
 
 export async function getAccessToken({email, scopes = []}) {
   scopes = deDup([...GMAIL_SCOPES_DEFAULT, ...scopes]);
   const storedTokens = await mvelo.storage.get(GOOGLE_OAUTH_STORE);
-  if (storedTokens && Object.keys(storedTokens).includes(email) && scopes.every(scope => storedTokens[email].scope.split(' ').includes(scope))) {
-    const storedToken = storedTokens[email];
-    if (checkStoredToken(storedToken)) {
-      return storedToken.access_token;
-    }
-    if (storedToken.refresh_token) {
-      const refreshedToken = await getRefreshedAccessToken(storedToken.refresh_token);
-      if (refreshedToken.access_token) {
-        await storeAuthData(email, buildTokenData(refreshedToken));
-        return refreshedToken.access_token;
-      }
+  const storedToken = storedTokens?.[email];
+  if (!storedToken || !scopes.every(scope => storedToken.scope.split(' ').includes(scope))) {
+    return;
+  }
+  if (checkStoredToken(storedToken)) {
+    return storedToken.access_token;
+  }
+  if (storedToken.refresh_token) {
+    const refreshedToken = await getRefreshedAccessToken(storedToken.refresh_token);
+    if (refreshedToken.access_token) {
+      await storeAuthData(email, buildAuthMeta(refreshedToken));
+      return refreshedToken.access_token;
     }
   }
-  return;
 }
 
 function checkStoredToken(storedData) {
@@ -172,7 +169,6 @@ async function requestLicense(domain, gmail_account_id) {
   };
   const result = await fetch(url, {
     method: 'POST',
-    async: true,
     body: JSON.stringify(data),
     mode: 'cors',
     headers: {
@@ -185,88 +181,104 @@ async function requestLicense(domain, gmail_account_id) {
   }
 }
 
-export async function authorize(email, legacyGsuite, scopes = []) {
+export async function authorize(email, legacyGsuite, scopes = browser.runtime.getManifest().oauth2.scopes) {
   scopes = deDup([...GMAIL_SCOPES_DEFAULT, ...scopes]);
-  const authCode = await getAuthCode(email, scopes);
-  if (!authCode) {
+  // incremental authorization to prevent checkboxes for the requested scopes on the consent screen
+  const access_token = await getAuthToken(email, GMAIL_SCOPES_DEFAULT);
+  const userInfo = await getUserInfo(access_token);
+  if (userInfo.email !== email) {
+    throw new MvError('Email mismatch in user info from oauth2/v3/userinfo', 'OAUTH_VALIDATION_ERROR');
+  }
+  let auth = await getAuthCode(email, scopes);
+  if (!auth.code) {
     throw new MvError('Authorization failed!', 'GOOGLE_OAUTH_ERROR');
   }
-  const token = await getAuthTokens(authCode);
-  const idInfo = validateId(token.id_token, email);
-  await storeAuthData(email, buildTokenData({...token, ...idInfo, legacyGsuite}));
-  return token.access_token;
-}
-
-function validateId(idToken, email) {
-  const id = parseJwt(idToken);
-  if (id.iss !== GOOGLE_API_HOST || id.aud !== CLIENT_ID || id.email !== email || id.exp < (new Date().getTime() / 1000)) {
-    throw new MvError('Id token invalid!', 'ID_VALIDATION_ERROR');
+  if (auth.prompt === 'none') {
+    // re-authorize with consent as without prompt the refresh token is empty
+    auth = await getAuthCode(email, scopes, 'consent');
   }
-  return id;
+  const tokens = await getAuthTokens(auth.code);
+  await storeAuthData(email, buildAuthMeta({...userInfo, ...tokens, legacyGsuite}));
+  return tokens.access_token;
 }
 
 export async function unauthorize(email) {
-  const storedTokens = await mvelo.storage.get(GOOGLE_OAUTH_STORE);
-  if (!storedTokens || !storedTokens[email]) {
+  const authMetaData = await mvelo.storage.get(GOOGLE_OAUTH_STORE);
+  if (!authMetaData?.[email]) {
     return;
   }
-  await revokeToken(storedTokens[email].access_token);
-  delete storedTokens[email];
-  await mvelo.storage.set(GOOGLE_OAUTH_STORE, storedTokens);
+  const token = authMetaData[email];
+  if (token.access_token) {
+    await revokeToken(token.access_token);
+  }
+  if (token.refresh_token) {
+    await revokeToken(token.refresh_token);
+  }
+  delete authMetaData[email];
+  await mvelo.storage.set(GOOGLE_OAUTH_STORE, authMetaData);
 }
 
-async function getAuthCode(email, scopes) {
-  const redirectURL = 'urn:ietf:wg:oauth:2.0:oob';
-  const response_type = 'code';
-  const state = `mv-${getHash()}`;
-  let url = `${GOOGLE_API_HOST}/o/oauth2/auth`;
-  url += `?client_id=${CLIENT_ID}`;
-  url += `&response_type=${response_type}`;
-  url += `&redirect_uri=${encodeURIComponent(redirectURL)}`;
-  url += `&scope=${encodeURIComponent(scopes.join(' '))}`;
-  url += '&access_type=offline';
-  url += '&include_granted_scopes=true';
-  url += '&prompt=consent';
-  url += `&login_hint=${encodeURIComponent(email)}`;
-  url += `&state=${encodeURIComponent(state)}`;
-  const authPopup = await mvelo.windows.openPopup(url, {width: 600, height: 760});
-  const originAndPathMatches = `^${matchPattern2RegExString(GOOGLE_API_HOST)}/.*`;
-  return new Promise((resolve, reject) => {
-    try {
-      browser.webNavigation.onDOMContentLoaded.addListener(function handler({tabId, url}) {
-        chrome.tabs.get(tabId, tab => {
-          if (tab.windowId === authPopup.id) {
-            if (/\/approval\//.test(url)) {
-              if (tab.title.includes(state)) {
-                const params = parseQuery(tab.title);
-                browser.windows.remove(tab.windowId);
-                resolve(params.code);
-              } else {
-                throw new Error('Wrong state parameter!');
-              }
-              browser.webNavigation.onDOMContentLoaded.removeListener(handler);
-            }
-          }
-        });
-      }, {url: [{originAndPathMatches}]});
-    } catch (e) {
-      reject(e);
-    }
-  });
+async function getAuthCode(email, scopes = browser.runtime.getManifest().oauth2.scopes, prompt) {
+  const redirectURL = browser.identity.getRedirectURL();
+  const state = getUUID();
+  const auth_params = {
+    access_type: 'offline',
+    client_id: CLIENT_ID,
+    include_granted_scopes: true,
+    login_hint: email,
+    redirect_uri: redirectURL,
+    response_type: 'code',
+    scope: scopes.join(' '),
+    state
+  };
+  if (prompt) {
+    auth_params.prompt = prompt;
+  }
+  const url = `${GOOGLE_API_HOST}/o/oauth2/v2/auth?${new URLSearchParams(Object.entries(auth_params))}`;
+  const responseURL = await browser.identity.launchWebAuthFlow({url, interactive: true});
+  const search = new URL(responseURL).searchParams;
+  if (search.get('state') !== state) {
+    throw new Error('oauth2/v2/auth: wrong state parameter');
+  }
+  return {
+    code: search.get('code'),
+    prompt: search.get('prompt')
+  };
+}
+
+async function getAuthToken(email, scopes = browser.runtime.getManifest().oauth2.scopes) {
+  const redirectURL = browser.identity.getRedirectURL();
+  const state = getUUID();
+  const auth_params = {
+    client_id: CLIENT_ID,
+    include_granted_scopes: true,
+    login_hint: email,
+    redirect_uri: redirectURL,
+    response_type: 'token',
+    scope: scopes.join(' '),
+    state
+  };
+  const url = `${GOOGLE_API_HOST}/o/oauth2/v2/auth?${new URLSearchParams(Object.entries(auth_params))}`;
+  const responseURL = await browser.identity.launchWebAuthFlow({url, interactive: true});
+  const search = new URLSearchParams(new URL(responseURL).hash.replace(/^#/, ''));
+  if (search.get('state') !== state) {
+    throw new Error('oauth2/v2/auth: wrong state parameter');
+  }
+  return search.get('access_token');
 }
 
 async function getAuthTokens(authCode) {
-  const redirectURL = 'urn:ietf:wg:oauth:2.0:oob';
-  const url = 'https://www.googleapis.com/oauth2/v4/token';
-  let data = `code=${encodeURIComponent(authCode)}&`;
-  data += `client_id=${encodeURIComponent(CLIENT_ID)}&`;
-  data += `redirect_uri=${encodeURIComponent(redirectURL)}&`;
-  data += 'grant_type=authorization_code';
-
+  const url = 'https://oauth2.googleapis.com/token';
+  const params = {
+    client_id: CLIENT_ID,
+    code: authCode,
+    client_secret: CLIENT_SECRET,
+    grant_type: 'authorization_code',
+    redirect_uri: browser.identity.getRedirectURL()
+  };
   const result = await fetch(url, {
     method: 'POST',
-    async: true,
-    body: data,
+    body: new URLSearchParams(Object.entries(params)).toString(),
     mode: 'cors',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -276,15 +288,16 @@ async function getAuthTokens(authCode) {
 }
 
 async function getRefreshedAccessToken(refresh_token) {
-  const url = 'https://www.googleapis.com/oauth2/v4/token';
-  let data = `refresh_token=${encodeURIComponent(refresh_token)}&`;
-  data += `client_id=${encodeURIComponent(CLIENT_ID)}&`;
-  data += 'grant_type=refresh_token';
-
+  const url = 'https://oauth2.googleapis.com/token';
+  const params = {
+    client_id: CLIENT_ID,
+    client_secret: CLIENT_SECRET,
+    grant_type: 'refresh_token',
+    refresh_token
+  };
   const result = await fetch(url, {
     method: 'POST',
-    async: true,
-    body: data,
+    body: new URLSearchParams(Object.entries(params)).toString(),
     mode: 'cors',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -293,28 +306,30 @@ async function getRefreshedAccessToken(refresh_token) {
   return result.json();
 }
 
-export async function getTokenInfo(token, type = 'id') {
-  let url = 'https://www.googleapis.com/oauth2/v3/tokeninfo';
-  url += `?${type}_token=${encodeURIComponent(token)}`;
-  const result = await fetch(url, {
-    async: true
-  });
-  return result.json();
+async function getUserInfo(accessToken) {
+  const options = {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      Accept: 'application/json'
+    },
+    contentType: 'json'
+  };
+  const {sub, hd, email} = await fetchJSON('https://www.googleapis.com/oauth2/v3/userinfo', options);
+  return {sub, hd, email};
 }
 
 async function revokeToken(token) {
   let url = `${GOOGLE_API_HOST}/o/oauth2/revoke`;
   url += `?token=${encodeURIComponent(token)}`;
-  const result = await fetch(url, {
-    async: true
-  });
-  return result.json();
+  const result = await fetch(url);
+  console.log('Revoke token', result.ok);
 }
 
-function buildTokenData(token) {
+function buildAuthMeta(token) {
   const data = {
     access_token: token.access_token,
-    access_token_exp: new Date().getTime() + (token.expires_in) * 1000,
+    access_token_exp: new Date().getTime() + token.expires_in * 1000,
     scope: token.scope
   };
   if (token.refresh_token) {
@@ -351,11 +366,11 @@ async function storeAuthData(email, data) {
   return mvelo.storage.set(GOOGLE_OAUTH_STORE, entries);
 }
 
-async function fetchJSON(resource, init) {
-  const response = await fetch(resource, init);
+async function fetchJSON(resource, options) {
+  const response = await fetch(resource, options);
   const json = await response.json();
   if (!response.ok) {
-    throw new MvError(json.error.message, 'GMAIL_API_ERROR');
+    throw new MvError(json.error_description ?? json.error?.message, 'GMAIL_API_ERROR');
   }
   return json;
 }
@@ -368,15 +383,6 @@ function parseQuery(queryString, separator = '&') {
     query[decodeURIComponent(pair[0].trim())] = decodeURIComponent((pair[1] || '').replace(/^"(.+(?="$))"$/, '$1'));
   }
   return query;
-}
-
-function parseJwt(token) {
-  const base64Url = token.split('.')[1];
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
-    `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`
-  ).join(''));
-  return JSON.parse(jsonPayload);
 }
 
 export function extractMailHeader(payload, name) {
