@@ -32,10 +32,10 @@
     "prop-types": "15.8.1",
     "qrcodejs": "github:llyys/qrcodejs#98657dab44d520876cfb646c39ebbc43c1594826",
     "react": "16.14.0",
-    "react-datepicker": "1.7.0",
+    "react-datepicker": "3.4.0",
     "react-dom": "16.14.0",
-    "react-router-dom": "5.2.0",
-    "reactstrap": "8.9.0",
+    "react-router-dom": "6.4.0",
+    "reactstrap": "9.0.0",
     "webextension-polyfill": "0.10.0"
   },
   "devDependencies": {
@@ -72,7 +72,7 @@
     "karma-sourcemap-loader": "^0.3.8",
     "karma-webpack": "^5.0.0",
     "mini-css-extract-plugin": "^2.6.1",
-    "mocha": "^9.2.2",
+    "mocha": "^11.2.2",
     "node-sass": "^7.0.3",
     "node-sass-json-importer": "^4.3.0",
     "sass-loader": "^13.0.2",
@@ -80,7 +80,7 @@
     "string-replace-loader": "^3.1.0",
     "style-loader": "^3.3.1",
     "to-string-loader": "^1.2.0",
-    "web-ext": "^7.2.0",
+    "web-ext": "^8.5.0",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
