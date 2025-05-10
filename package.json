@@ -32,10 +32,10 @@
     "prop-types": "15.8.1",
     "qrcodejs": "github:llyys/qrcodejs#98657dab44d520876cfb646c39ebbc43c1594826",
     "react": "16.14.0",
-    "react-datepicker": "1.7.0",
+    "react-datepicker": "3.4.0",
     "react-dom": "16.14.0",
-    "react-router-dom": "5.2.0",
-    "reactstrap": "8.9.0",
+    "react-router-dom": "6.4.0",
+    "reactstrap": "9.0.0",
     "webextension-polyfill": "0.10.0"
   },
   "devDependencies": {
