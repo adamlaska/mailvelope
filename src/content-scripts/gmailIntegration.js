@@ -4,6 +4,7 @@
  */
 import EventHandler from '../lib/EventHandler';
 import {getUUID, parseHTML, parseViewName} from '../lib/util';
+import {extractAddressFromText} from '../lib/email';
 import {FRAME_STATUS, FRAME_ATTACHED} from '../lib/constants';
 import * as l10n from '../lib/l10n';
 import gmailIntegrationCsss from './gmailIntegration.css';
@@ -51,12 +52,15 @@ export default class GmailIntegration {
       return this.userInfo;
     }
     const titleElem = document.querySelector('title');
-    const match = titleElem.innerText.match(/([a-zA-Z0-9._-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]+)/gi);
-    if (!match) {
+    // Gmail titles place the active account address last, e.g.
+    // "Inbox (5) - alice@example.com - Gmail". Take the last match so
+    // subject-line addresses don't shadow the account address.
+    const email = extractAddressFromText(titleElem.innerText, {position: 'last'});
+    if (!email) {
       throw new Error('Gmail User Id not found.');
     }
     this.userInfo = {};
-    this.userInfo.email = match[0];
+    this.userInfo.email = email;
     this.userInfo.legacyGsuite = Array.from(document.querySelectorAll('.aiG .aiD span')).some(element => /^1(?:5|7)[\sG]/.test(element.textContent));
     return this.userInfo;
   }

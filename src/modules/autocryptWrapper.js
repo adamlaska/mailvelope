@@ -7,7 +7,7 @@ import mvelo from '../lib/lib-mvelo';
 import {MvError} from '../lib/util';
 import Autocrypt from 'autocrypt';
 import {prefs} from './prefs';
-import {goog} from './closure-library/closure/goog/emailaddress';
+import {parseAddress} from '../lib/email';
 export {parse} from 'autocrypt';
 
 export const name = 'AC';
@@ -84,7 +84,7 @@ export async function lookup({email}, identity) {
  */
 export async function processHeader(headers, identity) {
   const date = new Date(headers.date);
-  const fromAddr = goog.format.EmailAddress.parse(headers.from).getAddress();
+  const fromAddr = parseAddress(headers.from).email;
   if (headers.autocrypt.length > 10240) {
     throw new MvError('Invalid Autocrypt Header: rejecting headers longer than 10k', 'INVALID_HEADER');
   }

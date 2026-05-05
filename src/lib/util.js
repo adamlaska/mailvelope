@@ -8,9 +8,12 @@ import common from '../res/common.json';
 import parseSVG from './svg-file-parser.js';
 
 export class MvError extends Error {
-  constructor(msg, code = 'INTERNAL_ERROR') {
+  constructor(msg, code = 'INTERNAL_ERROR', data) {
     super(msg);
     this.code = code;
+    if (data !== undefined) {
+      this.data = data;
+    }
   }
 }
 
@@ -276,7 +279,11 @@ export function matchPattern2RegExString(matchPattern) {
 }
 
 export function mapError(error = {}) {
-  return {message: error.message || 'Unexpected error.', code: error.code  || 'INTERNAL_ERROR'};
+  return {
+    message: error.message || 'Unexpected error.',
+    code: error.code || 'INTERNAL_ERROR',
+    ...(error.data !== undefined && {data: error.data})
+  };
 }
 
 export class PromiseQueue {
@@ -332,16 +339,6 @@ export function sequential(process, list) {
   }, Promise.resolve([]));
 }
 /* eslint-enable arrow-body-style */
-
-/**
- * Validate an email address.
- * @param  {String} address   The email address to validate
- * @return {Boolean}          True if valid, false if not
- */
-export function checkEmail(address) {
-  const pattern = /^[+a-zA-Z0-9_.!#$%&'*\/=?^`{|}~-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z0-9]{2,63}$/;
-  return pattern.test(address);
-}
 
 /**
  * Normalize parameter to Array. falsy -> []

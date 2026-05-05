@@ -8,7 +8,8 @@ import React, {useCallback, useRef, useMemo} from 'react';
 // `WithContext` as `ReactTags` is taken from the official example
 import {WithContext as ReactTags} from 'react-tag-input';
 import * as l10n from '../../../lib/l10n';
-import {checkEmail, encodeHTML, getUUID} from '../../../lib/util';
+import {encodeHTML, getUUID} from '../../../lib/util';
+import {isValidAddress} from '../../../lib/email';
 
 import './RecipientInput.scss';
 
@@ -132,7 +133,7 @@ export function RecipientInput({extraKey, hideErrorMsg, keys, recipients, onChan
   }, [tags, updateParentRecipients]);
 
   const onAddition = useCallback(newTag => {
-    if (checkEmail(newTag.id)) {
+    if (isValidAddress(newTag.id)) {
       updateParentRecipients([...tags, newTag]);
       // After updating the tags, refocus the input field using the constant id
       // This is the only way because <ReactTags> doesn't give access to it's children, nor gives an API to set focus

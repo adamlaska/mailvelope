@@ -9,7 +9,7 @@
  */
 
 import {sequential, isVisible} from '../lib/util';
-import {goog} from '../modules/closure-library/closure/goog/emailaddress';
+import {extractAddressFromText, parseAddressSafe} from '../lib/email';
 import GmailIntegration from './gmailIntegration';
 
 let providerMap = null;
@@ -167,8 +167,8 @@ class Yahoo {
     setTimeout(() => {
       document.querySelectorAll('.compose-header [data-test-id="container-to"] ul.pill-list > li:not(.pill-container)').forEach(element => {
         const dataElement = element.querySelector('[data-test-id="pill"]');
-        const emailAddress = goog.format.EmailAddress.parse(dataElement.getAttribute('title'));
-        if (emailAddress.isValid() && !recipients.find(({email}) => email === emailAddress.getAddress())) {
+        const parsed = parseAddressSafe(dataElement.getAttribute('title'));
+        if (parsed && !recipients.find(({email}) => email === parsed.email)) {
           element.click();
           element.querySelector('.pill-close button').click();
         }
@@ -221,7 +221,7 @@ class Outlook {
           // wait in interval for popup content to render
           const searchInterval = setInterval(() => {
             const personaCard = addedNode.querySelector('[data-log-name="Email"] button');
-            if (personaCard && personaCard.textContent.match(HAS_EMAIL)) {
+            if (personaCard && extractAddressFromText(personaCard.textContent)) {
               clearInterval(searchInterval);
               // still more time required to complete render
               setTimeout(() => resolve({personaCard, addedNode}), 200);
@@ -298,8 +298,6 @@ class Outlook {
  * DOM API util funtions
  */
 
-const HAS_EMAIL = /[+a-zA-Z0-9_.!#$%&'*\/=?^`{|}~-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z0-9]{2,63}/;
-
 /**
  * Filter the text content of a list of elements for email addresses.
  * @param  {NodeList<HTMLElement>} elements - A list of elements to iteralte over
@@ -352,10 +350,9 @@ function setReactValue(input, value) {
 function parseEmail(elements, extract) {
   const emails = [];
   for (const element of elements) {
-    const value = extract(element);
-    const emailAddress = goog.format.EmailAddress.parse(value);
-    if (emailAddress.isValid()) {
-      emails.push(emailAddress.getAddress());
+    const parsed = parseAddressSafe(extract(element));
+    if (parsed) {
+      emails.push(parsed.email);
     }
   }
   return toRecipients(emails);

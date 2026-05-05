@@ -73,6 +73,7 @@ export default class AppController extends SubController {
     this.on('get-oauth-tokens', this.getOAuthTokens);
     this.on('remove-oauth-token', this.removeOAuthToken);
     this.on('authorize-gmail', this.authorizeGmail);
+    this.on('cancel-authorize-gmail', this.cancelAuthorizeGmail);
     this.on('check-license', this.checkLicense);
     this.on('grant-consent', ({campaignId}) => this.grantCampaignConsent(campaignId));
     this.on('deny-consent', ({campaignId}) => denyCampaign(campaignId));
@@ -424,9 +425,16 @@ export default class AppController extends SubController {
     return gmail.unauthorize(email);
   }
 
-  async authorizeGmail({email, legacyGsuite, scopes, gmailCtrlId}) {
+  async authorizeGmail({email, legacyGsuite, scopes, gmailCtrlId, forcePicker}) {
     const gmailCtrl = await controllerPool.get(gmailCtrlId);
-    return gmailCtrl.onAuthorize({email, legacyGsuite, scopes});
+    return gmailCtrl.onAuthorize({email, legacyGsuite, scopes, forcePicker});
+  }
+
+  async cancelAuthorizeGmail({gmailCtrlId}) {
+    const gmailCtrl = await controllerPool.get(gmailCtrlId);
+    if (gmailCtrl) {
+      gmailCtrl.cancelAuthorization();
+    }
   }
 
   async checkLicense({email}) {

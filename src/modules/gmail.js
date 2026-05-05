@@ -3,10 +3,10 @@
  * Licensed under the GNU Affero General Public License version 3
  */
 
-import {goog} from './closure-library/closure/goog/emailaddress';
 import mvelo from '../lib/lib-mvelo';
 import {MvError, deDup, str2ab, ab2hex} from '../lib/util';
 import {getUUID, base64EncodeUrl, base64DecodeUrl, byteCount, dataURL2str} from '../lib/util';
+import {ERROR_GMAIL_ACCOUNT_MISMATCH} from '../lib/constants';
 import {buildMailWithHeader, parseSignedMessage} from './mime';
 
 const CLIENT_ID = chrome.runtime.getManifest().oauth2.client_id;
@@ -191,13 +191,17 @@ async function requestLicense(domain, gmail_account_id) {
   }
 }
 
-export async function authorize(email, legacyGsuite, scopes = chrome.runtime.getManifest().oauth2.scopes) {
+export async function authorize(email, legacyGsuite, scopes = chrome.runtime.getManifest().oauth2.scopes, {forcePicker = false} = {}) {
   scopes = deDup([...GMAIL_SCOPES_DEFAULT, ...scopes]);
   // incremental authorization to prevent checkboxes for the requested scopes on the consent screen
-  const access_token = await getAuthToken(email, GMAIL_SCOPES_DEFAULT);
+  const access_token = await getAuthToken(email, GMAIL_SCOPES_DEFAULT, forcePicker ? 'select_account' : undefined);
   const userInfo = await getUserInfo(access_token);
   if (userInfo.email !== email) {
-    throw new MvError('Email mismatch in user info from oauth2/v3/userinfo', 'OAUTH_VALIDATION_ERROR');
+    throw new MvError(
+      'Email mismatch in user info from oauth2/v3/userinfo',
+      ERROR_GMAIL_ACCOUNT_MISMATCH,
+      {intendedEmail: email, actualEmail: userInfo.email}
+    );
   }
   let auth = await getAuthCode(email, scopes);
   if (!auth.code) {
@@ -256,7 +260,7 @@ async function getAuthCode(email, scopes = chrome.runtime.getManifest().oauth2.s
   };
 }
 
-async function getAuthToken(email, scopes = chrome.runtime.getManifest().oauth2.scopes) {
+async function getAuthToken(email, scopes = chrome.runtime.getManifest().oauth2.scopes, prompt) {
   const redirectURL = chrome.identity.getRedirectURL();
   const state = getUUID();
   const auth_params = {
@@ -266,7 +270,8 @@ async function getAuthToken(email, scopes = chrome.runtime.getManifest().oauth2.
     redirect_uri: redirectURL,
     response_type: 'token',
     scope: scopes.join(' '),
-    state
+    state,
+    ...(prompt && {prompt})
   };
   const url = `${GOOGLE_API_HOST}/o/oauth2/v2/auth?${new URLSearchParams(Object.entries(auth_params))}`;
   const responseURL = await chrome.identity.launchWebAuthFlow({url, interactive: true});
@@ -482,14 +487,6 @@ export function getMimeNode(parts, mimeTypes = ['text/plain']) {
       return node;
     }
   }
-}
-
-export function parseEmailAddress(address) {
-  const emailAddress = goog.format.EmailAddress.parse(address);
-  if (!emailAddress.isValid()) {
-    throw new Error('Parsing email address failed.');
-  }
-  return {email: emailAddress.getAddress(), name: emailAddress.getName()};
 }
 
 export function buildMail({message, attachments, subject, sender, to, cc}) {

@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {port, getAppDataSlot} from '../app';
 import {matchPattern2RegExString} from '../../lib/util';
+import {ERROR_GMAIL_ACCOUNT_MISMATCH} from '../../lib/constants';
 import * as l10n from '../../lib/l10n';
 import Trans from '../../components/util/Trans';
 import Alert from '../../components/util/Alert';
@@ -53,6 +54,16 @@ l10n.register([
   'provider_gmail_licensing_dialog_title',
   'provider_gmail_licensing_table_caption',
   'provider_gmail_licensing_table_title',
+  'provider_gmail_mismatch_cancel_btn',
+  'provider_gmail_mismatch_intro',
+  'provider_gmail_mismatch_label_actual',
+  'provider_gmail_mismatch_label_expected',
+  'provider_gmail_mismatch_retry_btn',
+  'provider_gmail_mismatch_step1',
+  'provider_gmail_mismatch_step2',
+  'provider_gmail_mismatch_title',
+  'provider_gmail_mismatch_why_body',
+  'provider_gmail_mismatch_why_summary',
   'settings_provider',
   'watchlist_title_scan'
 ]);
@@ -70,10 +81,13 @@ export default class Provider extends React.Component {
       legacyGsuite: false,
       scopes: [],
       gmailCtrlId: '',
-      watchList: null
+      watchList: null,
+      mismatch: null
     };
     this.handleGmailSwitch = this.handleGmailSwitch.bind(this);
     this.handleTestAPI = this.handleTestAPI.bind(this);
+    this.handleMismatchRetry = this.handleMismatchRetry.bind(this);
+    this.handleMismatchCancel = this.handleMismatchCancel.bind(this);
   }
 
   async componentDidMount() {
@@ -108,15 +122,35 @@ export default class Provider extends React.Component {
     this.setState({showAuthModal: true, email, legacyGsuite, scopes, gmailCtrlId});
   }
 
-  async getAuthorization() {
+  async getAuthorization({forcePicker = false} = {}) {
+    const {email, legacyGsuite, scopes, gmailCtrlId} = this.state;
     try {
-      const {email, legacyGsuite, scopes, gmailCtrlId} = this.state;
-      await port.send('authorize-gmail', {email, legacyGsuite, scopes, gmailCtrlId});
+      this.setState({showAuthModal: false, mismatch: null});
+      await port.send('authorize-gmail', {email, legacyGsuite, scopes, gmailCtrlId, forcePicker});
       await this.loadAuthorisations();
     } catch (error) {
+      if (error.code === ERROR_GMAIL_ACCOUNT_MISMATCH && error.data) {
+        this.setState({
+          mismatch: {
+            intendedEmail: error.data.intendedEmail || email,
+            actualEmail: error.data.actualEmail || ''
+          }
+        });
+        return;
+      }
       this.props.onSetNotification({header: l10n.map.alert_header_warning, message: error.message, type: 'error', hideDelay: 10000});
-    } finally {
-      this.setState({showAuthModal: false});
+    }
+  }
+
+  handleMismatchRetry() {
+    this.getAuthorization({forcePicker: true});
+  }
+
+  handleMismatchCancel() {
+    const {gmailCtrlId} = this.state;
+    this.setState({mismatch: null, gmail_integration: false}, () => this.handleSave());
+    if (gmailCtrlId) {
+      port.emit('cancel-authorize-gmail', {gmailCtrlId});
     }
   }
 
@@ -251,6 +285,52 @@ export default class Provider extends React.Component {
           </span>
         </div>
       </button>
+    );
+  }
+
+  mismatchModal() {
+    const {mismatch} = this.state;
+    const intended = mismatch?.intendedEmail || '';
+    const actual = mismatch?.actualEmail || '';
+    const rows = [
+      {modifier: 'expected', icon: 'icon-checkmark', label: l10n.map.provider_gmail_mismatch_label_expected, email: intended},
+      {modifier: 'actual', icon: 'icon-close', label: l10n.map.provider_gmail_mismatch_label_actual, email: actual}
+    ];
+    return (
+      <Modal
+        isOpen={Boolean(mismatch)}
+        toggle={this.handleMismatchCancel}
+        size="medium"
+        title={l10n.map.provider_gmail_mismatch_title}
+        headerClass="text-danger"
+        footer={
+          <div className="modal-footer justify-content-between">
+            <button type="button" className="btn btn-secondary" onClick={this.handleMismatchCancel}>{l10n.map.provider_gmail_mismatch_cancel_btn}</button>
+            <button type="button" className="btn btn-primary" onClick={this.handleMismatchRetry}>{l10n.map.provider_gmail_mismatch_retry_btn}</button>
+          </div>
+        }
+      >
+        <div className="account-mismatch">
+          <p className="account-mismatch__intro">{l10n.map.provider_gmail_mismatch_intro}</p>
+          <div className="account-mismatch__compare">
+            {rows.map(({modifier, icon, label, email}) => (
+              <div key={modifier} className={`account-mismatch__row account-mismatch__row--${modifier}`}>
+                <span className={`icon ${icon} account-mismatch__icon`} aria-hidden="true"></span>
+                <span className="account-mismatch__label">{label}</span>
+                <span className="account-mismatch__email">{email}</span>
+              </div>
+            ))}
+          </div>
+          <ol className="account-mismatch__steps">
+            <li>{l10n.map.provider_gmail_mismatch_step1}</li>
+            <li><Trans id={l10n.map.provider_gmail_mismatch_step2} components={[<strong key="0">{intended}</strong>]} /></li>
+          </ol>
+          <details className="account-mismatch__details">
+            <summary>{l10n.map.provider_gmail_mismatch_why_summary}</summary>
+            <p>{l10n.map.provider_gmail_mismatch_why_body}</p>
+          </details>
+        </div>
+      </Modal>
     );
   }
 
@@ -396,6 +476,7 @@ export default class Provider extends React.Component {
           </div>
         </form>
         {this.authModal()}
+        {this.mismatchModal()}
         {this.licenseModal()}
       </div>
     );

@@ -5,6 +5,7 @@
 
 import * as l10n from '../lib/l10n';
 import {dataURL2str, normalizeArmored, encodeHTML} from '../lib/util';
+import {parseAddress} from '../lib/email';
 import {extractFileExtension} from '../lib/file';
 import * as model from '../modules/pgpModel';
 import * as gmail from '../modules/gmail';
@@ -128,7 +129,7 @@ export default class gmailDecryptController extends DecryptController {
       const {payload} = await gmail.getMessage({msgId: this.state.msgId, email: userEmail, accessToken});
       const messageText = await gmail.extractMailBody({payload, userEmail, msgId: this.state.msgId, accessToken});
       this.armored = normalizeArmored(messageText, /-----BEGIN PGP MESSAGE-----[\s\S]+?-----END PGP MESSAGE-----/);
-      const {email: sender} = gmail.parseEmailAddress(gmail.extractMailHeader(payload, 'From'));
+      const {email: sender} = parseAddress(gmail.extractMailHeader(payload, 'From'));
       this.sender = sender;
       if (!await this.canUnlockKey(this.armored, this.keyringId)) {
         this.ports.dDialog.emit('lock');
@@ -189,7 +190,7 @@ export default class gmailDecryptController extends DecryptController {
 
   async retrieveSender(accessToken) {
     const {payload} = await gmail.getMessage({email: this.state.userInfo.email, msgId: this.state.msgId, accessToken, format: 'metadata', metaHeaders: ['from']});
-    const {email: sender} = gmail.parseEmailAddress(gmail.extractMailHeader(payload, 'From'));
+    const {email: sender} = parseAddress(gmail.extractMailHeader(payload, 'From'));
     this.sender = sender;
   }
 

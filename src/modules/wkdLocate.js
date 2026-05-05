@@ -10,6 +10,7 @@
 import {readKeys} from 'openpgp';
 import {isUint8Array, concatUint8Array} from '@openpgp/web-stream-tools';
 import {str2ab} from '../lib/util';
+import {splitAddress} from '../lib/email';
 import {prefs} from './prefs';
 import {filterUserIdsByEmail, verifyPrimaryKey} from './key';
 import defaults from '../res/defaults.json';
@@ -58,7 +59,11 @@ export async function lookup({email}) {
     // skipping lookup without email
     return;
   }
-  const [, domain] = /.*@(.*)/.exec(email);
+  const split = splitAddress(email);
+  if (!split) {
+    return;
+  }
+  const {domain} = split;
   if (isBlocklisted(domain)) {
     return;
   }
@@ -146,10 +151,11 @@ export function isBlocklisted(domain) {
  * @returns {String} The WKD URL according to draft-koch-openpgp-webkey-service-13 (https://datatracker.ietf.org/doc/draft-koch-openpgp-webkey-service/).
  */
 export async function buildWKDUrl(email, methodOfWKD) {
-  const [, localPart, domain] = /(.*)@(.*)/.exec(email);
-  if (!localPart || !domain) {
+  const split = splitAddress(email);
+  if (!split) {
     throw new Error(`WKD failed to parse: ${email}`);
   }
+  const {localPart, domain} = split;
   const localPartBuffer = str2ab(localPart.toLowerCase());
   const digest = await crypto.subtle.digest('SHA-1', localPartBuffer);
   const localEncoded = encodeZBase32(new Uint8Array(digest));

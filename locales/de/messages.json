@@ -1621,6 +1621,46 @@
     "description": "Warning message, when Gmail is not authorized",
     "message": "Gmail ist mit dem Suchmuster <0></0> nicht autorisiert. Bitte Prüfen Sie die Einstellungen in <1></1>."
   },
+  "provider_gmail_mismatch_intro": {
+    "description": "Intro line in the Gmail account mismatch dialog. Sits above the comparison block which already shows both addresses.",
+    "message": "Mailvelope erwartet ein anderes Gmail-Konto, als Google autorisiert hat."
+  },
+  "provider_gmail_mismatch_label_expected": {
+    "description": "Label for the expected (correct) account in the Gmail account mismatch comparison.",
+    "message": "Erwartet"
+  },
+  "provider_gmail_mismatch_label_actual": {
+    "description": "Label for the actually-authorized (wrong) account in the Gmail account mismatch comparison.",
+    "message": "Autorisiert"
+  },
+  "provider_gmail_mismatch_step1": {
+    "description": "First recovery step in the Gmail account mismatch dialog.",
+    "message": "Klicken Sie unten auf \"Erneut versuchen\", um den Google-Kontoauswähler erneut zu öffnen."
+  },
+  "provider_gmail_mismatch_step2": {
+    "description": "Second recovery step. Placeholder is the expected email.",
+    "message": "Wählen Sie <0></0>. Falls nicht gelistet, wählen Sie \"Anderes Konto verwenden\" und melden Sie sich an."
+  },
+  "provider_gmail_mismatch_why_summary": {
+    "description": "Disclosure summary above the cause explanation in the Gmail account mismatch dialog.",
+    "message": "Warum passiert das?"
+  },
+  "provider_gmail_mismatch_why_body": {
+    "description": "Cause explanation revealed when the user expands the disclosure in the Gmail account mismatch dialog.",
+    "message": "Chrome ist möglicherweise mit einem anderen Standard-Google-Konto angemeldet, oder im Google-Anmeldedialog wurde ein anderes Konto ausgewählt."
+  },
+  "provider_gmail_mismatch_cancel_btn": {
+    "description": "Cancel button in the Gmail account mismatch dialog.",
+    "message": "Abbrechen"
+  },
+  "provider_gmail_mismatch_retry_btn": {
+    "description": "Retry button in the Gmail account mismatch dialog.",
+    "message": "Erneut versuchen"
+  },
+  "provider_gmail_mismatch_title": {
+    "description": "Title of the Gmail account mismatch dialog.",
+    "message": "Falsches Google-Konto autorisiert"
+  },
   "provider_gmail_licensing_dialog_business_btn_info": {
     "description": "Info text on Business button ",
     "message": "Sichere Kommunikation mit Organisationen weltweit"

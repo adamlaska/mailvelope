@@ -4,11 +4,12 @@
  */
 
 import mvelo from '../lib/lib-mvelo';
-import {getUUID, mapError} from '../lib/util';
+import {getUUID, mapError, MvError} from '../lib/util';
+import {ERROR_GMAIL_ACCOUNT_MISMATCH, ERROR_GMAIL_AUTH_CANCELLED} from '../lib/constants';
 import * as l10n from '../lib/l10n';
 import * as gmail from '../modules/gmail';
 import {SubController} from './sub.controller';
-import {formatEmailAddress} from '../modules/key';
+import {formatAddress, parseAddress, parseAddressList} from '../lib/email';
 import {setAppDataSlot} from '../controller/sub.controller';
 
 export default class GmailController extends SubController {
@@ -68,8 +69,8 @@ export default class GmailController extends SubController {
     // send email via GMAIL api
     this.peers.editorController.ports.editor.emit('send-mail-in-progress');
     const userEmail = this.state.userInfo.email;
-    const toFormatted = to.map(({name, email}) => formatEmailAddress(email, name));
-    const ccFormatted = cc.map(({name, email}) => formatEmailAddress(email, name));
+    const toFormatted = to.map(({name, email}) => formatAddress(email, name));
+    const ccFormatted = cc.map(({name, email}) => formatAddress(email, name));
     const mail = gmail.buildMail({message: armored, attachments: encFiles, subject, sender: userEmail, to: toFormatted, cc: ccFormatted});
     const accessToken = await this.peers.editorController.getAccessToken();
     const sendOptions = {
@@ -121,29 +122,35 @@ export default class GmailController extends SubController {
       const {threadId, internalDate, payload} = await gmail.getMessage({msgId, email: userEmail, accessToken});
       const messageText = await gmail.extractMailBody({payload, userEmail, msgId, accessToken});
       let subject = gmail.extractMailHeader(payload, 'Subject');
-      const {email: sender, name: senderName} = gmail.parseEmailAddress(gmail.extractMailHeader(payload, 'From'));
+      const {email: sender, name: senderName} = parseAddress(gmail.extractMailHeader(payload, 'From'));
 
       const recipientsTo = [];
       const recipientsCc = [];
-      const to = gmail.extractMailHeader(payload, 'To');
-      const cc = gmail.extractMailHeader(payload, 'Cc');
+      const toList = parseAddressList(gmail.extractMailHeader(payload, 'To'));
+      const ccList = parseAddressList(gmail.extractMailHeader(payload, 'Cc'));
       let attachments = [];
       let quotedMailHeader;
       if (type === 'reply') {
         subject = `Re: ${subject}`;
         recipientsTo.push(sender);
         if (all) {
-          to.split(',').map(address => gmail.parseEmailAddress(address)['email']).filter(email => email !== '' && email !== sender && email !== userEmail).forEach(email => recipientsTo.push(email));
-          if (cc) {
-            cc.split(',').map(address => gmail.parseEmailAddress(address)['email']).filter(email => email !== '' && email !== sender && email !== userEmail).forEach(email => recipientsCc.push(email));
+          for (const {email} of toList) {
+            if (email !== sender && email !== userEmail) {
+              recipientsTo.push(email);
+            }
+          }
+          for (const {email} of ccList) {
+            if (email !== sender && email !== userEmail) {
+              recipientsCc.push(email);
+            }
           }
         }
         quotedMailHeader = l10n.get('gmail_integration_quoted_mail_header_reply', [l10n.localizeDateTime(new Date(parseInt(internalDate, 10)), {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'}), `${senderName} <${sender}>`.trim()]);
       } else {
         subject = `Fwd: ${subject}`;
-        quotedMailHeader = l10n.get('gmail_integration_quoted_mail_header_forward', [`${senderName} <${sender}>`.trim(), l10n.localizeDateTime(new Date(parseInt(internalDate, 10)), {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'}), subject, to.split(',').map(address => `${gmail.parseEmailAddress(address)['name']} <${gmail.parseEmailAddress(address)['email']}>`.trim()).join(', ')]);
-        if (cc) {
-          quotedMailHeader += `\n${l10n.get('editor_label_copy_recipient')}: ${cc.split(',').map(address => `${gmail.parseEmailAddress(address)['name']} <${gmail.parseEmailAddress(address)['email']}>`.trim()).join(', ')}`;
+        quotedMailHeader = l10n.get('gmail_integration_quoted_mail_header_forward', [`${senderName} <${sender}>`.trim(), l10n.localizeDateTime(new Date(parseInt(internalDate, 10)), {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'}), subject, toList.map(({name, email}) => `${name} <${email}>`.trim()).join(', ')]);
+        if (ccList.length) {
+          quotedMailHeader += `\n${l10n.get('editor_label_copy_recipient')}: ${ccList.map(({name, email}) => `${name} <${email}>`.trim()).join(', ')}`;
         }
         quotedMailHeader += '\n';
         attachments = await gmail.getMailAttachments({payload, userEmail, msgId, accessToken});
@@ -187,18 +194,29 @@ export default class GmailController extends SubController {
     return new Promise((resolve, reject) => this.authorizationRequest = {resolve, reject, afterAuth});
   }
 
-  async onAuthorize({email, legacyGsuite, scopes}) {
+  async onAuthorize({email, legacyGsuite, scopes, forcePicker = false}) {
     try {
-      const accessToken = await gmail.authorize(email, legacyGsuite, scopes);
+      const accessToken = await gmail.authorize(email, legacyGsuite, scopes, {forcePicker});
       await this.checkLicense({email, legacyGsuite});
       this.activateComponent();
-      if (this.authorizationRequest.afterAuth) {
+      if (this.authorizationRequest?.afterAuth) {
         this.authorizationRequest.afterAuth();
       }
-      this.authorizationRequest.resolve(accessToken);
+      this.authorizationRequest?.resolve(accessToken);
     } catch (e) {
-      this.authorizationRequest.reject(e);
+      // Mismatch is recoverable via the in-modal retry, so keep the pending
+      // authorizationRequest open. Reject only on terminal errors.
+      if (e.code !== ERROR_GMAIL_ACCOUNT_MISMATCH) {
+        this.authorizationRequest?.reject(e);
+      }
       throw e;
+    }
+  }
+
+  cancelAuthorization() {
+    if (this.authorizationRequest) {
+      this.authorizationRequest.reject(new MvError('Authorization cancelled by user.', ERROR_GMAIL_AUTH_CANCELLED));
+      this.authorizationRequest = null;
     }
   }
 

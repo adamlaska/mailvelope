@@ -6,7 +6,8 @@
 import {createController} from './main.controller';
 import {SubController} from './sub.controller';
 import * as l10n from '../lib/l10n';
-import {mapError, checkEmail, checkUrl, MvError} from '../lib/util';
+import {mapError, checkUrl, MvError} from '../lib/util';
+import {isValidAddress} from '../lib/email';
 import {getById as getKeyringById, getPreferredKeyringId} from '../modules/keyring';
 import {verifyDetachedSignature, encryptMessage} from '../modules/pgpModel';
 import dompurify from 'dompurify';
@@ -168,7 +169,7 @@ export default class EncryptedFormController extends SubController {
     if (!recipient) {
       throw new MvError('The encrypted form recipient cannot be empty.', 'RECIPIENT_EMPTY');
     }
-    if (!checkEmail(recipient)) {
+    if (!isValidAddress(recipient)) {
       throw new MvError('The encrypted form recipient must be a valid email address.', 'RECIPIENT_INVALID_EMAIL');
     }
     this.formRecipientEmail = recipient;

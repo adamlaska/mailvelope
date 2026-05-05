@@ -6,7 +6,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as l10n from '../../lib/l10n';
-import {checkEmail} from '../../lib/util';
+import {isValidAddress} from '../../lib/email';
 import {port} from '../app';
 import {KeyringOptions} from './KeyringOptions';
 import {startOfDay, addYears, getUnixTime} from 'date-fns';
@@ -90,7 +90,7 @@ export default class GenerateKey extends React.Component {
 
   handleGenerate() {
     const errors = {...this.state.errors};
-    const validEmail = checkEmail(this.state.email);
+    const validEmail = isValidAddress(this.state.email);
     if (!validEmail) {
       errors.email = new Error();
     }

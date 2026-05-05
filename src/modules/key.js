@@ -4,7 +4,7 @@
  */
 
 import {readKey, PacketList, SignaturePacket, enums} from 'openpgp';
-import {goog} from './closure-library/closure/goog/emailaddress';
+import {parseAddressLoose} from '../lib/email';
 import * as l10n from '../lib/l10n';
 import {KEY_STATUS} from '../lib/constants';
 import {isKeyPseudoRevoked} from './trustKey';
@@ -51,23 +51,12 @@ export function parseUserId(user) {
     // user ID already parsed correctly by OpenPGP.js
     return;
   }
-  try {
-    const emailAddress = goog.format.EmailAddress.parse(user.userId);
-    if (emailAddress.isValid()) {
-      user.email = emailAddress.getAddress();
-    } else {
-      user.email = '';
-    }
-    user.name = emailAddress.getName();
-  } catch (e) {}
+  const {email, name} = parseAddressLoose(user.userId);
+  user.email = email;
+  user.name = name;
   if (!user.name && !user.email) {
     user.name = l10n.get('keygrid_invalid_userid');
   }
-}
-
-export function formatEmailAddress(email, name) {
-  const emailAddress = new goog.format.EmailAddress(email, name);
-  return emailAddress.toString();
 }
 
 export async function verifyPrimaryKey(key) {

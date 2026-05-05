@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Redirect, Link} from 'react-router-dom';
 import {PGP_KEYSTATUS_VALID} from '../../lib/constants';
-import {checkEmail} from '../../lib/util';
+import {isValidAddress} from '../../lib/email';
 import * as l10n from '../../lib/l10n';
 import {port} from '../app';
 import {KeyringOptions} from './KeyringOptions';
@@ -145,7 +145,7 @@ export default class User extends React.Component {
     if (this.state.user.name.trim() === '') {
       errors.name = new Error();
     }
-    const validEmail = checkEmail(this.state.user.email);
+    const validEmail = isValidAddress(this.state.user.email);
     if (!validEmail) {
       errors.email = {invalid: new Error()};
     } else {

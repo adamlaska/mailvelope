@@ -291,18 +291,4 @@ describe('providerSpecific unit tests', () => {
       });
     });
   });
-
-  describe('Email regex pattern', () => {
-    it('should match valid email patterns', () => {
-      // Test the HAS_EMAIL regex pattern used in the module
-      const HAS_EMAIL = /[+a-zA-Z0-9_.!#$%&'*\/=?^`{|}~-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z0-9]{2,63}/;
-
-      expect(HAS_EMAIL.test('test@example.com')).toBe(true);
-      expect(HAS_EMAIL.test('user.name+tag@domain.org')).toBe(true);
-      expect(HAS_EMAIL.test('test.email-with-dash@example.museum')).toBe(true);
-      expect(HAS_EMAIL.test('not-an-email')).toBe(false);
-      expect(HAS_EMAIL.test('missing@domain')).toBe(false);
-      expect(HAS_EMAIL.test('@domain.com')).toBe(false);
-    });
-  });
 });

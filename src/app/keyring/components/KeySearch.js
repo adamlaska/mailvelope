@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom';
 
 import * as l10n from '../../../lib/l10n';
 import Alert from '../../../components/util/Alert';
-import {checkEmail} from '../../../lib/util';
+import {isValidAddress} from '../../../lib/email';
 import {port} from '../../app';
 
 l10n.register([
@@ -42,7 +42,7 @@ export default function KeySearch(props) {
     event.preventDefault();
     let search = query.replaceAll(/\s/g, '').toLowerCase();
     setQuery(search);
-    if (checkEmail(search)) {
+    if (isValidAddress(search)) {
       search = {email: search};
     } else if (KEY_ID_REGEX.test(search)) {
       search = {keyId: search};
