@@ -19,6 +19,7 @@ import EventHandler from '../../lib/EventHandler';
 import PlainText from './components/PlainText';
 import EditorModalFooter from './components/EditorModalFooter';
 import {RecipientInput} from './components/RecipientInput';
+import {findKeyByEmail, hasAnyUnresolvedRecipient} from '../../lib/email';
 import BlurWarning from './components/BlurWarning';
 import SecurityBG from '../util/SecurityBG';
 import FileUpload from '../util/FileUpload';
@@ -54,7 +55,6 @@ export default class Editor extends React.Component {
       embedded: false,
       extraKey: false,
       extraKeys: [],
-      extraKeysError: false,
       files: [],
       hasUserInput: false,
       integration: false,
@@ -64,9 +64,7 @@ export default class Editor extends React.Component {
       publicKeys: [],
       pwdDialog: null,
       recipients: [],
-      recipientsError: false,
       recipientsCc: [],
-      recipientsCcError: false,
       showNotification: false,
       showRecipientsCc: false,
       signKey: '',
@@ -109,6 +107,7 @@ export default class Editor extends React.Component {
     this.port.on('terminate', this.onTerminate);
     this.port.on('public-key-userids', this.onPublicKeyUserids);
     this.port.on('key-update', this.onKeyUpdate);
+    this.port.on('key-lookup-result', this.onKeyLookupResult);
     this.port.onDisconnect.addListener(() => this.onDisconnect());
   }
 
@@ -155,22 +154,46 @@ export default class Editor extends React.Component {
    * @param {Array} options.recipients   recipients gather from the webmail ui
    */
   onPublicKeyUserids({keys, to, cc}) {
+    const markPending = list => list.map(r => r.checkServer ? {...r, lookupPending: true} : r);
+    to = markPending(to);
+    cc = markPending(cc);
     // initiate key lookup if they aren't found locally
     // we do it in the editor (not in the controller), because we'd like the UI to be dynamically updated
     this.keyLookup([...to, ...cc]);
-    this.setState(prevState => {
-      // when received recipients, reset Encrypt button status
-      const encryptDisabled = prevState.recipientsError || prevState.recipientsCcError || !to.length;
-      return {publicKeys: keys, encryptDisabled, recipients: to, recipientsCc: cc, showRecipientsCc: cc.length > 0};
+    this.setState({
+      publicKeys: keys,
+      recipients: to,
+      recipientsCc: cc,
+      showRecipientsCc: cc.length > 0,
+      encryptDisabled: !to.length
     });
   }
 
-  /**
-   * Event that is triggered after update of the public keyring (e.g. when the key server responded)
-   * @param {Array} options.keys   A list of all available public keys from the local keychain
-   */
   onKeyUpdate({keys}) {
     this.setState({publicKeys: keys});
+  }
+
+  /**
+   * Clears `lookupPending` on the recipient(s) matching `email` after a
+   * keyserver lookup settles. Returns null (a React setState no-op) when
+   * no recipient is still waiting for this email — e.g. the tag was
+   * deleted before the lookup returned.
+   */
+  onKeyLookupResult({email}) {
+    this.setState(prevState => {
+      const isMatch = r => r.lookupPending && r.email.toLowerCase() === email.toLowerCase();
+      if (!prevState.recipients.some(isMatch)
+          && !prevState.recipientsCc.some(isMatch)
+          && !prevState.extraKeys.some(isMatch)) {
+        return null;
+      }
+      const clear = list => list.map(r => isMatch(r) ? {...r, lookupPending: false} : r);
+      return {
+        recipients: clear(prevState.recipients),
+        recipientsCc: clear(prevState.recipientsCc),
+        extraKeys: clear(prevState.extraKeys)
+      };
+    });
   }
 
   onEncryptInProgress() {
@@ -245,12 +268,14 @@ export default class Editor extends React.Component {
    * @param  {String} action   Either 'sign' or 'encrypt'
    */
   sendPlainText(action, noCache, draft) {
+    // Fall back to {email} when no key is known (consumed by 'sign' action).
+    const resolveKey = r => r.key || findKeyByEmail(this.state.publicKeys, r.email) || {email: r.email};
     this.port.emit('editor-plaintext', {
       message: this.state.plainText,
       subject: this.state.subject,
-      keysTo: this.state.recipients.map(r => r.key || {email: r.email}), // return email if key not available (action: 'sign')
-      keysCc: this.state.recipientsCc.map(r => r.key || {email: r.email}), // return email if key not available (action: 'sign')
-      keysEx: this.state.extraKeys.map(r => r.key || {email: r.email}), // return email if key not available (action: 'sign')
+      keysTo: this.state.recipients.map(resolveKey),
+      keysCc: this.state.recipientsCc.map(resolveKey),
+      keysEx: this.state.extraKeys.map(resolveKey),
       attachments: this.state.files,
       action,
       signMsg: this.state.signMsg || draft, // draft is always signed
@@ -398,37 +423,37 @@ export default class Editor extends React.Component {
     }, timeout);
   }
 
-  /**
-   * Compute whether the encrypt button should be disabled.
-   */
   isEncryptDisabled() {
-    const {plainText, recipients, recipientsError, recipientsCcError, extraKey, extraKeys, extraKeysError} = this.state;
-    // If extraKey is checked, require at least one valid extra key and no error
+    const {plainText, recipients, recipientsCc, publicKeys, extraKey, extraKeys} = this.state;
+    const anyPending = recipients.some(r => r.lookupPending)
+      || recipientsCc.some(r => r.lookupPending)
+      || extraKeys.some(r => r.lookupPending);
     if (extraKey) {
       return !plainText
         || !extraKeys.length
-        || extraKeysError;
+        || hasAnyUnresolvedRecipient(extraKeys, publicKeys)
+        || anyPending;
     }
-    // Otherwise, use the original logic for main recipients
     return !plainText
-      || recipientsError
       || !recipients.length
-      || recipientsCcError;
+      || anyPending
+      || hasAnyUnresolvedRecipient(recipients, publicKeys)
+      || hasAnyUnresolvedRecipient(recipientsCc, publicKeys);
   }
 
-  handleChangeRecipients(recipients, recipientsError) {
+  handleChangeRecipients(recipients) {
     this.keyLookup(recipients);
-    this.setState({recipients, recipientsError});
+    this.setState({recipients});
   }
 
-  // For CC recipients we allow the field to be empty, still handling the error
-  handleChangeRecipientsCc(recipientsCc, recipientsCcError) {
+  handleChangeRecipientsCc(recipientsCc) {
     this.keyLookup(recipientsCc);
-    this.setState({recipientsCc, recipientsCcError});
+    this.setState({recipientsCc});
   }
 
-  handleChangeExtraKeyInput(extraKeys, extraKeysError) {
-    this.setState({extraKeys, extraKeysError});
+  handleChangeExtraKeyInput(extraKeys) {
+    this.keyLookup(extraKeys);
+    this.setState({extraKeys});
   }
 
   onNotificationEnteredTransition() {
@@ -441,7 +466,12 @@ export default class Editor extends React.Component {
   }
 
   render() {
-    const hasExtraKey = Boolean(this.state.extraKey && this.state.extraKeys.length && !this.state.extraKeysError);
+    const hasExtraKey = Boolean(
+      this.state.extraKey
+      && this.state.extraKeys.length
+      && !this.state.extraKeys.some(r => r.lookupPending)
+      && !hasAnyUnresolvedRecipient(this.state.extraKeys, this.state.publicKeys)
+    );
     return (
       <SecurityBG className={`editor ${this.state.embedded ? 'embedded' : ''}`} port={this.port}>
         <div className="modal d-block">
@@ -456,7 +486,7 @@ export default class Editor extends React.Component {
                         {(!this.state.showRecipientsCc && this.state.integration) && <label><a href="#" role="button" className="text-reset" onClick={() => this.setState({showRecipientsCc: true})}>{l10n.map.editor_label_copy_recipient}</a></label>}
                       </div>
                       <RecipientInput keys={this.state.publicKeys} recipients={this.state.recipients}
-                        onChangeRecipients={(recipients, recipientsError) => this.handleChangeRecipients(recipients, recipientsError)}
+                        onChangeRecipients={recipients => this.handleChangeRecipients(recipients)}
                         extraKey={hasExtraKey}
                       />
                     </div>
@@ -465,7 +495,7 @@ export default class Editor extends React.Component {
                     <div className="mb-3">
                       <label className="mr-auto">{l10n.map.editor_label_copy_recipient}</label>
                       <RecipientInput keys={this.state.publicKeys} recipients={this.state.recipientsCc}
-                        onChangeRecipients={(recipients, recipientsError) => this.handleChangeRecipientsCc(recipients, recipientsError)}
+                        onChangeRecipients={recipients => this.handleChangeRecipientsCc(recipients)}
                         extraKey={hasExtraKey}
                       />
                     </div>
@@ -501,7 +531,7 @@ export default class Editor extends React.Component {
                     extraKey={this.state.extraKey}
                     extraKeyInput={
                       <RecipientInput keys={this.state.publicKeys} recipients={this.state.extraKeys} hideErrorMsg={true}
-                        onChangeRecipients={(recipients, recipientsError) => this.handleChangeExtraKeyInput(recipients, recipientsError)}
+                        onChangeRecipients={extraKeys => this.handleChangeExtraKeyInput(extraKeys)}
                       />}
                     integration = {this.state.integration}
                     onCancel={() => this.handleCancel()}

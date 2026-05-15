@@ -11,6 +11,7 @@
 import mvelo from '../lib/lib-mvelo';
 import {getUUID, deDup, sortAndDeDup, mapError, MvError, byteCount, normalizeArmored, dataURL2str} from '../lib/util';
 import {extractFileExtension} from '../lib/file';
+import {findKeyByEmail} from '../lib/email';
 import * as l10n from '../lib/l10n';
 import {prefs} from '../modules/prefs';
 import * as model from '../modules/pgpModel';
@@ -140,34 +141,17 @@ export default class EditorController extends SubController {
    * @param  {Array} recipients - a list of potential recipient from the webmail ui
    */
   async setRecipientData(recipients) {
-    /**
-       * Finds the recipient's corresponding public key.
-       * This helps to prepopulate key data before delivering to the IU
-       * @param {Array} keys - array of keys to search for match
-       * @param {String} email - recipient's email
-       */
-    function findRecipientKey(keys, email) {
-      const key = keys.find(key => key.email && key.email.toLowerCase() === email.toLowerCase());
-      let checkServer = false;
-      if (!key) {
-        // No local key found, mark it for resolution
-        checkServer = true;
-      }
-      return {key, fingerprint: key ? key.fingerprint : undefined, checkServer};
-    }
-
+    const toRecipient = email => {
+      const key = findKeyByEmail(keys, email);
+      return {email, key, fingerprint: key?.fingerprint, checkServer: !key};
+    };
     let to = [];
     let cc = [];
     const keys = await getKeyData({keyringId: this.keyringId});
     if (recipients) {
-      // deduplicate email addresses
-      let toEmails = (recipients.to || []).map(recipient => recipient.email);
-      toEmails = deDup(toEmails); // just dedup, dont change order of user input
-      to = toEmails.map(e => ({email: e, ...findRecipientKey(keys, e)}));
-      let ccEmails = (recipients.cc || []).map(recipient => recipient.email);
-      ccEmails = deDup(ccEmails); // just dedup, dont change order of user input
-      cc = ccEmails.map(e => ({email: e, ...findRecipientKey(keys, e)}));
-      // get all public keys from required keyrings
+      // dedup preserves user input order
+      to = deDup((recipients.to || []).map(r => r.email)).map(toRecipient);
+      cc = deDup((recipients.cc || []).map(r => r.email)).map(toRecipient);
     }
     this.ports.editor.emit('public-key-userids', {keys, to, cc});
   }
@@ -292,6 +276,7 @@ export default class EditorController extends SubController {
       await keyring.importKeys([{type: 'public', armored: result.armored}]);
     }
     await this.sendKeyUpdate();
+    this.ports.editor.emit('key-lookup-result', {email: msg.recipient.email, found: Boolean(result)});
   }
 
   async sendKeyUpdate() {

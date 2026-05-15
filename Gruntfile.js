@@ -239,7 +239,7 @@ module.exports = function(grunt) {
         command: 'mv dist/mailvelope_-*.zip dist/mailvelope.firefox.zip'
       },
       webex_build: {
-        command: 'web-ext build --source-dir=build/firefox --artifacts-dir=dist'
+        command: 'npx web-ext build --source-dir=build/firefox --artifacts-dir=dist'
       }
     },
 

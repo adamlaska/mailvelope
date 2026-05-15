@@ -80,6 +80,15 @@ export function extractAddressFromText(text, {position = 'last'} = {}) {
   return position === 'first' ? matches[0] : matches[matches.length - 1];
 }
 
+export function findKeyByEmail(keys, email) {
+  return keys.find(key => key.email && key.email.toLowerCase() === email.toLowerCase());
+}
+
+// Pending recipients are explicitly NOT errors — they're "we don't know yet".
+export function hasAnyUnresolvedRecipient(recipients, keys) {
+  return recipients.some(r => !r.lookupPending && !findKeyByEmail(keys, r.email));
+}
+
 export function splitAddress(address) {
   if (typeof address !== 'string') {
     return null;

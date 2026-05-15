@@ -61,6 +61,41 @@ $sp-1: map-get($spacers, 1);
     .badge-danger::before {
       content: "\e909 \00a0";
     }
+
+    .badge-pending {
+      background-color: $gray-100;
+      border-color: $gray-300;
+      color: $gray-700;
+      animation: badge-pending-pulse 1.6s ease-in-out infinite;
+    }
+
+    .badge-pending .tag-remove {
+      color: $gray-700;
+    }
+
+    .badge-pending::before {
+      // Glyph only — trailing whitespace would offset the rotation pivot from the icon's optical center.
+      content: "\e90e";
+      display: inline-block;
+      margin-right: 0.4em;
+      animation: badge-pending-spin 2s linear infinite;
+      transform-origin: center;
+    }
+
+    @keyframes badge-pending-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes badge-pending-pulse {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.65; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .badge-pending,
+      .badge-pending::before { animation: none; }
+      .badge-pending { opacity: 0.85; }
+    }
   }
 
   .tag-input-wrapper {

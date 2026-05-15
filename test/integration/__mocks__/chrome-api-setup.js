@@ -4,6 +4,7 @@
 (() => {
   const listeners = [];
   const pendingPorts = [];
+  const connectedPorts = [];
 
   // Port class implementation
   class Port {
@@ -286,8 +287,10 @@
           listener(receiverPort);
         }
       });
+      connectedPorts.push(senderPort);
       return senderPort;
     },
+    _connectedPorts: connectedPorts,
     onMessage: {
       addListener() {}
     }
@@ -405,6 +408,8 @@
     listeners.length = 0;
     // Clear all pending ports
     pendingPorts.length = 0;
+    // Clear connected port registry
+    connectedPorts.length = 0;
     // Clear storage data
     localStorageData.clear();
     sessionStorageData.clear();

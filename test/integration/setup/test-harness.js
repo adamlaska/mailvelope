@@ -3,6 +3,8 @@
  * Provides modular initialization and configuration for different test scenarios
  */
 
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {init as initModel} from 'modules/pgpModel';
 import {init as initKeyring, createKeyring, getById} from 'modules/keyring';
 import {initController, controllerPool} from 'controller/main.controller';
@@ -13,6 +15,8 @@ import {init as initClientAPIContentScript} from 'content-scripts/clientAPI';
 import EncryptFrame from 'content-scripts/encryptFrame';
 import ExtractFrame from 'content-scripts/extractFrame';
 import * as providerSpecific from 'content-scripts/providerSpecific';
+import * as l10n from 'lib/l10n';
+import Editor from 'components/editor/editor';
 import {testAutocryptHeaders} from '../../fixtures/headers';
 import testKeys from '../../fixtures/keys';
 // Import offscreen module to ensure window.offscreen is available
@@ -29,15 +33,25 @@ const mockRegistry = new Set();
 // Test data storage for persisting data across page.evaluate calls
 const testDataStore = {};
 
+// Track Editor mount points so afterEach can unmount cleanly.
+const editorMounts = [];
+
 // Test harness API exposed to tests
 window.testHarness = {
   /**
    * Core initialization - should be called in beforeEach
-   * Initializes controller, model, and keyring
+   * Initializes controller, model, and keyring.
+   * @param {Object} [options]
+   * @param {boolean} [options.skipController] - Skip registering the
+   *   real controller onConnect listener. Use when the test acts as
+   *   the controller stub (e.g. UI component integration tests) so
+   *   incoming ports aren't claimed by a real SubController.
    */
-  initCore: async () => {
+  initCore: async ({skipController = false} = {}) => {
     try {
-      initController();
+      if (!skipController) {
+        initController();
+      }
       await initModel();
       await initKeyring();
     } catch (error) {
@@ -249,6 +263,56 @@ window.testHarness = {
         }
       }
     }
+  },
+
+  /**
+   * Mount the real Editor React component into #test-container.
+   * The Editor's EventHandler.connect() registers a port via the
+   * mocked chrome.runtime.connect(); the receiving end is captured
+   * by chrome-api-setup's _connectedPorts registry and retrievable
+   * with getEditorPort().
+   * @param {Object} [options]
+   * @param {string} [options.id] - Editor instance id (becomes part of the port name).
+   * @param {number} [options.maxFileUploadSize]
+   * @returns {string} The port name (`editor-${id}`).
+   */
+  mountEditor: ({id = 'test-editor', maxFileUploadSize} = {}) => {
+    l10n.mapToLocal();
+    const container = document.getElementById('test-container');
+    const root = document.createElement('div');
+    container.appendChild(root);
+    const props = {id};
+    if (maxFileUploadSize !== undefined) {
+      props.maxFileUploadSize = maxFileUploadSize;
+    }
+    ReactDOM.render(React.createElement(Editor, props), root);
+    editorMounts.push(root);
+    return `editor-${id}`;
+  },
+
+  /**
+   * Unmount any Editor components mounted by mountEditor().
+   * Safe to call when nothing is mounted.
+   */
+  unmountEditor: () => {
+    while (editorMounts.length) {
+      const root = editorMounts.pop();
+      ReactDOM.unmountComponentAtNode(root);
+      root.remove();
+    }
+  },
+
+  /**
+   * Get the receiving end of a connected port by name. The Editor's
+   * EventHandler holds the sender side; the controller stub uses the
+   * receiver side returned here (via sender._otherPort) to capture
+   * outbound events and post replies.
+   * @param {string} name - Port name (e.g. `editor-test-editor`)
+   * @returns {Port|null}
+   */
+  getEditorPort: name => {
+    const sender = chrome.runtime._connectedPorts.find(p => p.name === name);
+    return sender?._otherPort ?? null;
   },
 
   /**

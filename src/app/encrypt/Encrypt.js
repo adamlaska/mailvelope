@@ -7,6 +7,7 @@ import React from 'react';
 import * as l10n from '../../lib/l10n';
 import {port} from '../app';
 import {RecipientInput} from '../../components/editor/components/RecipientInput';
+import {hasAnyUnresolvedRecipient} from '../../lib/email';
 import Spinner from '../../components/util/Spinner';
 import Alert from '../../components/util/Alert';
 import Modal from '../../components/util/Modal';
@@ -57,7 +58,6 @@ export default class Encrypt extends React.Component {
       keyringId: '',
       keys: [],
       recipients: [],
-      recipientsError: false,
       signingKey: null,
       selectedSigningKeyFpr: null,
       signingKeys: [],
@@ -98,9 +98,35 @@ export default class Encrypt extends React.Component {
     this.setState({keys});
   }
 
-  async handleAutoLocate({email}) {
-    await port.send('key-lookup', {query: {email}, keyringId: this.state.keyringId, importKey: true});
-    await this.initKeys();
+  handleChangeRecipients(recipients) {
+    this.keyLookup(recipients);
+    this.setState({recipients});
+  }
+
+  keyLookup(recipients) {
+    recipients.forEach(async recipient => {
+      if (!recipient.checkServer) {
+        return;
+      }
+      recipient.checkServer = false;
+      await port.send('key-lookup', {query: {email: recipient.email}, keyringId: this.state.keyringId, importKey: true});
+      await this.initKeys();
+      this.setState(prevState => ({
+        recipients: prevState.recipients.map(r =>
+          r.email.toLowerCase() === recipient.email.toLowerCase() && r.lookupPending
+            ? {...r, lookupPending: false}
+            : r
+        )
+      }));
+    });
+  }
+
+  isEncryptDisabled() {
+    const {recipients, keys, files, message} = this.state;
+    return !recipients.length
+      || recipients.some(r => r.lookupPending)
+      || hasAnyUnresolvedRecipient(recipients, keys)
+      || (!files.length && message === '');
   }
 
   async handleEncrypt() {
@@ -258,7 +284,7 @@ export default class Encrypt extends React.Component {
                   <h1 className="flex-shrink-0 mr-auto">{!this.state.encrypted.length ? l10n.map.encrypt_header : l10n.map.encrypt_header_success}</h1>
                   <div className="flex-shrink-0">
                     {!this.state.encrypted.length &&
-                      <button type="button" disabled={this.state.recipientsError || !this.state.recipients.length || (!this.state.files.length && this.state.message === '')} onClick={() => this.handleEncrypt()} className="btn btn-primary">{l10n.map.editor_encrypt_button}</button>
+                      <button type="button" disabled={this.isEncryptDisabled()} onClick={() => this.handleEncrypt()} className="btn btn-primary">{l10n.map.editor_encrypt_button}</button>
                     }
                     {this.state.encrypted.length > 1 &&
                       <button type="button" onClick={this.handleDownloadAll} className="btn btn-primary">{l10n.map.encrypt_download_all_button}</button>
@@ -269,8 +295,7 @@ export default class Encrypt extends React.Component {
                   <div className="form-group">
                     <label htmlFor="recipients-input">{l10n.map.editor_label_recipient}</label>
                     <RecipientInput keys={this.state.keys} recipients={this.state.recipients}
-                      onChangeRecipients={(recipients, hasError) => this.setState({recipients, recipientsError: hasError})}
-                      onAutoLocate={recipient => this.handleAutoLocate(recipient)}
+                      onChangeRecipients={recipients => this.handleChangeRecipients(recipients)}
                     />
                   </div>
                   <div className="form-group mb-5">

@@ -84,8 +84,8 @@
     "sass-embedded": "1.91.0"
   },
   "engines": {
-    "node": ">=20",
-    "npm": ">=10"
+    "node": ">=24",
+    "npm": ">=11"
   },
   "private": true
 }

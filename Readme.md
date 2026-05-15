@@ -66,7 +66,7 @@ There are a few more tasks/tools available:
 * test the firefox plugin
 
   ```
-  node_modules/web-ext/bin/web-ext run --source-dir=./build/firefox
+  npx web-ext run --source-dir=./build/firefox
   ```
 
   It is possible to reload the plugin on changes, run the `grunt watch` task on another console terminal

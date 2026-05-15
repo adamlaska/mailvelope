@@ -1,10 +1,12 @@
 import {
+  findKeyByEmail,
+  formatAddress,
+  hasAnyUnresolvedRecipient,
   isValidAddress,
   parseAddress,
-  parseAddressSafe,
-  parseAddressLoose,
   parseAddressList,
-  formatAddress,
+  parseAddressLoose,
+  parseAddressSafe,
   extractAddressFromText,
   splitAddress
 } from '../../../src/lib/email';
@@ -144,6 +146,66 @@ describe('extractAddressFromText', () => {
   it('preserves +-addressing in the extracted address', () => {
     const title = 'Inbox (5) - alice+work@example.com - Gmail';
     expect(extractAddressFromText(title, {position: 'last'})).toBe('alice+work@example.com');
+  });
+});
+
+describe('findKeyByEmail', () => {
+  const keys = [
+    {email: 'alice@example.com', keyId: 'A1'},
+    {email: 'bob@example.com', keyId: 'B1'},
+    {keyId: 'NOEMAIL'}
+  ];
+
+  it('returns the key matching the email', () => {
+    expect(findKeyByEmail(keys, 'alice@example.com')).toBe(keys[0]);
+  });
+
+  it('matches case-insensitively in both directions', () => {
+    expect(findKeyByEmail(keys, 'ALICE@EXAMPLE.COM')).toBe(keys[0]);
+    expect(findKeyByEmail([{email: 'ALICE@example.com'}], 'alice@EXAMPLE.com')).toEqual({email: 'ALICE@example.com'});
+  });
+
+  it('returns undefined when no key matches', () => {
+    expect(findKeyByEmail(keys, 'nobody@example.com')).toBeUndefined();
+  });
+
+  it('skips keys without an email field', () => {
+    expect(findKeyByEmail(keys, 'NOEMAIL')).toBeUndefined();
+  });
+
+  it('returns undefined for an empty keys array', () => {
+    expect(findKeyByEmail([], 'alice@example.com')).toBeUndefined();
+  });
+});
+
+describe('hasAnyUnresolvedRecipient', () => {
+  const keys = [{email: 'alice@example.com', keyId: 'A1'}];
+
+  it('returns false when every recipient has a matching key', () => {
+    expect(hasAnyUnresolvedRecipient([{email: 'alice@example.com'}], keys)).toBe(false);
+  });
+
+  it('returns true when a recipient has no matching key', () => {
+    expect(hasAnyUnresolvedRecipient([{email: 'bob@example.com'}], keys)).toBe(true);
+  });
+
+  it('treats pending lookups as resolved', () => {
+    expect(hasAnyUnresolvedRecipient([{email: 'bob@example.com', lookupPending: true}], keys)).toBe(false);
+  });
+
+  it('matches recipient email against keys case-insensitively', () => {
+    expect(hasAnyUnresolvedRecipient([{email: 'ALICE@example.com'}], keys)).toBe(false);
+  });
+
+  it('returns false for an empty recipient list', () => {
+    expect(hasAnyUnresolvedRecipient([], keys)).toBe(false);
+  });
+
+  it('returns true when at least one recipient in a mixed list is unresolved', () => {
+    expect(hasAnyUnresolvedRecipient(
+      [{email: 'alice@example.com'}, {email: 'bob@example.com'}],
+      keys
+    )).toBe(true);
   });
 });
 

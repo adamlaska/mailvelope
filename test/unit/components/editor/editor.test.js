@@ -97,7 +97,7 @@ describe('Editor tests', () => {
           'decrypt-end', 'encrypt-end', 'encrypt-failed', 'decrypt-failed',
           'show-pwd-dialog', 'hide-pwd-dialog', 'get-plaintext',
           'error-message', 'hide-notification', 'show-notification',
-          'terminate', 'public-key-userids', 'key-update'
+          'terminate', 'public-key-userids', 'key-update', 'key-lookup-result'
         ];
         expectedEvents.forEach(event => {
           expect(ref.current.port._events.on).toContain(event);
@@ -312,11 +312,236 @@ describe('Editor tests', () => {
       it('should enable encrypt button when all conditions are met', () => {
         const {ref} = setup();
         ref.current.state.plainText = 'test message';
-        ref.current.state.recipients = [{email: 'test@example.com'}];
-        ref.current.state.recipientsError = false;
-        ref.current.state.recipientsCcError = false;
+        ref.current.state.publicKeys = [{email: 'test@example.com', keyId: 'AABBCCDD', userId: 'Test'}];
+        ref.current.state.recipients = [{email: 'test@example.com', key: ref.current.state.publicKeys[0]}];
 
         expect(ref.current.isEncryptDisabled()).toBe(false);
+      });
+
+      it('should disable encrypt button while a recipient lookup is pending', () => {
+        const {ref} = setup();
+        ref.current.state.plainText = 'test message';
+        ref.current.state.recipients = [{email: 'pending@example.com', lookupPending: true}];
+
+        expect(ref.current.isEncryptDisabled()).toBe(true);
+      });
+
+      it('should disable encrypt button when a recipient has no key in publicKeys', () => {
+        const {ref} = setup();
+        ref.current.state.plainText = 'test message';
+        ref.current.state.publicKeys = [];
+        ref.current.state.recipients = [{email: 'unknown@example.com'}];
+
+        expect(ref.current.isEncryptDisabled()).toBe(true);
+      });
+
+      it('should disable encrypt button when a CC recipient has no key', () => {
+        const {ref} = setup();
+        ref.current.state.plainText = 'test message';
+        const aliceKey = {email: 'alice@example.com', keyId: 'A1', userId: 'Alice'};
+        ref.current.state.publicKeys = [aliceKey];
+        ref.current.state.recipients = [{email: 'alice@example.com', key: aliceKey}];
+        ref.current.state.recipientsCc = [{email: 'unknown@example.com'}];
+
+        expect(ref.current.isEncryptDisabled()).toBe(true);
+      });
+
+      it('with extraKey: enables encrypt even if a recipient has no key', () => {
+        const {ref} = setup();
+        ref.current.state.plainText = 'test message';
+        ref.current.state.recipients = [{email: 'unknown@example.com'}];
+        ref.current.state.extraKey = true;
+        const extraKey = {email: 'extra@example.com', keyId: 'X1', userId: 'Extra'};
+        ref.current.state.publicKeys = [extraKey];
+        ref.current.state.extraKeys = [{email: 'extra@example.com', key: extraKey}];
+
+        expect(ref.current.isEncryptDisabled()).toBe(false);
+      });
+
+      it('with extraKey: disables encrypt while a recipient lookup is pending', () => {
+        const {ref} = setup();
+        ref.current.state.plainText = 'test message';
+        ref.current.state.recipients = [{email: 'pending@example.com', lookupPending: true}];
+        ref.current.state.extraKey = true;
+        const extraKey = {email: 'extra@example.com', keyId: 'X1'};
+        ref.current.state.publicKeys = [extraKey];
+        ref.current.state.extraKeys = [{email: 'extra@example.com', key: extraKey}];
+
+        expect(ref.current.isEncryptDisabled()).toBe(true);
+      });
+
+      it('with extraKey: disables encrypt while an extra key lookup is pending', () => {
+        const {ref} = setup();
+        ref.current.state.plainText = 'test message';
+        ref.current.state.extraKey = true;
+        ref.current.state.extraKeys = [{email: 'pending-extra@example.com', lookupPending: true}];
+
+        expect(ref.current.isEncryptDisabled()).toBe(true);
+      });
+
+      it('extras become invalid when their key is removed from publicKeys', () => {
+        const {ref} = setup();
+        const extraKey = {email: 'extra@example.com', keyId: 'X1'};
+        ref.current.state.plainText = 'msg';
+        ref.current.state.extraKey = true;
+        ref.current.state.publicKeys = [extraKey];
+        ref.current.state.extraKeys = [{email: 'extra@example.com', key: extraKey}];
+
+        expect(ref.current.isEncryptDisabled()).toBe(false);
+
+        ref.current.state.publicKeys = [];
+        expect(ref.current.isEncryptDisabled()).toBe(true);
+      });
+    });
+
+    describe('Keyserver lookup handling', () => {
+      it('clears lookupPending for the matching recipient', async () => {
+        const {ref} = setup();
+        ref.current.state.recipients = [
+          {email: 'alice@example.com', lookupPending: true},
+          {email: 'bob@example.com', lookupPending: true}
+        ];
+
+        await act(async () => {
+          ref.current.onKeyLookupResult({email: 'alice@example.com'});
+        });
+
+        expect(ref.current.state.recipients[0].lookupPending).toBe(false);
+        expect(ref.current.state.recipients[1].lookupPending).toBe(true);
+      });
+
+      it('also clears lookupPending in recipientsCc', async () => {
+        const {ref} = setup();
+        ref.current.state.recipientsCc = [{email: 'cc@example.com', lookupPending: true}];
+
+        await act(async () => {
+          ref.current.onKeyLookupResult({email: 'cc@example.com'});
+        });
+
+        expect(ref.current.state.recipientsCc[0].lookupPending).toBe(false);
+      });
+
+      it('also clears lookupPending in extraKeys', async () => {
+        const {ref} = setup();
+        ref.current.state.extraKeys = [{email: 'extra@example.com', lookupPending: true}];
+
+        await act(async () => {
+          ref.current.onKeyLookupResult({email: 'extra@example.com'});
+        });
+
+        expect(ref.current.state.extraKeys[0].lookupPending).toBe(false);
+      });
+
+      it('handleChangeExtraKeyInput emits key-lookup for extras with checkServer', () => {
+        const {ref} = setup();
+        const extraKeys = [{email: 'new-extra@example.com', checkServer: true}];
+
+        ref.current.handleChangeExtraKeyInput(extraKeys);
+
+        const lookupCall = ref.current.port.emit.mock.calls.find(
+          c => c[0] === 'key-lookup' && c[1].recipient.email === 'new-extra@example.com'
+        );
+        expect(lookupCall).toBeDefined();
+      });
+
+      it('matches the resolved email case-insensitively', async () => {
+        const {ref} = setup();
+        ref.current.state.recipients = [{email: 'Alice@Example.Com', lookupPending: true}];
+
+        await act(async () => {
+          ref.current.onKeyLookupResult({email: 'alice@example.com'});
+        });
+
+        expect(ref.current.state.recipients[0].lookupPending).toBe(false);
+      });
+
+      it('is a no-op when no recipient is pending for the email (e.g. tag deleted)', async () => {
+        const {ref} = setup();
+        const recipientsBefore = [{email: 'alice@example.com', lookupPending: false}];
+        ref.current.state.recipients = recipientsBefore;
+
+        await act(async () => {
+          ref.current.onKeyLookupResult({email: 'deleted@example.com'});
+        });
+
+        // No state update committed — same reference preserved.
+        expect(ref.current.state.recipients).toBe(recipientsBefore);
+      });
+
+      it('onKeyUpdate stores publicKeys without recomputing error flags', async () => {
+        const {ref} = setup();
+        const newKeys = [{email: 'alice@example.com', keyId: 'A1', userId: 'Alice'}];
+
+        await act(async () => {
+          ref.current.onKeyUpdate({keys: newKeys});
+        });
+
+        expect(ref.current.state.publicKeys).toEqual(newKeys);
+        expect(ref.current.state.recipientsError).toBeUndefined();
+        expect(ref.current.state.recipientsCcError).toBeUndefined();
+      });
+    });
+
+    describe('Recipient pre-population', () => {
+      it('marks recipients with checkServer as lookupPending', async () => {
+        const {ref} = setup();
+
+        await act(async () => {
+          ref.current.onPublicKeyUserids({
+            keys: [],
+            to: [{email: 'alice@example.com', checkServer: true}],
+            cc: [{email: 'bob@example.com', checkServer: true}]
+          });
+        });
+
+        expect(ref.current.state.recipients[0].lookupPending).toBe(true);
+        expect(ref.current.state.recipientsCc[0].lookupPending).toBe(true);
+      });
+
+      it('does not mark recipients without checkServer as pending', async () => {
+        const {ref} = setup();
+        const aliceKey = {email: 'alice@example.com', keyId: 'A1'};
+
+        await act(async () => {
+          ref.current.onPublicKeyUserids({
+            keys: [aliceKey],
+            to: [{email: 'alice@example.com', key: aliceKey}],
+            cc: []
+          });
+        });
+
+        expect(ref.current.state.recipients[0].lookupPending).toBeUndefined();
+      });
+    });
+
+    describe('Plaintext key resolution', () => {
+      it('resolves a recipient via publicKeys when r.key is unset', async () => {
+        const {ref} = setup();
+        const aliceKey = {email: 'alice@example.com', keyId: 'A1', fingerprint: 'aabb', userId: 'Alice'};
+        ref.current.state.plainText = 'msg';
+        ref.current.state.publicKeys = [aliceKey];
+        ref.current.state.recipients = [{email: 'alice@example.com'}]; // no r.key
+
+        await act(async () => {
+          ref.current.sendPlainText('encrypt');
+        });
+
+        const call = ref.current.port.emit.mock.calls.find(c => c[0] === 'editor-plaintext');
+        expect(call[1].keysTo).toEqual([aliceKey]);
+      });
+
+      it('falls back to {email} when no key is available anywhere', async () => {
+        const {ref} = setup();
+        ref.current.state.plainText = 'msg';
+        ref.current.state.publicKeys = [];
+        ref.current.state.recipients = [{email: 'unknown@example.com'}];
+
+        await act(async () => {
+          ref.current.sendPlainText('sign');
+        });
+
+        const call = ref.current.port.emit.mock.calls.find(c => c[0] === 'editor-plaintext');
+        expect(call[1].keysTo).toEqual([{email: 'unknown@example.com'}]);
       });
     });
 
@@ -449,16 +674,10 @@ describe('Editor tests', () => {
         expect(showNotificationSpy).toHaveBeenCalledTimes(errorCodes.length);
       });
 
-      it('should handle malformed recipient data', async () => {
+      it('should accept empty recipient updates without throwing', () => {
         const {ref} = setup();
-
-        expect(() => {
-          ref.current.handleChangeRecipients([], false);
-        }).not.toThrow();
-
-        expect(() => {
-          ref.current.handleChangeRecipients([], true);
-        }).not.toThrow();
+        expect(() => ref.current.handleChangeRecipients([])).not.toThrow();
+        expect(() => ref.current.handleChangeRecipientsCc([])).not.toThrow();
       });
     });
   });

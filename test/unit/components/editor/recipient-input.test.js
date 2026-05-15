@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, waitFor} from '@testing-library/react';
+import {act, fireEvent, render, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as l10n from 'lib/l10n';
 import {RecipientInput} from 'components/editor/components/RecipientInput';
@@ -90,6 +90,26 @@ describe('RecipientInput component', () => {
         expect(tag).toHaveClass('badge-info');
       });
 
+      it('should display pending styling for recipients awaiting keyserver lookup', () => {
+        const {container} = setup({
+          recipients: [{email: 'pending@example.com', displayId: 'pending@example.com', lookupPending: true}],
+          keys: []
+        });
+
+        const tag = container.querySelector('.tag.badge');
+        expect(tag).toHaveClass('badge-pending');
+      });
+
+      it('should prefer pending styling over extraKey info styling', () => {
+        const {container} = setup({
+          recipients: [{email: 'pending@example.com', lookupPending: true}],
+          keys: [],
+          extraKey: true
+        });
+
+        expect(container.querySelector('.tag.badge')).toHaveClass('badge-pending');
+      });
+
       it('should handle recipients with displayId different from email', () => {
         const recipientWithDisplayId = {
           email: 'test@example.com',
@@ -168,18 +188,83 @@ describe('RecipientInput component', () => {
       });
 
       it('should focus input after adding recipient', async () => {
-        const user = userEvent.setup();
-        const {container} = setup();
-
+        // Controlled wrapper so the parent state update flows back into the
+        // recipients prop — this is what triggers <ReactTags> to re-render
+        // and is the case the setTimeout-based focus restoration covers.
+        function ControlledRecipients() {
+          const [recipients, setRecipients] = React.useState([]);
+          return <RecipientInput keys={[]} recipients={recipients} onChangeRecipients={setRecipients} />;
+        }
+        const {container} = render(<ControlledRecipients />);
         const input = container.querySelector('.tag-input-field');
 
-        await user.type(input, 'test@example.com');
-        await user.keyboard('{Enter}');
-
-        // Wait for focus to be restored
-        await waitFor(() => {
-          expect(document.activeElement).toBe(input);
+        await act(async () => {
+          fireEvent.change(input, {target: {value: 'test@example.com'}});
         });
+        await act(async () => {
+          fireEvent.keyDown(input, {key: 'Enter', keyCode: 13});
+        });
+
+        // First, prove the addition actually happened (otherwise focus would
+        // be trivially preserved on the input that never lost it).
+        await waitFor(() => {
+          expect(container.querySelectorAll('.tag.badge')).toHaveLength(1);
+        });
+
+        // Then verify the input is focused after the post-add re-render.
+        await waitFor(() => {
+          expect(document.activeElement).toBe(container.querySelector('.tag-input-field'));
+        });
+      });
+
+      it('marks a newly added recipient as pending when no local key is available', async () => {
+        const {container, props} = setup({recipients: [], keys: []});
+        const input = container.querySelector('.tag-input-field');
+
+        await act(async () => {
+          fireEvent.change(input, {target: {value: 'new@example.com'}});
+        });
+        await act(async () => {
+          fireEvent.keyDown(input, {key: 'Enter', keyCode: 13});
+        });
+
+        expect(props.onChangeRecipients).toHaveBeenCalledTimes(1);
+        const args = props.onChangeRecipients.mock.calls[0];
+        // Single-argument signature: only recipients, no error flag.
+        expect(args).toHaveLength(1);
+        expect(args[0]).toEqual([{
+          email: 'new@example.com',
+          displayId: 'new@example.com',
+          checkServer: true,
+          lookupPending: true
+        }]);
+      });
+
+      it('attaches the local key when adding a recipient with a known address', async () => {
+        const aliceKey = {
+          email: 'alice@example.com',
+          userId: 'Alice <alice@example.com>',
+          keyId: 'AAAA1111',
+          fingerprint: 'aabb'
+        };
+        const {container, props} = setup({recipients: [], keys: [aliceKey]});
+        const input = container.querySelector('.tag-input-field');
+
+        await act(async () => {
+          fireEvent.change(input, {target: {value: 'alice@example.com'}});
+        });
+        await act(async () => {
+          fireEvent.keyDown(input, {key: 'Enter', keyCode: 13});
+        });
+
+        const [recipients] = props.onChangeRecipients.mock.calls[0];
+        expect(recipients[0]).toMatchObject({
+          email: 'alice@example.com',
+          key: aliceKey,
+          fingerprint: 'aabb'
+        });
+        expect(recipients[0].lookupPending).toBeUndefined();
+        expect(recipients[0].checkServer).toBeUndefined();
       });
     });
 
@@ -229,6 +314,25 @@ describe('RecipientInput component', () => {
         const infoAlert = container.querySelector('.alert-info');
         expect(infoAlert).toBeInTheDocument();
         expect(infoAlert.textContent).toContain('editor_key_has_extra_msg');
+      });
+
+      it('should suppress the not-found alert while a recipient is pending', () => {
+        const {container} = setup({
+          recipients: [{email: 'pending@example.com', lookupPending: true}],
+          keys: []
+        });
+
+        expect(container.querySelector('.alert-danger')).not.toBeInTheDocument();
+      });
+
+      it('should suppress the extraKey info alert while a recipient is pending', () => {
+        const {container} = setup({
+          recipients: [{email: 'pending@example.com', lookupPending: true}],
+          keys: [],
+          extraKey: true
+        });
+
+        expect(container.querySelector('.alert-info')).not.toBeInTheDocument();
       });
     });
 
@@ -314,6 +418,39 @@ describe('RecipientInput component', () => {
         const tags = container.querySelectorAll('.tag.badge');
         expect(tags).toHaveLength(1);
         expect(tags[0].textContent).toContain('alice@example.com');
+      });
+
+      it('flips badge from danger to success when keys arrive without recipient identity changing', () => {
+        // Simulates a key being imported (via keyserver or otherwise) for an
+        // existing recipient. The recipient object reference is stable —
+        // only the keys prop changes.
+        const stableRecipient = {email: 'late-key@example.com', displayId: 'late-key@example.com'};
+        const {container, props, rerender} = setup({
+          recipients: [stableRecipient],
+          keys: []
+        });
+
+        expect(container.querySelector('.tag.badge')).toHaveClass('badge-danger');
+
+        const lateKey = {email: 'late-key@example.com', userId: 'Late', keyId: 'LK1', fingerprint: 'lk'};
+        rerender(<RecipientInput {...props} recipients={[stableRecipient]} keys={[lateKey]} />);
+
+        expect(container.querySelector('.tag.badge')).toHaveClass('badge-success');
+      });
+
+      it('flips badge from pending to success when matching key arrives', () => {
+        const pendingRecipient = {email: 'alice@example.com', lookupPending: true};
+        const {container, props, rerender} = setup({
+          recipients: [pendingRecipient],
+          keys: []
+        });
+
+        expect(container.querySelector('.tag.badge')).toHaveClass('badge-pending');
+
+        const aliceKey = {email: 'alice@example.com', userId: 'Alice', keyId: 'A1', fingerprint: 'aabb'};
+        rerender(<RecipientInput {...props} recipients={[pendingRecipient]} keys={[aliceKey]} />);
+
+        expect(container.querySelector('.tag.badge')).toHaveClass('badge-success');
       });
     });
 
