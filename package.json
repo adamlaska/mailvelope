@@ -9,7 +9,9 @@
     "test:jest:watch": "jest --watch",
     "test:jest:coverage": "jest --coverage",
     "test:jest:debug": "jest --runInBand --verbose",
-    "build:integration": "webpack --config config/webpack.test.integration.js"
+    "build:integration": "webpack --config config/webpack.test.integration.js",
+    "docs": "node -e \"require('fs').rmSync('build/doc',{recursive:true,force:true})\" && jsdoc -c config/jsdoc.json -R doc/client-api/Readme.md",
+    "docs:publish": "bash .build-tools/publish-docs.sh"
   },
   "repository": {
     "type": "git",
@@ -52,6 +54,7 @@
     "@testing-library/user-event": "^14.6.1",
     "babel-jest": "^30.2.0",
     "babel-loader": "^10.0.0",
+    "clean-jsdoc-theme": "^4.3.2",
     "css-loader": "^7.1.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "5.2.0",
@@ -62,12 +65,11 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-eslint": "24.3.0",
-    "grunt-jsdoc": "^2.4.1",
     "grunt-replace": "^2.0.2",
     "grunt-shell": "^4.0.0",
     "grunt-webpack": "^7.0.1",
-    "ink-docstrap": "^1.3.2",
     "jest": "^30.2.0",
+    "jsdoc": "^4.0.5",
     "jest-environment-jsdom": "^30.2.0",
     "jest-puppeteer": "^11.0.0",
     "mini-css-extract-plugin": "^2.9.4",

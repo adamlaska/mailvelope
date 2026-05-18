@@ -25,18 +25,6 @@ module.exports = function(grunt) {
       ]
     },
 
-    jsdoc: {
-      dist: {
-        src: ['src/client-API/*.js', 'doc/client-api/Readme.md'],
-        options: {
-          destination: 'build/doc',
-          template: 'node_modules/ink-docstrap/template',
-          tutorials: 'doc/client-api',
-          configure: 'config/jsdoc.json'
-        }
-      }
-    },
-
     copy: {
 
       dep: {
@@ -196,18 +184,6 @@ module.exports = function(grunt) {
           expand: true,
           src: ['**/*', '!.*', '{src,test}/**/.eslintrc.json', '!mailvelope.*', '!build/**', '!dist/**', '!node_modules/**']
         }]
-      },
-      doc: {
-        options: {
-          mode: 'zip',
-          archive: 'dist/mailvelope.client-api-documentation.zip',
-          pretty: true
-        },
-        files: [{
-          expand: true,
-          cwd: 'build/doc/',
-          src: ['**/*']
-        }]
       }
     },
 
@@ -269,7 +245,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-eslint');
-  grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-replace');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-webpack');
@@ -282,7 +257,6 @@ module.exports = function(grunt) {
     grunt.util.spawn({cmd: '.build-tools/crxmake.sh', args: ['build/chrome', '.build-tools/crx_signing.pem'], opts: {stdio: 'ignore'}});
   });
   grunt.registerTask('dist-ff', ['shell:webex_build', 'shell:move_firefox_dist']);
-  grunt.registerTask('dist-doc', ['jsdoc', 'compress:doc']);
 
   // build steps
   grunt.registerTask('browser', ['copy:chrome', 'replace:version_chrome', 'copy:firefox', 'replace:version_firefox']);

@@ -175,9 +175,9 @@ class Mailvelope {
   /**
    * Creates an iframe to display an encrypted form
    * The iframe will be injected into the container identified by selector.
-   * @param @param {String} selector - the id of target container
-   * @param @param {String} formHtml - the form definition
-   * @param @param {String} signature - the OpenPGP signature
+   * @param {CssSelector} selector - target container
+   * @param {String} formHtml - the form definition
+   * @param {AsciiArmored} signature - the OpenPGP signature over the form definition
    * @returns {Promise.<Object, Error>} an object that includes armoredData
    * @throws {Error} error.code = 'INVALID_FORM' the form definition is not valid
    */
@@ -337,8 +337,8 @@ class Keyring {
    * @param {AutocryptMailHeaders} headers - the relevant mail headers
    * @returns {Promise.<undefined, Error>}
    * @throws {Error} error.code = 'INVALID_HEADER' <br>
-                       error.code = 'STORAGE_ERROR'
-                       */
+   *                 error.code = 'STORAGE_ERROR'
+   */
   processAutocryptHeader(headers) {
     return send('process-autocrypt-header', {identifier: this.identifier, headers});
   }
@@ -391,7 +391,7 @@ class Keyring {
 
   /**
    * @typedef {Object} KeyBackupContainerOptions
-   * @param {Boolean} initialSetup (default: true)
+   * @property {Boolean} initialSetup (default: true)
    */
 
   /**
@@ -421,7 +421,7 @@ class Keyring {
 
   /**
    * Check if keyring contains valid private key with given fingerprint
-   * @param {String|{fingerprint: String, email: String}} fingerprint or Object with fingerprint or email property
+   * @param {String|{fingerprint: String, email: String}} query - fingerprint string, or an object with `fingerprint` and/or `email`
    * @returns {Promise.<boolean, Error>}
    */
   hasPrivateKey(query = {}) {
@@ -465,7 +465,7 @@ class Keyring {
 
   /**
    * @typedef {Function} BackupSyncHandler
-   * @param {BackupSyncPacket} - object with backup data
+   * @param {BackupSyncPacket} packet - object with backup data
    * @returns {Promise.<undefined, Error>}
    */
 
@@ -502,7 +502,7 @@ class Keyring {
 
   /**
    * @typedef {Object} OpenSettingsOptions
-   * @param {Boolean} showDefaultKey (default: false)
+   * @property {Boolean} showDefaultKey (default: false)
    */
 
   /**
@@ -600,7 +600,7 @@ class Editor {
    * @example
    * editor.encrypt(['abc@web.de', 'info@com']).then(function (armoredMessage) {
    *     console.log('encrypt', armoredMessage); // prints: "-----BEGIN PGP MESSAGE..."
-   * }
+   * });
    */
   encrypt(recipients) {
     return send('editor-encrypt', {recipients, editorId: this.editorId});
