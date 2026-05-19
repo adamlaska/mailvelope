@@ -61,14 +61,9 @@
     },
     {
       "active": true,
-      "site": "mail.live.com",
+      "site": "outlook.live.com",
       "https_only": true,
       "frames": [
-        {
-          "scan": true,
-          "frame": "*.mail.live.com",
-          "api": false
-        },
         {
           "scan": true,
           "frame": "*.outlook.live.com",
@@ -86,9 +81,14 @@
           "frame": "*.outlook.office.com",
           "api": false
         },
-		    {
+        {
           "scan": true,
           "frame": "*.outlook.office365.com",
+          "api": false
+        },
+        {
+          "scan": true,
+          "frame": "*.outlook.cloud.microsoft",
           "api": false
         }
       ]
