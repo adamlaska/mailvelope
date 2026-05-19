@@ -7,15 +7,18 @@ import MimeBuilder from 'emailjs-mime-builder';
 import * as l10n from '../lib/l10n';
 import mvelo from '../lib/lib-mvelo';
 import * as mailreader from '../lib/mail-reader';
-import {ab2str, byteCount, encodeHTML, getUUID, html2text, MvError} from '../lib/util';
+import {ab2str, byteCount, encodeHTML, getUUID, html2text, html2textIfHtml, str2Uint8Array, MvError} from '../lib/util';
 
 /**
  * Parse encrypted email content. Input content can be in MIME format or plain text.
- * @param  {String} raw - content
+ * @param  {String} raw - content as a JS binary string (one byte per char code, UTF-8 bytes
+ *                       carried verbatim), as returned by `decryptMessage` and `verifyMessage`.
  * @param  {String} encoding - encoding of output, 'html' or 'text'
  * @return {Object<message, attachments>} parsed content separated in message and attachments
  */
 export function parseMessage(raw, encoding) {
+  // ASCII header bytes are identical under the binary-string / Unicode-string interpretations,
+  // so this header-detection regex works directly on the raw binary string.
   if (/^\s*(MIME-Version|Content-Type|Content-Class|Content-Transfer-Encoding|Content-ID|Content-Description|Content-Disposition|Content-Language|From|Date):/.test(raw)) {
     return parseMIME(raw, encoding);
   } else {
@@ -68,24 +71,20 @@ async function parseMIME(raw, encoding) {
 }
 
 async function parseInline(raw, encoding) {
+  // raw is a JS binary string of UTF-8 bytes — decode to a display-ready Unicode string once here.
+  const text = new TextDecoder('utf-8').decode(str2Uint8Array(raw));
   let message = '';
   if (encoding === 'html') {
-    message = await mvelo.util.text2autoLinkHtml(raw);
+    message = await mvelo.util.text2autoLinkHtml(text);
   } else {
-    if (/(<\/a>|<br>|<\/div>|<\/p>|<\/b>|<\/u>|<\/i>|<\/ul>|<\/li>)/.test(raw)) {
-      // legacy html mode
-      message = html2text(raw);
-    } else {
-      // plain text
-      message = raw;
-    }
+    message = html2textIfHtml(text);
   }
   return {message, attachments: []};
 }
 
 /**
  * Parse message with detached signature
- * @param  {String} raw - content
+ * @param  {String} raw - content as a JS binary string (see `parseMessage`)
  * @param  {String} encoding - encoding of output, 'html' or 'text'
  * @return {Object<message, signedMessage, attachments>} parsed content separated in message, signed content and attachments
  */

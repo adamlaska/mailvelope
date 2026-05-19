@@ -501,6 +501,22 @@ describe('DecryptController unit tests', () => {
       expect(result).toBeUndefined();
     });
 
+    it('emits decrypted-message with multibyte UTF-8 intact (issue #893)', async () => {
+      const {decryptMessage} = require('../../../src/modules/pgpModel');
+      const {parseMessage} = require('../../../src/modules/mime');
+      decryptMessage.mockResolvedValue({data: 'irrelevant-binary-string', signatures: []});
+      parseMessage.mockResolvedValue({message: 'Hallo ÄÖÜ 한국어', attachments: []});
+
+      controller.ports = {
+        dDialog: {emit: jest.fn()}
+      };
+      controller.message = mockMessage;
+      await controller.decrypt('test-armored', 'test-keyring-id');
+
+      expect(parseMessage).toHaveBeenCalledWith('irrelevant-binary-string', 'html');
+      expect(controller.ports.dDialog.emit).toHaveBeenCalledWith('decrypted-message', {message: 'Hallo ÄÖÜ 한국어'});
+    });
+
     it('should handle empty encryption key IDs', async () => {
       mockMessage.getEncryptionKeyIDs.mockReturnValue([]);
 

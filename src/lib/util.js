@@ -155,6 +155,17 @@ export function html2text(html) {
   return decodeHTML(html);
 }
 
+const HTML_TAG_REGEX = /(<\/a>|<br>|<\/div>|<\/p>|<\/b>|<\/u>|<\/i>|<\/ul>|<\/li>)/;
+
+/**
+ * If the input contains common HTML tags, strip them via html2text; otherwise return it untouched.
+ * @param  {String} text
+ * @return {String}
+ */
+export function html2textIfHtml(text) {
+  return HTML_TAG_REGEX.test(text) ? html2text(text) : text;
+}
+
 /**
  * This function will return the byte size of any UTF-8 string you pass to it.
  * @param {string} str

@@ -9,7 +9,7 @@
  */
 
 import mvelo from '../lib/lib-mvelo';
-import {getUUID, deDup, sortAndDeDup, mapError, MvError, byteCount, normalizeArmored, dataURL2str} from '../lib/util';
+import {getUUID, deDup, sortAndDeDup, mapError, MvError, byteCount, normalizeArmored, dataURL2str, html2textIfHtml} from '../lib/util';
 import {extractFileExtension} from '../lib/file';
 import {findKeyByEmail} from '../lib/email';
 import * as l10n from '../lib/l10n';
@@ -344,6 +344,15 @@ export default class EditorController extends SubController {
    */
   async decryptArmored(armored) {
     try {
+      const isEncrypted = /BEGIN\sPGP\sMESSAGE/.test(armored);
+      const isSigned = /BEGIN\sPGP\sSIGNED\sMESSAGE/.test(armored);
+      if (!isEncrypted && !isSigned) {
+        // clear text only — no PGP, no MIME parsing needed.
+        const text = html2textIfHtml(await mvelo.util.sanitizeHTML(armored));
+        this.ports.editor.emit('set-text', {text: this.formatMessage(text, this.options)});
+        this.ports.editor.emit('decrypt-end');
+        return;
+      }
       const unlockKey = async options => {
         const result = await this.unlockKey(options);
         if (this.state.popupId) {
@@ -351,9 +360,9 @@ export default class EditorController extends SubController {
         }
         return result;
       };
-      let data = '';
-      let signatures = [];
-      if (/BEGIN\sPGP\sMESSAGE/.test(armored)) {
+      let data;
+      let signatures;
+      if (isEncrypted) {
         const normalized = normalizeArmored(armored, /-----BEGIN PGP MESSAGE-----[\s\S]+?-----END PGP MESSAGE-----/);
         ({data, signatures} = await model.decryptMessage({
           armored: normalized,
@@ -362,16 +371,12 @@ export default class EditorController extends SubController {
           selfSigned: Boolean(this.options.armoredDraft),
           uiLogSource: 'security_log_editor'
         }));
-      } else if (/BEGIN\sPGP\sSIGNED\sMESSAGE/.test(armored)) {
+      } else {
         ({data, signatures} = await model.verifyMessage({
           armored,
           keyringId: this.state.keyringId,
           uiLogSource: 'security_log_editor'
         }));
-        data = decodeURIComponent(escape(data));
-      } else {
-        // clear text only
-        data = await mvelo.util.sanitizeHTML(armored);
       }
       if (this.options.armoredDraft) {
         if (!(signatures && signatures.length === 1 && signatures[0].valid)) {

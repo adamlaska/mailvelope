@@ -56,7 +56,10 @@ export function initOpenPGP() {
  * @param  {Function} options.unlockKey - callback to unlock key
  * @param  {String|Array} options.senderAddress - email address of sender, used to indentify key for signature verification
  * @param  {Boolean} options.selfSigned - message is self signed (decrypt email draft scenario)
- * @return {Promise<Object>} - decryption result {data: String, signatures: Array}
+ * @return {Promise<Object>} - decryption result {data: String, signatures: Array}.
+ *   `data` is a JS binary string (one byte per char code, UTF-8 bytes carried verbatim),
+ *   matching the convention returned by `verifyMessage`. Pass it to `parseMessage` to
+ *   decode the body parts via the MIME parser's charset handling.
  */
 export async function decryptMessage({message, armored, keyringId, unlockKey, senderAddress, selfSigned, uiLogSource, lookupKey}) {
   message ??= await readMessage({armoredMessage: armored});
@@ -70,7 +73,11 @@ export async function decryptMessage({message, armored, keyringId, unlockKey, se
     ({local} = await acquireSigningKeys({senderAddress, keyring, lookupKey}));
   }
   try {
-    let {data, signatures} = await keyring.getPgpBackend().decrypt({armored, message, keyring, encryptionKeyIds, unlockKey: options => unlockKey({message, ...options})});
+    let {data, signatures} = await keyring.getPgpBackend().decrypt({
+      armored, message, keyring, encryptionKeyIds,
+      unlockKey: options => unlockKey({message, ...options}),
+      format: 'binary',
+    });
     await logDecryption(uiLogSource, keyring, encryptionKeyIds, senderAddress);
     if (selfSigned) {
       // filter out foreign signatures

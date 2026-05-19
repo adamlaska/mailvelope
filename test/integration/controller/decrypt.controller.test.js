@@ -446,6 +446,20 @@ describe('DecryptController integration tests', () => {
   });
 
   describe('Decryption Flow Success Cases', () => {
+    // Encrypts `mimeMessage`, drives it through the decryption pipeline, and returns
+    // the `decrypted-message` payload (or null). Assumes `setupDecryptController()`
+    // has already populated `decryptSetup` test data.
+    const decryptMimeMessageInBrowser = mimeMessage => page.evaluate(async mime => {
+      const {decryptController, mainPort, dDialogPort} = window.testHarness.getTestData('decryptSetup');
+      const testArmored = await window.testHarness.encryptTestMessage(mime);
+      mainPort.postMessage({event: 'decrypt-message-init', reconnect: false});
+      await decryptController._port.waitForEvent('decrypt-message-init');
+      mainPort.postMessage({event: 'set-armored', data: testArmored, keyringId: 'test-keyring-id'});
+      await dDialogPort.waitForEvent('decrypted-message', 5000);
+      const ev = dDialogPort.getCapturedEvents().find(e => e.event === 'decrypted-message');
+      return ev ? ev.message : null;
+    }, mimeMessage);
+
     it('should perform successful decryption with cached password', async () => {
       await setupDecryptController();
 
@@ -572,6 +586,61 @@ describe('DecryptController integration tests', () => {
       });
 
       expect(result.hasDecryptDone).toBe(true);
+    });
+
+    it('preserves UTF-8 multibyte chars in a text/plain; charset=UTF-8 8bit MIME body (issue #893)', async () => {
+      await setupDecryptController();
+
+      const mimeMessage =
+        'Content-Type: text/plain; charset=UTF-8\r\n' +
+        'Content-Transfer-Encoding: 8bit\r\n' +
+        '\r\nHallo ÄÖÜ\n한국어';
+      const decryptedContent = await decryptMimeMessageInBrowser(mimeMessage);
+
+      expect(decryptedContent).toBeTruthy();
+      expect(decryptedContent).toContain('Hallo ÄÖÜ');
+      expect(decryptedContent).toContain('한국어');
+      // Critically: no U+FFFD replacement chars
+      expect(decryptedContent).not.toMatch(/�/);
+    });
+
+    it('preserves UTF-8 multibyte chars when the MIME body uses quoted-printable', async () => {
+      await setupDecryptController();
+
+      // ÄÖÜ encoded as quoted-printable UTF-8: =C3=84=C3=96=C3=9C
+      const mimeMessage =
+        'Content-Type: text/plain; charset=UTF-8\r\n' +
+        'Content-Transfer-Encoding: quoted-printable\r\n' +
+        '\r\n' +
+        'Hallo =C3=84=C3=96=C3=9C';
+      const decryptedContent = await decryptMimeMessageInBrowser(mimeMessage);
+
+      expect(decryptedContent).toContain('Hallo ÄÖÜ');
+      expect(decryptedContent).not.toMatch(/�/);
+    });
+
+    it('preserves UTF-8 multibyte chars in a multipart/alternative wrapper with 8bit text + html', async () => {
+      await setupDecryptController();
+
+      const boundary = 'b1';
+      const mimeMessage =
+        `Content-Type: multipart/alternative; boundary="${boundary}"\r\n` +
+        '\r\n' +
+        `--${boundary}\r\n` +
+        'Content-Type: text/plain; charset=UTF-8\r\n' +
+        'Content-Transfer-Encoding: 8bit\r\n' +
+        '\r\nplain ÄÖÜ 한국어\r\n' +
+        `--${boundary}\r\n` +
+        'Content-Type: text/html; charset=UTF-8\r\n' +
+        'Content-Transfer-Encoding: 8bit\r\n' +
+        '\r\n<p>html ÄÖÜ 한국어</p>\r\n' +
+        `--${boundary}--\r\n`;
+      const decryptedContent = await decryptMimeMessageInBrowser(mimeMessage);
+
+      // DecryptController requests 'html' encoding, so the html part wins
+      expect(decryptedContent).toContain('한국어');
+      expect(decryptedContent).toContain('ÄÖÜ');
+      expect(decryptedContent).not.toMatch(/�/);
     });
   });
 

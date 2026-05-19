@@ -19,7 +19,10 @@ jest.mock('../../../src/modules/prefs', () => ({
 jest.mock('../../../src/lib/lib-mvelo', () => require('../__mocks__/lib/lib-mvelo').default);
 
 jest.mock('../../../src/modules/keyring', () => require('../__mocks__/modules/keyring').default);
-jest.mock('../../../src/modules/pgpModel', () => ({}));
+jest.mock('../../../src/modules/pgpModel', () => ({
+  decryptMessage: jest.fn(),
+  verifyMessage: jest.fn()
+}));
 jest.mock('../../../src/modules/keyRegistry', () => ({}));
 jest.mock('../../../src/controller/main.controller', () => ({
   createController: jest.fn()
@@ -322,6 +325,78 @@ describe('EditorController unit tests', () => {
       const result = await controller.getPublicKeyFprs(keys);
 
       expect(result).toEqual(['another-valid-key', 'valid-key']); // sorted, filtered
+    });
+  });
+
+  describe('decryptArmored', () => {
+    let editorEmit;
+
+    beforeEach(() => {
+      editorEmit = jest.fn();
+      controller.ports = {editor: {emit: editorEmit}};
+      controller.options = {};
+
+      const mvelo = require('../../../src/lib/lib-mvelo');
+      mvelo.util.sanitizeHTML = jest.fn(async text => text);
+
+      const {parseMessage} = require('../../../src/modules/mime');
+      parseMessage.mockReset();
+
+      const {decryptMessage, verifyMessage} = require('../../../src/modules/pgpModel');
+      decryptMessage.mockReset();
+      verifyMessage.mockReset();
+    });
+
+    it('cleartext (no PGP markers): emits plain text unchanged via set-text', async () => {
+      await controller.decryptArmored('just some plain text ÄÖÜ');
+
+      const setText = editorEmit.mock.calls.find(c => c[0] === 'set-text');
+      expect(setText).toBeDefined();
+      expect(setText[1].text).toBe('just some plain text ÄÖÜ');
+      // parseMessage must not be involved on the cleartext path
+      const {parseMessage} = require('../../../src/modules/mime');
+      expect(parseMessage).not.toHaveBeenCalled();
+      expect(editorEmit).toHaveBeenCalledWith('decrypt-end');
+    });
+
+    it('cleartext containing block HTML tags: strips them via html2textIfHtml', async () => {
+      await controller.decryptArmored('<div>foo</div><div>bar</div>');
+
+      const setText = editorEmit.mock.calls.find(c => c[0] === 'set-text');
+      expect(setText[1].text).toBe('foo\nbar\n');
+    });
+
+    it('PGP MESSAGE branch: feeds binary-string data from decryptMessage into parseMessage', async () => {
+      const {decryptMessage} = require('../../../src/modules/pgpModel');
+      const {parseMessage} = require('../../../src/modules/mime');
+      const binaryData = 'binary-string-from-decrypt';
+      decryptMessage.mockResolvedValue({data: binaryData, signatures: []});
+      parseMessage.mockResolvedValue({message: 'Hallo ÄÖÜ 한국어', attachments: []});
+
+      await controller.decryptArmored('-----BEGIN PGP MESSAGE-----\nblob\n-----END PGP MESSAGE-----');
+
+      expect(decryptMessage).toHaveBeenCalledTimes(1);
+      expect(parseMessage).toHaveBeenCalledWith(binaryData, 'text');
+      const setText = editorEmit.mock.calls.find(c => c[0] === 'set-text');
+      expect(setText[1].text).toBe('Hallo ÄÖÜ 한국어');
+      expect(editorEmit).toHaveBeenCalledWith('decrypt-end');
+    });
+
+    it('PGP SIGNED MESSAGE branch: no escape/unescape hop, data flows verbatim to parseMessage', async () => {
+      const {verifyMessage} = require('../../../src/modules/pgpModel');
+      const {parseMessage} = require('../../../src/modules/mime');
+      const binaryData = 'binary-string-from-verify';
+      verifyMessage.mockResolvedValue({data: binaryData, signatures: [{valid: true}]});
+      parseMessage.mockResolvedValue({message: 'Signed ÄÖÜ', attachments: []});
+
+      await controller.decryptArmored('-----BEGIN PGP SIGNED MESSAGE-----\nblob\n-----END PGP SIGNATURE-----');
+
+      expect(verifyMessage).toHaveBeenCalledTimes(1);
+      // parseMessage receives the exact same string verifyMessage produced, not a
+      // decodeURIComponent(escape(...)) transformation of it (the legacy workaround is removed).
+      expect(parseMessage).toHaveBeenCalledWith(binaryData, 'text');
+      const setText = editorEmit.mock.calls.find(c => c[0] === 'set-text');
+      expect(setText[1].text).toBe('Signed ÄÖÜ');
     });
   });
 
