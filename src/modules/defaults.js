@@ -8,6 +8,9 @@ import {getSecureRandom} from './crypto';
 import defaults from '../res/defaults.json';
 import common from '../res/common.json';
 
+let defaultsInitDone;
+export const defaultsInitialized = new Promise(resolve => defaultsInitDone = resolve);
+
 function initSecurityBgnd(prefs) {
   if (prefs.security.bgIcon && prefs.security.bgColor) {
     return;
@@ -19,53 +22,56 @@ function initSecurityBgnd(prefs) {
   prefs.security.personalized = false;
 }
 
-export function init() {
-  return getPreferences()
-  .then(prefs => {
-    if (!prefs) {
-      // new install
-      prefs = defaults.preferences;
-      prefs.version = defaults.version;
-      initSecurityBgnd(prefs);
-      return setWatchList(defaults.watch_list)
-      .then(() => setPreferences(prefs));
-    } else if (prefs.version !== defaults.version) {
-      // version changed
-      prefs.version = defaults.version;
-      initSecurityBgnd(prefs);
-      // add default values for new settings
-      if (typeof prefs.keyserver == 'undefined') {
-        prefs.keyserver = defaults.preferences.keyserver;
-      }
-      if (typeof prefs.keyserver.autocrypt_lookup == 'undefined') {
-        prefs.keyserver.autocrypt_lookup = defaults.preferences.keyserver.autocrypt_lookup;
-      }
-      if (typeof prefs.keyserver.key_binding == 'undefined') {
-        prefs.keyserver.key_binding = defaults.preferences.keyserver.key_binding;
-      }
-      if (typeof prefs.keyserver.mvelo_tofu_lookup == 'undefined') {
-        prefs.keyserver.mvelo_tofu_lookup = defaults.preferences.keyserver.mvelo_tofu_lookup;
-      }
-      if (typeof prefs.keyserver.oks_lookup == 'undefined') {
-        prefs.keyserver.oks_lookup = defaults.preferences.keyserver.oks_lookup;
-      }
-      if (typeof prefs.keyserver.wkd_lookup == 'undefined') {
-        prefs.keyserver.wkd_lookup = defaults.preferences.keyserver.wkd_lookup;
-      }
-      if (typeof prefs.general.prefer_gnupg == 'undefined') {
-        prefs.general.prefer_gnupg = defaults.preferences.general.prefer_gnupg;
-      }
-      if (typeof prefs.security.hide_armored_header == 'undefined') {
-        prefs.security.hide_armored_header = defaults.preferences.security.hide_armored_header;
-      }
-      if (typeof prefs.provider == 'undefined') {
-        prefs.provider = defaults.preferences.provider;
-      }
-      // merge watchlist on version change
-      return mergeWatchlist(defaults)
-      .then(() => setPreferences(prefs));
+export async function init() {
+  let prefs = await getPreferences();
+  if (!prefs) {
+    // new install
+    prefs = defaults.preferences;
+    prefs.version = defaults.version;
+    initSecurityBgnd(prefs);
+    await setWatchList(defaults.watch_list);
+    defaultsInitDone();
+    await setPreferences(prefs);
+    return;
+  }
+  // existing install — watch list already in storage
+  defaultsInitDone();
+  if (prefs.version !== defaults.version) {
+    // version changed
+    prefs.version = defaults.version;
+    initSecurityBgnd(prefs);
+    // add default values for new settings
+    if (typeof prefs.keyserver == 'undefined') {
+      prefs.keyserver = defaults.preferences.keyserver;
     }
-  });
+    if (typeof prefs.keyserver.autocrypt_lookup == 'undefined') {
+      prefs.keyserver.autocrypt_lookup = defaults.preferences.keyserver.autocrypt_lookup;
+    }
+    if (typeof prefs.keyserver.key_binding == 'undefined') {
+      prefs.keyserver.key_binding = defaults.preferences.keyserver.key_binding;
+    }
+    if (typeof prefs.keyserver.mvelo_tofu_lookup == 'undefined') {
+      prefs.keyserver.mvelo_tofu_lookup = defaults.preferences.keyserver.mvelo_tofu_lookup;
+    }
+    if (typeof prefs.keyserver.oks_lookup == 'undefined') {
+      prefs.keyserver.oks_lookup = defaults.preferences.keyserver.oks_lookup;
+    }
+    if (typeof prefs.keyserver.wkd_lookup == 'undefined') {
+      prefs.keyserver.wkd_lookup = defaults.preferences.keyserver.wkd_lookup;
+    }
+    if (typeof prefs.general.prefer_gnupg == 'undefined') {
+      prefs.general.prefer_gnupg = defaults.preferences.general.prefer_gnupg;
+    }
+    if (typeof prefs.security.hide_armored_header == 'undefined') {
+      prefs.security.hide_armored_header = defaults.preferences.security.hide_armored_header;
+    }
+    if (typeof prefs.provider == 'undefined') {
+      prefs.provider = defaults.preferences.provider;
+    }
+    // merge watchlist on version change
+    await mergeWatchlist(defaults);
+    await setPreferences(prefs);
+  }
 }
 
 function mergeWatchlist(defaults) {

@@ -5,6 +5,7 @@
 
 import mvelo from '../lib/lib-mvelo';
 import {isFirefox} from '../lib/browser';
+import {defaultsInitialized} from './defaults';
 
 export let prefs = {};
 const updateHandlers = [];
@@ -56,21 +57,31 @@ export function getSecurityBackground() {
 }
 
 export async function getWatchList() {
+  await defaultsInitialized;
   if (!watchListBuffer) {
-    watchListBuffer = await mvelo.storage.get('mvelo.watchlist');
+    watchListBuffer = await mvelo.storage.get('mvelo.watchlist') ?? [];
   }
   return watchListBuffer;
 }
 
+// Firefox-only. Warm path is sync localStorage (microtask-only chain to
+// addListener for event-page wakeup). Any cold path reloads — addListener
+// after a macrotask would miss the queued wakeup event.
 export async function getWatchListCache() {
-  let watchList = localStorage.getItem('mvelo.watchlist.cache');
-  if (watchList) {
-    return JSON.parse(watchList);
-  } else {
-    // init cache
-    watchList = await mvelo.storage.get('mvelo.watchlist');
-    localStorage.setItem('mvelo.watchlist.cache', JSON.stringify(watchList));
+  const cached = localStorage.getItem('mvelo.watchlist.cache');
+  if (cached) {
+    return JSON.parse(cached);
   }
+  // Cold path: ensure the cache is populated so the next init's warm path hits.
+  await defaultsInitialized;
+  if (!localStorage.getItem('mvelo.watchlist.cache')) {
+    const watchList = await mvelo.storage.get('mvelo.watchlist');
+    if (watchList) {
+      localStorage.setItem('mvelo.watchlist.cache', JSON.stringify(watchList));
+    }
+  }
+  window.location.reload();
+  await new Promise(() => {}); // page is reloading
 }
 
 export async function setWatchList(watchList) {

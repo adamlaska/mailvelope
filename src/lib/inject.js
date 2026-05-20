@@ -15,7 +15,8 @@ export let watchlistRegex;
 export async function initScriptInjection() {
   try {
     watchlistRegex = [];
-    const filterURL = await getWatchListFilterURLs();
+    const watchList = isChrome ? await getWatchList() : await getWatchListCache();
+    const filterURL = filterURLsFromWatchList(watchList);
     const matchPatterns = filterURL.map(({schemes, host}) => {
       const scheme = schemes.includes('http') ? '*' : 'https';
       // filter out port numbers
@@ -39,16 +40,7 @@ export async function initScriptInjection() {
   }
 }
 
-async function getWatchListFilterURLs() {
-  let watchList;
-  if (isChrome) {
-    watchList = await getWatchList();
-  } else {
-    watchList = await getWatchListCache();
-  }
-  if (!watchList) {
-    window?.location.reload();
-  }
+function filterURLsFromWatchList(watchList) {
   const schemes = ['http', 'https'];
   let result = [];
   watchList.forEach(site => {
