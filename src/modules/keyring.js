@@ -528,6 +528,16 @@ export async function getPreferredKeyring(keyringId) {
 }
 
 /**
+ * Check if any keyring in the preferred queue for the given keyring holds a private key.
+ * @param {String} keyringId - leading keyring of the scenario
+ * @return {Boolean}
+ */
+export async function hasUsablePrivateKey(keyringId) {
+  await keyringInitialized;
+  return getPreferredKeyringQueue(keyringId).some(keyring => keyring.hasPrivateKey());
+}
+
+/**
  * Check if provided keyring is created by Mailvelope client-API
  * @param  {String}  keyringId
  * @return {Boolean}

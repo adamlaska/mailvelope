@@ -80,7 +80,7 @@ export default class MenuController extends SubController {
     if (shouldSeeConsentDialog()) {
       this.openApp('/analytics-consent');
     } else {
-      this.openApp('/keyring/setup');
+      this.openApp('/onboarding');
     }
   }
 }

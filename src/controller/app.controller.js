@@ -13,7 +13,7 @@ import {mapKeys, parseUserId, getLastModifiedDate, sanitizeKey, verifyUser} from
 import * as keyRegistry from '../modules/keyRegistry';
 import * as gmail from '../modules/gmail';
 import {initOpenPGP, decryptFile, encryptMessage, decryptMessage, encryptFile} from '../modules/pgpModel';
-import {getById as keyringById, getAllKeyringAttr, getAllKeyringIds, setKeyringAttr, deleteKeyring, getKeyData, getDefaultKeyFpr} from '../modules/keyring';
+import {getById as keyringById, getAllKeyringAttr, getAllKeyringIds, setKeyringAttr, deleteKeyring, getKeyData, getDefaultKeyFpr, hasUsablePrivateKey} from '../modules/keyring';
 import {delete as deletePwdCache, get as getKeyPwdFromCache, unlock as unlockKey} from '../modules/pwdCache';
 import {initScriptInjection} from '../lib/inject';
 import * as prefs from '../modules/prefs';
@@ -30,6 +30,8 @@ export default class AppController extends SubController {
     // register event handlers
     this.on('get-prefs', () => prefs.prefs);
     this.on('set-prefs', this.updatePreferences);
+    this.on('get-session-pref', ({key}) => prefs.getSessionPref(key));
+    this.on('set-session-pref', ({key, value}) => prefs.setSessionPref(key, value));
     this.on('decrypt-file', this.decryptFile);
     this.on('decrypt-message', this.decryptMessage);
     this.on('decrypt-message-init', this.initDecryptMessage);
@@ -69,6 +71,7 @@ export default class AppController extends SubController {
     this.on('key-lookup', this.keyLookup);
     this.on('keyreg-source-labels', options => keyRegistry.getSourceLabels(options));
     this.on('get-default-key-fpr', ({keyringId}) => getDefaultKeyFpr(keyringId));
+    this.on('has-usable-private-key', ({keyringId}) => hasUsablePrivateKey(keyringId));
     this.on('get-signing-keys', async ({keyringId}) => (await keyringById(keyringId)).getValidSigningKeys());
     this.on('get-oauth-tokens', this.getOAuthTokens);
     this.on('remove-oauth-token', this.removeOAuthToken);

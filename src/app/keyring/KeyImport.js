@@ -5,13 +5,13 @@
 
 import {port, getAppDataSlot} from '../app';
 import {KeyringOptions} from './KeyringOptions';
+import {Link} from 'react-router-dom';
 import {TabContent, TabPane} from 'reactstrap';
 import * as l10n from '../../lib/l10n';
 import {normalizeArmored, formatFpr, dataURL2str} from '../../lib/util';
 import * as fileLib from '../../lib/file';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Redirect, Link} from 'react-router-dom';
 import KeySearch from './components/KeySearch';
 import Alert from '../../components/util/Alert';
 import Modal from '../../components/util/Modal';
@@ -28,6 +28,7 @@ l10n.register([
   'alert_header_warning',
   'file_read_error',
   'form_back',
+  'form_cancel',
   'form_confirm',
   'form_confirm',
   'form_import',
@@ -76,7 +77,6 @@ export default class KeyImport extends React.Component {
       waiting: false,
       import: false,
       showImportModal: false,
-      redirect: false,
       activeTab: 'import',
       keyRegSourceLabels: [],
       keySourceName: '',
@@ -201,7 +201,10 @@ export default class KeyImport extends React.Component {
         this.props.onNotification({id: Date.now(), header, message, type: 'error', hideDelay});
         hideDelay += 1000;
       }
-      this.setState({redirect: true, amoredKeys: [], keys: [], textImport: ''});
+      this.setState({waiting: false, armoredKeys: [], keys: [], textImport: ''});
+      if (this.props.onImportComplete) {
+        this.props.onImportComplete();
+      }
     } catch (error) {
       console.log('Error on key import:', error);
       this.props.onNotification({id: Date.now(), header: l10n.map.key_import_error, message: error.type === 'error' ? error.message : l10n.map.key_import_exception, type: 'error'});
@@ -275,23 +278,10 @@ export default class KeyImport extends React.Component {
   }
 
   render() {
-    if (this.state.redirect) {
-      return (
-        <Redirect to="/keyring/display/" />
-      );
-    }
     const keySource = this.state.keyRegSourceLabels.find(source => source.name === this.state.keySourceName);
     return (
       <>
-        <div className="keyImport card-body">
-          <nav aria-label="breadcrumb">
-            <ol className="breadcrumb bg-transparent p-0">
-              <li className="breadcrumb-item"><Link to="/keyring" replace tabIndex="0"><span className="icon icon-arrow-left" aria-hidden="true"></span> {l10n.map.keyring_header}</Link></li>
-            </ol>
-          </nav>
-          <div className="card-title d-flex flex-wrap align-items-center">
-            <h1 className="flex-shrink-0 mr-auto">{this.state.activeTab === 'import' ? l10n.map.keyring_import_keys : l10n.map.keyring_import_search_keys}</h1>
-          </div>
+        <div className="keyImport">
           <TabContent className="mt-4" activeTab={this.state.activeTab}>
             <TabPane tabId="import">
               <p>{l10n.map.keyring_import_description}</p>
@@ -312,7 +302,10 @@ export default class KeyImport extends React.Component {
                 )}
               </div>
               <div className="form-group d-flex justify-content-end">
-                <button type="button" onClick={() => this.handlePreviewImport()} className="btn btn-primary" disabled={!this.state.files.length && !this.state.textImport}>{l10n.map.key_import_contacts_import_btn}</button>
+                <div className="btn-bar">
+                  {this.props.cancelTo && <Link to={this.props.cancelTo} className="btn btn-secondary">{l10n.map.form_cancel}</Link>}
+                  <button type="button" onClick={() => this.handlePreviewImport()} className="btn btn-primary" disabled={!this.state.files.length && !this.state.textImport}>{l10n.map.key_import_contacts_import_btn}</button>
+                </div>
               </div>
             </TabPane>
             <TabPane tabId="lookup">
@@ -377,6 +370,8 @@ KeyImport.contextType = KeyringOptions;
 
 KeyImport.propTypes = {
   onKeyringChange: PropTypes.func,
+  onImportComplete: PropTypes.func,
   onNotification: PropTypes.func,
-  location: PropTypes.object
+  location: PropTypes.object,
+  cancelTo: PropTypes.string
 };

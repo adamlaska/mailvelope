@@ -9,7 +9,7 @@
   },
   "action_menu_configure_mailvelope": {
     "description": "Configure Mailvelope label in the action menu",
-    "message": "Mit dem <0>Konfigurieren von Mailvelope</0> starten!"
+    "message": "<0>Konfigurieren Sie Mailvelope</0>, um zu beginnen."
   },
   "action_menu_dashboard_description": {
     "description": "Dashboard description in the action menu",
@@ -61,7 +61,7 @@
   },
   "action_menu_setup_start_label": {
     "description": "Start button label",
-    "message": "Los geht's!"
+    "message": "Starten"
   },
   "alert_header_error": {
     "description": "Alert header of category error.",
@@ -2400,5 +2400,101 @@
   "wrong_restore_code": {
     "description": "",
     "message": "Der Wiederherstellungscode ist nicht korrekt."
+  },
+  "onboarding_skip": {
+    "description": "Skip button in onboarding",
+    "message": "Überspringen"
+  },
+  "onboarding_success_message": {
+    "description": "Success message in onboarding completion screen",
+    "message": "Mailvelope ist einsatzbereit."
+  },
+  "onboarding_success_title": {
+    "description": "Success title in onboarding completion screen",
+    "message": "Einrichtung abgeschlossen"
+  },
+  "onboarding_welcome_title": {
+    "description": "Welcome title in onboarding",
+    "message": "Willkommen bei Mailvelope"
+  },
+  "onboarding_setup_alert": {
+    "description": "Setup alert message in onboarding",
+    "message": "Richten Sie als Nächstes Ihre Schlüssel ein. Das dauert etwa 5 Minuten."
+  },
+  "onboarding_gnupg_alternative_heading": {
+    "description": "Heading for the GnuPG alternative footer in onboarding",
+    "message": "Sie nutzen bereits GnuPG?"
+  },
+  "onboarding_gnupg_alternative": {
+    "description": "Text introducing GnuPG as an alternative to generating or importing a key in onboarding",
+    "message": "Sie können Mailvelope mit Ihrer vorhandenen GnuPG-Installation verbinden, anstatt hier einen Schlüssel zu erstellen oder zu importieren."
+  },
+  "onboarding_success_alert": {
+    "description": "Success alert message in onboarding success screen",
+    "message": "Sie finden Mailvelope im Erweiterungsmenü oben rechts in Ihrem Browser."
+  },
+  "onboarding_faq_title": {
+    "description": "FAQ card title in onboarding",
+    "message": "FAQ"
+  },
+  "onboarding_faq_what_is_key": {
+    "description": "FAQ question: What is a key",
+    "message": "Was ist ein Mailvelope-Schlüssel?"
+  },
+  "onboarding_faq_should_upload_key": {
+    "description": "FAQ question: Should I upload my key to the key server?",
+    "message": "Sollte ich meinen Schlüssel auf den Mailvelope-Schlüsselserver hochladen?"
+  },
+  "onboarding_faq_where_key_stored": {
+    "description": "FAQ question: Where are my keys stored?",
+    "message": "Wo werden meine Schlüssel gespeichert?"
+  },
+  "onboarding_faq_backup": {
+    "description": "FAQ question: How can I export or backup my keypair?",
+    "message": "Wie kann ich mein Schlüsselpaar exportieren oder sichern?"
+  },
+  "onboarding_faq_export_keys": {
+    "description": "FAQ question: How do I export keys?",
+    "message": "Wie exportiere ich Schlüssel?"
+  },
+  "onboarding_faq_forget_password": {
+    "description": "FAQ question: What if I forget my password?",
+    "message": "Was passiert, wenn ich mein Passwort vergesse?"
+  },
+  "onboarding_create_key_hint": {
+    "description": "A hint for create new key screen",
+    "message": "Erstellen Sie ein neues PGP-Schlüsselpaar, mit dem Sie Ihre E-Mails verschlüsseln."
+  },
+  "onboarding_import_key_hint": {
+    "description": "A hint for import key screen",
+    "message": "Wählen Sie eine Datei mit Ihrem vorhandenen PGP-Schlüsselpaar aus oder fügen Sie den Schlüssel aus der Zwischenablage ein."
+  },
+  "onboarding_success_created_key_title": {
+    "description": "Title for created key section on success screen",
+    "message": "E-Mail-Adresse bestätigen"
+  },
+  "onboarding_success_created_key_text": {
+    "description": "Instructions for users who created a new key",
+    "message": "Prüfen Sie Ihren Posteingang auf eine E-Mail vom Mailvelope-Schlüsselserver.\nEntschlüsseln Sie sie mit dem Passwort Ihres neu erstellten Schlüssels.\nÖffnen Sie den darin enthaltenen Bestätigungslink. Damit wird Ihr öffentlicher Schlüssel für andere verfügbar, die Ihnen über Mailvelope verschlüsselte Nachrichten senden möchten."
+  },
+  "onboarding_success_imported_key_title": {
+    "description": "Title for imported key section on success screen",
+    "message": "Bereit zum Verschlüsseln Ihrer E-Mails"
+  },
+  "onboarding_success_imported_key_text": {
+    "description": "Instructions for users who imported an existing key",
+    "message": "Öffnen Sie Ihren E-Mail-Anbieter und schreiben Sie eine verschlüsselte Nachricht.\nDamit andere Ihren Schlüssel automatisch finden, können Sie ihn auf den Mailvelope-Schlüsselserver hochladen."
+  },
+  "onboarding_success_need_help": {
+    "description": "Need help section title",
+    "message": "Hilfe & Ressourcen"
+  },
+  "onboarding_success_alert_alt": {
+    "description": "Alt text for the extension menu location image on the success screen",
+    "message": "Position des Erweiterungsmenüs"
+  },
+  "onboarding_success_help_others": {
+    "description": "Help link label on success screen (other providers)",
+    "message": "Andere"
   }
 }

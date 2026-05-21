@@ -9,7 +9,7 @@
   },
   "action_menu_configure_mailvelope": {
     "description": "Configure Mailvelope label in the action menu",
-    "message": "<0>Configure Mailvelope</0> to get started!"
+    "message": "<0>Configure Mailvelope</0> to get started."
   },
   "action_menu_dashboard_description": {
     "description": "Dashboard description in the action menu",
@@ -61,7 +61,7 @@
   },
   "action_menu_setup_start_label": {
     "description": "Start button label",
-    "message": "Let's start!"
+    "message": "Get started"
   },
   "alert_header_error": {
     "description": "Alert header of category error.",
@@ -694,10 +694,6 @@
   "import_frame_help_text": {
     "description": "Help text on import frame.",
     "message": "Click to import key"
-  },
-  "install_landing_page_hint": {
-    "description": "Install landing page getting started hint",
-    "message": "Click here, to open the extension."
   },
   "key_default_active_btn_title": {
     "description": "Title for active default key button",
@@ -1538,6 +1534,102 @@
   "notification_text_copy_to_clipboard": {
     "description": "Copy to clipboard toast message.",
     "message": "Text has been copied to clipboard."
+  },
+  "onboarding_skip": {
+    "description": "Skip button in onboarding",
+    "message": "Skip"
+  },
+  "onboarding_success_message": {
+    "description": "Success message in onboarding completion screen",
+    "message": "Mailvelope is ready to use."
+  },
+  "onboarding_success_title": {
+    "description": "Success title in onboarding completion screen",
+    "message": "Setup complete"
+  },
+  "onboarding_welcome_title": {
+    "description": "Welcome title in onboarding",
+    "message": "Welcome to Mailvelope"
+  },
+  "onboarding_setup_alert": {
+    "description": "Setup alert message in onboarding",
+    "message": "Next, set up your keys. This takes about 5 minutes."
+  },
+  "onboarding_gnupg_alternative_heading": {
+    "description": "Heading for the GnuPG alternative footer in onboarding",
+    "message": "Already using GnuPG?"
+  },
+  "onboarding_gnupg_alternative": {
+    "description": "Text introducing GnuPG as an alternative to generating or importing a key in onboarding",
+    "message": "You can connect Mailvelope to your existing GnuPG installation instead of generating or importing a key here."
+  },
+  "onboarding_success_alert": {
+    "description": "Success alert message in onboarding success screen",
+    "message": "You can find Mailvelope in the extension menu in the top right corner of your browser."
+  },
+  "onboarding_faq_title": {
+    "description": "FAQ card title in onboarding",
+    "message": "FAQ"
+  },
+  "onboarding_faq_what_is_key": {
+    "description": "FAQ question: What is a key",
+    "message": "What is a Mailvelope key?"
+  },
+  "onboarding_faq_should_upload_key": {
+    "description": "FAQ question: Should I upload my key to the key server?",
+    "message": "Should I upload my key to the Mailvelope key server?"
+  },
+  "onboarding_faq_where_key_stored": {
+    "description": "FAQ question: Where are my keys stored?",
+    "message": "Where are my keys stored?"
+  },
+  "onboarding_faq_backup": {
+    "description": "FAQ question: How can I export or backup my keypair?",
+    "message": "How can I export or back up my keypair?"
+  },
+  "onboarding_faq_export_keys": {
+    "description": "FAQ question: How do I export keys?",
+    "message": "How do I export keys?"
+  },
+  "onboarding_faq_forget_password": {
+    "description": "FAQ question: What if I forget my password?",
+    "message": "What if I forget my password?"
+  },
+  "onboarding_create_key_hint": {
+    "description": "A hint for create new key screen",
+    "message": "Generate a new PGP key pair that you will use to encrypt your emails."
+  },
+  "onboarding_import_key_hint": {
+    "description": "A hint for import key screen",
+    "message": "Choose a file containing your existing PGP key pair or paste the key from the clipboard."
+  },
+  "onboarding_success_created_key_title": {
+    "description": "Title for created key section on success screen",
+    "message": "Verify your email address"
+  },
+  "onboarding_success_created_key_text": {
+    "description": "Instructions for users who created a new key",
+    "message": "Check your inbox for an email from the Mailvelope key server.\nDecrypt it using the password of your newly created key.\nOpen the verification link inside. This makes your public key available to others, so they can send you encrypted messages on Mailvelope."
+  },
+  "onboarding_success_imported_key_title": {
+    "description": "Title for imported key section on success screen",
+    "message": "Ready to send encrypted email"
+  },
+  "onboarding_success_imported_key_text": {
+    "description": "Instructions for users who imported an existing key",
+    "message": "Open your email provider and write an encrypted message.\nTo let others find your key automatically, you can upload it to the Mailvelope key server."
+  },
+  "onboarding_success_need_help": {
+    "description": "Need help section title",
+    "message": "Help & resources"
+  },
+  "onboarding_success_alert_alt": {
+    "description": "Alt text for the extension menu location image on the success screen",
+    "message": "Extension menu location"
+  },
+  "onboarding_success_help_others": {
+    "description": "Help link label on success screen (other providers)",
+    "message": "Others"
   },
   "options_docu": {
     "description": "Options navigation: Documentation.",

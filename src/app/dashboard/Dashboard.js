@@ -20,7 +20,7 @@ export default function Dashboard() {
     <div className="dashboard">
       <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4 text-center">
         <div className="col mb-4">
-          <Link className="card h-100" to="/keyring/display" role="button">
+          <Link className="card h-100" to="/keyring" role="button">
             <div className="card-body">
               <img src="../img/Mailvelope/keyring.svg" role="presentation" />
             </div>

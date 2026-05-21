@@ -4,10 +4,11 @@
  */
 
 import React from 'react';
-import {Route, Redirect} from 'react-router-dom';
+import {Route, Redirect, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as l10n from '../../lib/l10n';
 import {MAIN_KEYRING_ID, GNUPG_KEYRING_ID} from '../../lib/constants';
+import {SETUP_SKIPPED} from '../../modules/prefs';
 import {port} from '../app';
 import {KeyringOptions} from './KeyringOptions';
 import KeyGrid from './KeyGrid';
@@ -17,15 +18,32 @@ import KeyImport from './KeyImport';
 import GenerateKey from './GenerateKey';
 import KeyringSetup from './KeyringSetup';
 import Spinner from '../../components/util/Spinner';
+import KeyringSelect from './components/KeyringSelect';
+import KeyringBreadcrumb from './components/KeyringBreadcrumb';
 import Notifications from '../../components/util/Notifications';
 
 l10n.register([
-  'keyring_header'
+  'keyring_generate_key',
+  'keyring_import_keys',
+  'keyring_setup',
+  'onboarding_skip'
 ]);
 
 const DEMAIL_SUFFIX = 'de-mail.de';
 
-export default class Keyring extends React.Component {
+function PageTitle({children}) {
+  return (
+    <div className="card-title d-flex flex-wrap align-items-center">
+      <h1 className="flex-shrink-0 mr-auto">{children}</h1>
+    </div>
+  );
+}
+
+PageTitle.propTypes = {
+  children: PropTypes.node
+};
+
+class Keyring extends React.Component {
   constructor(props) {
     super(props);
     // get URL parameter
@@ -40,10 +58,12 @@ export default class Keyring extends React.Component {
       keyringAttr: undefined, // keyring meta data
       defaultKeyFpr: '', // active keyring: fingerprint of default key
       hasPrivateKey: false, // active keyring: has private key
+      hasUsablePrivateKey: false, // any keyring in the preferred queue has a private key (fallback-aware)
       demail: false, // active keyring: is keyring from de-mail provider
       gnupg: false, // active keyring: is the GnuPG keyring
       keys: [], // active keyring: keys
       keysLoading: true, // active keyring: waiting for loading of keys
+      setupSkipped: false,
       notifications: []
     };
     this.handleChangeKeyring = this.handleChangeKeyring.bind(this);
@@ -52,6 +72,8 @@ export default class Keyring extends React.Component {
     this.handleChangeDefaultKey = this.handleChangeDefaultKey.bind(this);
     this.handleRefreshKeyring = this.handleRefreshKeyring.bind(this);
     this.loadKeyring = this.loadKeyring.bind(this);
+    this.handleNotification = this.handleNotification.bind(this);
+    this.handleSkipSetup = this.handleSkipSetup.bind(this);
   }
 
   async componentDidMount() {
@@ -80,13 +102,22 @@ export default class Keyring extends React.Component {
     const gnupg = keyringId === GNUPG_KEYRING_ID;
     // propagate state change to backend
     port.emit('set-active-keyring', {keyringId});
-    let keys = await port.send('getKeys', {keyringId});
-    keys = keys.sort((a, b) => a.name.localeCompare(b.name));
-    const hasPrivateKey = keys.some(key => key.type === 'private');
+    const [keys, setupSkipped, hasUsablePrivateKey] = await Promise.all([
+      port.send('getKeys', {keyringId}),
+      port.send('get-session-pref', {key: SETUP_SKIPPED}),
+      port.send('has-usable-private-key', {keyringId})
+    ]);
+    const sortedKeys = keys.sort((a, b) => a.name.localeCompare(b.name));
+    const hasPrivateKey = sortedKeys.some(key => key.type === 'private');
     /* eslint-enable react/no-access-state-in-setstate */
     this.setState({
-      keyringId, defaultKeyFpr, demail, gnupg, keyringAttr, hasPrivateKey, keys, keysLoading: false
+      keyringId, defaultKeyFpr, demail, gnupg, keyringAttr, hasPrivateKey, hasUsablePrivateKey, keys: sortedKeys, setupSkipped: Boolean(setupSkipped), keysLoading: false
     });
+  }
+
+  async handleSkipSetup() {
+    await port.send('set-session-pref', {key: SETUP_SKIPPED, value: true});
+    this.props.history.push('/keyring/display');
   }
 
   async handleChangeKeyring(keyringId) {
@@ -117,6 +148,10 @@ export default class Keyring extends React.Component {
     this.loadKeyring();
   }
 
+  handleNotification(notification) {
+    this.setState({notifications: [notification]});
+  }
+
   render() {
     return (
       <>
@@ -127,13 +162,41 @@ export default class Keyring extends React.Component {
                 <Spinner delay={0} />
               ) : (
                 <>
-                  <Route exact path="/keyring" render={() => this.state.keys.length ? <Redirect to="/keyring/display" /> : <Redirect to="/keyring/setup" />} />
+                  <Route exact path="/keyring" render={() => this.state.keys.length || this.state.setupSkipped || this.state.hasUsablePrivateKey ? <Redirect to="/keyring/display" /> : <Redirect to="/keyring/setup" />} />
                   <Route exact path="/keyring/key/:keyFpr" render={props => <Key {...props} keyData={this.state.keys.find(key => key.fingerprint === props.match.params.keyFpr)} defaultKeyFpr={this.state.defaultKeyFpr} onChangeDefaultKey={this.handleChangeDefaultKey} onDeleteKey={this.handleDeleteKey} onKeyringChange={this.loadKeyring} />} />
                   <Route exact path="/keyring/key/:keyFpr/user/:userIdx" render={props => <User {...props} keyData={this.state.keys.find(key => key.fingerprint === props.match.params.keyFpr)} onKeyringChange={this.loadKeyring} />} />
                   <Route path="/keyring/display/:keyId?" render={props => (<KeyGrid keys={this.state.keys} {...props} keyringAttr={this.state.keyringAttr} onChangeKeyring={this.handleChangeKeyring} onDeleteKeyring={this.handleDeleteKeyring} prefs={this.props.prefs} defaultKeyFpr={this.state.defaultKeyFpr} onChangeDefaultKey={this.handleChangeDefaultKey} onDeleteKey={this.handleDeleteKey} onRefreshKeyring={this.handleRefreshKeyring} spinner={this.state.keysLoading} />)} />
-                  <Route path="/keyring/import" render={({location}) => <KeyImport onKeyringChange={this.loadKeyring} onNotification={notification => this.setState({notifications: [notification]})} location={location} />} />
-                  <Route path="/keyring/generate" render={() => <GenerateKey onKeyringChange={this.loadKeyring} onNotification={notification => this.setState({notifications: [notification]})} defaultName={this.state.name} defaultEmail={this.state.email} />} />
-                  <Route path="/keyring/setup" render={() => <KeyringSetup hasPrivateKey={this.state.hasPrivateKey} keyringAttr={this.state.keyringAttr} onChangeKeyring={this.handleChangeKeyring} prefs={this.props.prefs} />} />
+                  <Route path="/keyring/import" render={({location}) => (
+                    <div className="card-body">
+                      <KeyringBreadcrumb />
+                      <PageTitle>{l10n.map.keyring_import_keys}</PageTitle>
+                      <KeyImport onKeyringChange={this.loadKeyring} onImportComplete={() => this.props.history.push('/keyring/display/')} onNotification={this.handleNotification} location={location} cancelTo="/keyring" />
+                    </div>
+                  )} />
+                  <Route path="/keyring/generate" render={() => (
+                    <div className="card-body">
+                      <KeyringBreadcrumb />
+                      <PageTitle>{l10n.map.keyring_generate_key}</PageTitle>
+                      <GenerateKey onKeyringChange={this.loadKeyring} onGenerateComplete={({key}) => this.props.history.push(`/keyring/display/${key.keyId}`)} onNotification={this.handleNotification} defaultName={this.state.name} defaultEmail={this.state.email} cancelTo="/keyring" />
+                    </div>
+                  )} />
+                  <Route path="/keyring/setup" render={() => (
+                    <div className="card-body">
+                      <div className="card-title d-flex flex-wrap align-items-center">
+                        <h1 className="flex-shrink-0 mr-auto">{l10n.map.keyring_setup}</h1>
+                        <button type="button" className="btn btn-secondary px-4 mr-5" onClick={this.handleSkipSetup}>{l10n.map.onboarding_skip}</button>
+                        <div className="flex-shrink-0">
+                          <KeyringSelect keyringId={this.state.keyringId} keyringAttr={this.state.keyringAttr} onChange={this.handleChangeKeyring} prefs={this.props.prefs} />
+                        </div>
+                      </div>
+                      <KeyringSetup
+                        generatePath="/keyring/generate"
+                        importPath="/keyring/import"
+                        showNoKeypairAlert={!this.state.hasPrivateKey && !this.state.hasUsablePrivateKey}
+                        showGnupgFooter
+                      />
+                    </div>
+                  )} />
                 </>
               )}
             </section>
@@ -147,6 +210,8 @@ export default class Keyring extends React.Component {
 
 Keyring.propTypes = {
   prefs: PropTypes.object,
-  location: PropTypes.object
+  location: PropTypes.object,
+  history: PropTypes.object
 };
 
+export default withRouter(Keyring);

@@ -5,6 +5,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import * as l10n from '../../lib/l10n';
 import {isValidAddress} from '../../lib/email';
 import {port} from '../app';
@@ -16,12 +17,12 @@ import AdvancedExpand from './components/AdvancedExpand';
 import AdvKeyGenOptions from './components/AdvKeyGenOptions';
 import DefinePassword from '../../components/util/DefinePassword';
 import Modal from '../../components/util/Modal';
-import {Redirect, Link} from 'react-router-dom';
 import KeyBackup from './components/KeyBackup';
 
 l10n.register([
   'alert_header_success',
   'form_back',
+  'form_cancel',
   'form_clear',
   'keyring_generate_key',
   'key_gen_generate',
@@ -30,6 +31,7 @@ l10n.register([
   'key_gen_success',
   'key_gen_wait_header',
   'key_gen_wait_info',
+  'key_gen_error',
   'learn_more_link',
   'key_backup_title',
   'key_backup_info',
@@ -132,25 +134,16 @@ export default class GenerateKey extends React.Component {
   }
 
   closeBackupModal() {
-    this.setState({backupModalVisible: false});
+    this.setState({backupModalVisible: false}, () => {
+      if (this.props.onGenerateComplete) {
+        this.props.onGenerateComplete({key: this.state.key, uploaded: this.state.mveloKeyServerUpload});
+      }
+    });
   }
 
   render() {
-    if (this.state.key && !this.state.backupModalVisible && !this.state.generating) {
-      return (
-        <Redirect to={`/keyring/display/${this.state.key.keyId}`} />
-      );
-    }
     return (
-      <div className={`card-body ${this.state.generating ? 'busy' : ''}`}>
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb bg-transparent p-0">
-            <li className="breadcrumb-item"><Link to="/keyring" replace tabIndex="0"><span className="icon icon-arrow-left" aria-hidden="true"></span> {l10n.map.keyring_header}</Link></li>
-          </ol>
-        </nav>
-        <div className="card-title d-flex flex-wrap align-items-center">
-          <h1 className="flex-shrink-0 mr-auto">{l10n.map.keyring_generate_key}</h1>
-        </div>
+      <>
         <form className="form" autoComplete="off">
           <NameAddrInput name={this.state.name} email={this.state.email} onChange={this.handleChange} errors={this.state.errors} />
           <AdvancedExpand>
@@ -162,7 +155,10 @@ export default class GenerateKey extends React.Component {
             <label className="custom-control-label" htmlFor="mveloKeyServerUpload"><span>{l10n.map.key_gen_upload}</span>. <a href="https://keys.mailvelope.com" target="_blank" rel="noopener noreferrer">{l10n.map.learn_more_link}</a></label>
           </div>
           <div className="form-group d-flex justify-content-end">
-            <button type="button" onClick={this.handleGenerate} disabled={Object.keys(this.state.errors).length || !this.state.modified} className="btn btn-primary">{l10n.map.key_gen_generate}</button>
+            <div className="btn-bar">
+              {this.props.cancelTo && <Link to={this.props.cancelTo} className="btn btn-secondary">{l10n.map.form_cancel}</Link>}
+              <button type="button" onClick={this.handleGenerate} disabled={Object.keys(this.state.errors).length || !this.state.modified} className="btn btn-primary">{l10n.map.key_gen_generate}</button>
+            </div>
           </div>
         </form>
         <Modal isOpen={this.state.generating} title={l10n.map.key_gen_wait_header} onShow={this.generateKey} keyboard={false} hideFooter={true} onHide={() => this.setState({generating: false})}>
@@ -180,7 +176,7 @@ export default class GenerateKey extends React.Component {
           keyFpr={this.state.key.keyFpr}
           keyringId={this.context.keyringId}
         />}
-      </div>
+      </>
     );
   }
 }
@@ -191,7 +187,9 @@ GenerateKey.propTypes = {
   defaultName: PropTypes.string,
   defaultEmail: PropTypes.string,
   onKeyringChange: PropTypes.func,
-  onNotification: PropTypes.func
+  onGenerateComplete: PropTypes.func,
+  onNotification: PropTypes.func,
+  cancelTo: PropTypes.string
 };
 
 GenerateKey.defaultProps = {
