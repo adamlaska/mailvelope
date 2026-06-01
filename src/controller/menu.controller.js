@@ -7,7 +7,7 @@ import mvelo from '../lib/lib-mvelo';
 import {getUUID} from '../lib/util';
 import {SubController, reloadFrames, setAppDataSlot} from './sub.controller';
 import * as prefs from '../modules/prefs';
-import {getAll as getAllKeyring} from '../modules/keyring';
+import {hasAnyPrivateKey} from '../modules/keyring';
 import {shouldSeeConsentDialog} from '../lib/analytics';
 
 export default class MenuController extends SubController {
@@ -59,9 +59,7 @@ export default class MenuController extends SubController {
   }
 
   async getIsSetupDone() {
-    // check if at least one keyring has a private key
-    const hasPrivateKey = (await getAllKeyring()).some(keyring => keyring.hasPrivateKey());
-    return {isSetupDone: hasPrivateKey};
+    return {isSetupDone: await hasAnyPrivateKey()};
   }
 
   async addToWatchList() {

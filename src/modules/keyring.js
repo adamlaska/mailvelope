@@ -270,6 +270,26 @@ export async function getAll() {
 }
 
 /**
+ * Check whether any keyring holds a private key, reading storage directly
+ * without building keyrings or awaiting keyringInitialized.
+ * @return {Promise<Boolean>}
+ */
+export async function hasAnyPrivateKey() {
+  const attributes = await mvelo.storage.get('mvelo.keyring.attributes') || {};
+  for (const keyringId of Object.keys(attributes)) {
+    if (keyringId === GNUPG_KEYRING_ID) {
+      // a registered GnuPG keyring is assumed to hold a private key
+      return true;
+    }
+    const privArmored = await mvelo.storage.get(`mvelo.keyring.${keyringId}.privateKeys`);
+    if (privArmored?.length) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
  * Get all keyrings
  * @return {Array<String>}
  */
