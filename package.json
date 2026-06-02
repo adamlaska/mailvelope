@@ -6,6 +6,7 @@
     "test": "jest",
     "test:unit": "jest --selectProjects unit",
     "test:integration": "npm run build:integration && jest --selectProjects integration",
+    "test:all": "npm run build:integration && jest",
     "test:jest:watch": "jest --watch",
     "test:jest:coverage": "jest --coverage",
     "test:jest:debug": "jest --runInBand --verbose",
