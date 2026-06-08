@@ -9,12 +9,13 @@ import {ONBOARDING_CAMPAIGN} from '../../lib/analytics';
 import {port} from '../app';
 
 l10n.register([
-  'form_cancel',
-  'form_save',
-  'provider_analytics_consent',
-  'settings_analytics',
   'analytics_consent_description',
   'analytics_consent_disabled_tooltip',
+  'form_cancel',
+  'form_save',
+  'learn_more_link',
+  'provider_analytics_consent',
+  'settings_analytics'
 ]);
 
 export default class Analytics extends React.Component {

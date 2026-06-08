@@ -11,14 +11,12 @@ import SimpleDialog from '../../components/util/SimpleDialog';
 import WatchListEditor from './components/watchListEditor';
 
 l10n.register([
-  'keygrid_delete',
   'settings_watchlist',
   'watchlist_command_create',
-  'watchlist_command_edit',
   'watchlist_delete_confirmation',
   'watchlist_remove_dialog_title',
   'watchlist_title_active',
-  'watchlist_title_site',
+  'watchlist_title_site'
 ]);
 
 export default class WatchList extends React.Component {

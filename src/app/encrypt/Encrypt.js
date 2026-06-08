@@ -24,6 +24,7 @@ import './Encrypt.scss';
 l10n.register([
   'alert_header_error',
   'change_link',
+  'dialog_cancel_btn',
   'editor_encrypt_button',
   'editor_label_attachments',
   'editor_label_message',
@@ -33,18 +34,14 @@ l10n.register([
   'encrypt_download_all_button',
   'encrypt_encrypted_files_label',
   'encrypt_encrypted_for_label',
-  'encrypt_file_error_header',
   'encrypt_header',
   'encrypt_header_success',
   'encrypt_no_signer_info',
   'encrypt_remove_signer_btn',
   'encrypt_signed_as_label',
-  'encrypt_signer_info',
   'encrypt_text_encryption_btn',
   'encrypt_text_error_header',
   'encrypt_upload_file_warning_too_big',
-  'file_read_error',
-  'form_back',
   'notification_text_copy_to_clipboard',
   'upload_quota_exceeded_warning'
 ]);

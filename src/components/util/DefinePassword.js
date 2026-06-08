@@ -11,8 +11,7 @@ l10n.register([
   'key_gen_pwd',
   'key_gen_pwd_empty',
   'key_gen_pwd_reenter',
-  'key_gen_pwd_unequal',
-  'key_gen_pwd_match'
+  'key_gen_pwd_unequal'
 ]);
 
 export default class DefinePassword extends React.Component {

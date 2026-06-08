@@ -14,7 +14,6 @@ l10n.register([
   'alert_no_domainmatchpattern_warning',
   'form_cancel',
   'form_ok',
-  'keygrid_delete',
   'watchlist_expose_api',
   'watchlist_record_title',
   'watchlist_title_active',

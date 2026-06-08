@@ -20,19 +20,13 @@ import Modal from '../../components/util/Modal';
 import KeyBackup from './components/KeyBackup';
 
 l10n.register([
-  'alert_header_success',
-  'form_back',
   'form_cancel',
-  'form_clear',
-  'keyring_generate_key',
+  'key_gen_error',
   'key_gen_generate',
-  'key_gen_another',
   'key_gen_upload',
   'key_gen_wait_header',
   'key_gen_wait_info',
-  'key_gen_error',
-  'learn_more_link',
-  'dialog_popup_close'
+  'learn_more_link'
 ]);
 
 export default class GenerateKey extends React.Component {

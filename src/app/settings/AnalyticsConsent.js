@@ -12,24 +12,23 @@ import {useHistory} from 'react-router-dom';
 import Modal from '../../components/util/Modal';
 
 l10n.register([
-  'analytics_interstitial_header',
-  'analytics_consent_interstitial_message',
-  'analytics_consent_interstitial_learn_more',
-  'analytics_consent_interstitial_learn_more_explanation',
-  'analytics_consent_interstitial_We_Collect_Minimal_Data_Title',
+  'analytics_consent_interstitial_Btn_Learn_More',
+  'analytics_consent_interstitial_Faq',
   'analytics_consent_interstitial_We_Collect_Minimal_Data',
-  'analytics_consent_interstitial_We_Respect_your_Choice_Title',
+  'analytics_consent_interstitial_We_Collect_Minimal_Data_Title',
   'analytics_consent_interstitial_We_Respect_your_Choice',
-  'analytics_consent_interstitial_Your_Privacy_is_Preserved_Title',
+  'analytics_consent_interstitial_We_Respect_your_Choice_Title',
   'analytics_consent_interstitial_Your_Privacy_is_Preserved_Pt1',
   'analytics_consent_interstitial_Your_Privacy_is_Preserved_Pt2',
-  'analytics_consent_interstitial_Faq',
-  'analytics_consent_interstitial_Btn_Learn_More',
-  'dialog_no_button',
-  'dialog_yes_button',
+  'analytics_consent_interstitial_Your_Privacy_is_Preserved_Title',
+  'analytics_consent_interstitial_learn_more',
+  'analytics_consent_interstitial_message',
+  'analytics_interstitial_header',
+  'button_analyticsconsent_modal',
+  'dialog_no_btn',
+  'dialog_yes_btn',
   'header_analyticsconsent_modal',
-  'paragraph_analyticsconsent_modal',
-  'button_analyticsconsent_modal'
+  'paragraph_analyticsconsent_modal'
 ]);
 
 function withHistory(Component) {

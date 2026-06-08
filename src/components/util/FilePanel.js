@@ -14,9 +14,6 @@ import './FilePanel.scss';
 l10n.register([
   'decrypt_open_viewer_btn_title',
   'editor_remove_upload',
-  'file_invalid_signed',
-  'file_not_signed',
-  'file_signed',
   'key_export_dialog_copy_to_clipboard'
 ]);
 

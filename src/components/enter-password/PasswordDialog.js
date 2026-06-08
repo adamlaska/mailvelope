@@ -14,21 +14,20 @@ import Timeout from '../util/Timeout';
 
 // register language strings
 l10n.register([
+  'form_cancel',
+  'form_ok',
+  'pwd_dialog_cache_pwd',
   'pwd_dialog_header',
-  'pwd_dialog_pwd_please',
-  'pwd_dialog_reason_decrypt',
-  'pwd_dialog_reason_sign',
-  'pwd_dialog_reason_revoke',
   'pwd_dialog_reason_add_user',
-  'pwd_dialog_reason_revoke_user',
-  'pwd_dialog_reason_set_exdate',
-  'pwd_dialog_reason_editor',
   'pwd_dialog_reason_create_backup',
   'pwd_dialog_reason_create_draft',
-  'pwd_dialog_cache_pwd',
-  'pwd_dialog_wrong_pwd',
-  'form_ok',
-  'form_cancel'
+  'pwd_dialog_reason_decrypt',
+  'pwd_dialog_reason_editor',
+  'pwd_dialog_reason_revoke',
+  'pwd_dialog_reason_revoke_user',
+  'pwd_dialog_reason_set_exdate',
+  'pwd_dialog_reason_sign',
+  'pwd_dialog_wrong_pwd'
 ]);
 
 const TIMEOUT = 22000; // 22s

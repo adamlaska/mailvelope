@@ -34,13 +34,11 @@ import './editor.scss';
 // register language strings
 l10n.register([
   'editor_error_header',
-  'editor_header',
   'editor_label_attachments',
   'editor_label_copy_recipient',
   'editor_label_message',
   'editor_label_recipient',
   'editor_label_subject',
-  'form_ok',
   'upload_quota_exceeded_warning',
   'upload_quota_warning_headline',
   'waiting_dialog_decryption_failed'

@@ -21,29 +21,29 @@ import Modal from '../../components/util/Modal';
 import SimpleDialog from '../../components/util/SimpleDialog';
 
 l10n.register([
-  'keyring_header',
-  'key_remove_btn',
   'key_export_btn',
-  'key_revoke_btn',
-  'key_remove_btn_title',
   'key_export_btn_title',
-  'key_revoke_btn_title',
-  'key_keyserver_sync',
-  'key_keyserver_not',
+  'key_export_dialog_title',
   'key_keyserver_mod',
-  'key_keyserver_upload',
-  'key_keyserver_update',
+  'key_keyserver_not',
   'key_keyserver_remove',
   'key_keyserver_remove_btn',
-  'key_keyserver_upload_btn',
-  'key_keyserver_update_btn',
   'key_keyserver_resend_btn',
+  'key_keyserver_sync',
+  'key_keyserver_update',
+  'key_keyserver_update_btn',
+  'key_keyserver_upload',
+  'key_keyserver_upload_btn',
+  'key_remove_btn',
+  'key_remove_btn_title',
   'key_remove_dialog_title',
-  'key_export_dialog_title',
-  'key_revoke_dialog_title',
-  'key_revoke_dialog_description',
+  'key_revoke_btn',
+  'key_revoke_btn_title',
   'key_revoke_dialog_confirm',
-  'key_revoke_dialog_confirm'
+  'key_revoke_dialog_description',
+  'key_revoke_dialog_title',
+  'keygrid_delete_confirmation',
+  'keyring_header'
 ]);
 
 export default class Key extends React.Component {

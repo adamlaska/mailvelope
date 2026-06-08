@@ -22,11 +22,8 @@ l10n.register([
   'alert_header_warning',
   'key_keyserver_resend_btn',
   'key_keyserver_upload_btn',
-  'keydetails_creation_date',
-  'keydetails_expiration_date',
   'keygrid_user_email',
   'keygrid_user_name',
-  'keygrid_validity_status',
   'user_create_btn',
   'user_create_title',
   'user_keyserver_not',
@@ -44,7 +41,7 @@ l10n.register([
   'user_revoke_dialog_confirmation',
   'user_revoke_dialog_description',
   'user_revoke_dialog_title',
-  'user_title',
+  'user_title'
 ]);
 
 export default class User extends React.Component {

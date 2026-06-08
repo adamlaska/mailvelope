@@ -21,6 +21,7 @@ l10n.register([
   'form_import',
   'key_gen_generate',
   'key_import_search_btn',
+  'key_remove_dialog_title',
   'keygrid_all_keys',
   'keygrid_creation_date_short',
   'keygrid_default_label',
@@ -28,8 +29,8 @@ l10n.register([
   'keygrid_export',
   'keygrid_export_title',
   'keygrid_generate_title',
-  'keygrid_import_title',
   'keygrid_import_search_title',
+  'keygrid_import_title',
   'keygrid_keyid',
   'keygrid_public_keys',
   'keygrid_refresh',
@@ -38,8 +39,9 @@ l10n.register([
   'keygrid_user_email',
   'keygrid_user_name',
   'keyring_backup',
+  'keyring_header',
   'keyring_public_private',
-  'keyring_remove_dialog_title',
+  'keyring_remove_dialog_title'
 ]);
 
 export default class KeyGrid extends React.Component {

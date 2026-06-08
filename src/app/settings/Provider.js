@@ -21,13 +21,13 @@ const GMAIL_SCOPE_SEND = 'https://www.googleapis.com/auth/gmail.send';
 const MV_PRODUCT_PAGE_URL = 'https://mailvelope.com/google-workspace?referrer=mailvelope-extension';
 
 l10n.register([
-  'alert_header_error',
   'alert_header_important',
   'alert_header_notice',
   'alert_header_warning',
+  'dashboard_link_manage_domains',
   'dialog_popup_close',
-  'keygrid_user_email',
   'keygrid_refresh',
+  'keygrid_user_email',
   'learn_more_link',
   'provider_gmail_auth',
   'provider_gmail_auth_cancel_btn',

@@ -22,9 +22,7 @@ import './DecryptMessage.scss';
 
 // register language strings
 l10n.register([
-  'alert_header_error',
   'alert_header_warning',
-  'decrypt_attachment_label',
   'decrypt_cleartext_warning',
   'decrypt_digital_signature',
   'decrypt_digital_signature_failure',
@@ -36,7 +34,7 @@ l10n.register([
   'decrypt_digital_signature_sender_mismatch_tooltip',
   'decrypt_digital_signature_uncertain_sender',
   'decrypt_show_message_btn',
-  'decrypt_signer_label',
+  'editor_error_header',
   'keygrid_keyid'
 ]);
 

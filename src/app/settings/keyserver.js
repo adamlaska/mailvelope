@@ -15,8 +15,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 l10n.register([
-  'alert_header_warning',
-  'alert_header_error',
   'form_cancel',
   'form_save',
   'keyserver_additionals_label',

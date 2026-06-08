@@ -15,11 +15,10 @@ import Timeout from '../util/Timeout';
 
 // register language strings
 l10n.register([
+  'alert_header_error',
   'form_cancel',
-  'form_confirm',
   'key_import_default_description',
   'key_import_default_headline',
-  'key_import_invalidated_description',
   'key_import_rotation_add',
   'key_import_rotation_cancel',
   'key_import_rotation_description',

@@ -14,11 +14,9 @@ import Terminate from '../util/Terminate';
 
 // register language strings
 l10n.register([
-  'keygen_dialog_password_error_length',
-  'keygen_dialog_password_placeholder',
   'keygen_dialog_prolog',
   'keygen_waiting_description',
-  'keygen_waiting_headline',
+  'keygen_waiting_headline'
 ]);
 
 const PWD_MIN_LENGTH = 4;

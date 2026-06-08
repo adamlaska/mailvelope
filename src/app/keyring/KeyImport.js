@@ -26,15 +26,10 @@ l10n.register([
   'alert_header_error',
   'alert_header_success',
   'alert_header_warning',
-  'file_read_error',
-  'form_back',
+  'decrypt_text_error_header',
+  'encrypt_upload_file_warning_too_big',
   'form_cancel',
   'form_confirm',
-  'form_confirm',
-  'form_import',
-  'form_import',
-  'form_import',
-  'form_import',
   'key_import_bulk_success',
   'key_import_contacts_import_btn',
   'key_import_default_description',
@@ -46,12 +41,9 @@ l10n.register([
   'key_import_from_text_label',
   'key_import_invalid_text',
   'key_import_number_of_failed',
-  'key_import_search_btn',
   'key_import_search_found',
-  'key_import_search_found_source',
   'key_import_search_found_modified',
-  'key_import_textarea',
-  'key_import_textarea',
+  'key_import_search_found_source',
   'key_import_too_big',
   'keygrid_key_fingerprint',
   'keygrid_keyid',
@@ -59,9 +51,7 @@ l10n.register([
   'keygrid_user_name',
   'keyring_confirm_keys',
   'keyring_import_description',
-  'keyring_import_keys',
-  'keyring_import_search_description',
-  'keyring_import_search_keys'
+  'keyring_import_search_description'
 ]);
 
 export default class KeyImport extends React.Component {
