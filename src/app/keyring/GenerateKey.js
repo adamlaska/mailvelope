@@ -28,16 +28,11 @@ l10n.register([
   'key_gen_generate',
   'key_gen_another',
   'key_gen_upload',
-  'key_gen_success',
   'key_gen_wait_header',
   'key_gen_wait_info',
   'key_gen_error',
   'learn_more_link',
-  'key_backup_title',
-  'key_backup_info',
-  'key_backup_storage',
-  'dialog_popup_close',
-  'key_backup_create'
+  'dialog_popup_close'
 ]);
 
 export default class GenerateKey extends React.Component {

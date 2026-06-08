@@ -809,7 +809,7 @@
   },
   "key_gen_success": {
     "description": "Key generation success message",
-    "message": "New key generated and imported into keyring"
+    "message": "Your new key was created and added to your keyring"
   },
   "key_gen_upload": {
     "description": "Upload key to Mailvelope key server checkbox",
@@ -1121,11 +1121,35 @@
   },
   "keybackup_backup_store_location": {
     "description": "A hint how to store the key.",
-    "message": "Store the backup securely in a safe location, for example, on a USB drive or in a password manager."
+    "message": "Keep this file somewhere safe — for example, on a USB drive or in a password manager."
   },
   "keybackup_backup_description": {
     "description": "A hint about the importance of a private key backup.",
-    "message": "A private key backup is essential for recovering your encrypted data in case of data loss or reinstallation of your operating system, browser or this browser extension."
+    "message": "A backup lets you recover your encrypted email if you lose access to this device, reinstall your browser, or remove the extension."
+  },
+  "keybackup_dialog_headline": {
+    "description": "Title of the dialog recommending a private key backup after key creation.",
+    "message": "Back up your private key"
+  },
+  "keybackup_load_error": {
+    "description": "Shown when the key could not be loaded to prepare the backup file.",
+    "message": "Your backup couldn't be prepared. You can export your key later from the keyring."
+  },
+  "keybackup_save_button": {
+    "description": "Primary button that downloads the private key backup file.",
+    "message": "Save backup"
+  },
+  "keybackup_keep_safe_headline": {
+    "description": "Heading shown after the backup download has been started.",
+    "message": "Keep your backup safe"
+  },
+  "keybackup_keep_safe_text": {
+    "description": "Guidance shown after the backup download has been started.",
+    "message": "Once the file is saved, move it somewhere safe and keep it private. You'll need it to recover your encrypted email if you ever lose access."
+  },
+  "keybackup_done_button": {
+    "description": "Button that closes the backup dialog after the file is downloaded.",
+    "message": "Done"
   },
   "keydetails_change_exp_date_dialog_note": {
     "description": "Important note in change expiration date dialog.",

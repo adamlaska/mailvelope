@@ -1,40 +1,35 @@
 import PropTypes from 'prop-types';
-import React, {useEffect} from 'react';
-import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
+import React, {useEffect, useRef, useState} from 'react';
+import {Button, Fade, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import Alert from '../../../components/util/Alert';
 import * as l10n from '../../../lib/l10n';
 import {port} from '../../app';
 import {getFileSize} from '../../util/util';
 
 l10n.register([
-  'key_export_warning_private',
-  'key_backup_title',
-  'keybackup_restore_dialog_headline',
-  'keybackup_backup_store_location',
-  'keybackup_backup_description',
-  'alert_header_warning',
-  'key_export_create_file',
-  'dialog_popup_close',
-  'dialog_no_button',
-  'keybackup_setup_dialog_button',
+  'keybackup_dialog_headline',
+  'keybackup_load_error',
   'key_gen_success',
-  'key_export_filename'
+  'keybackup_backup_description',
+  'keybackup_backup_store_location',
+  'dialog_no_button',
+  'form_back',
+  'keybackup_save_button',
+  'keybackup_keep_safe_headline',
+  'keybackup_keep_safe_text',
+  'keybackup_done_button'
 ]);
 
 /**
  * @param {KeyDetailsProps} props
  */
 function KeyDetails({type, name, email, keyId}) {
-  if (!type || !name || !email || !keyId) {
-    return <></>;
-  }
   return (
     <>
-      <p className="mb-1 font-weight-bold">{l10n.map.alert_header_success}</p>
       <p className="mb-1">{l10n.map.key_gen_success}:</p>
       <Alert type="info" className="mb-3 flex-shrink-1">
-        <span className={`icon icon-${type === 'public' ? 'key' : 'key-pair'} mr-1`} style={{fontSize: '1.25rem'}}></span>
-        <span style={{fontSize: '1rem', fontWeight: 500}}>{name}</span>{`<${email}>`}<br />
+        <span className={`icon icon-${type === 'public' ? 'key' : 'key-pair'} mr-1`}></span>
+        <span>{name}</span> <span className="text-muted">{`<${email}>`}</span><br />
         {`#${keyId}`}
       </Alert>
     </>
@@ -55,6 +50,24 @@ KeyDetails.propTypes = {
 };
 
 /**
+ * Read-only row showing the backup file and its size.
+ * @param {{name: string, sizeStr: string}} props
+ */
+function DownloadRow({name, sizeStr}) {
+  return (
+    <div className="d-flex align-items-center border rounded p-2">
+      <span className="icon icon-download mr-2" style={{fontSize: '1.25rem'}}></span>
+      <span className="flex-grow-1 text-truncate">{name}</span>
+      <small className="text-muted ml-2 flex-shrink-0">{sizeStr}</small>
+    </div>
+  );
+}
+DownloadRow.propTypes = {
+  name: PropTypes.string.isRequired,
+  sizeStr: PropTypes.string.isRequired,
+};
+
+/**
  * @param {{
  *  isOpen: boolean,
  *  keyId: string,
@@ -64,32 +77,37 @@ KeyDetails.propTypes = {
  * }} props
  */
 function KeyBackup({isOpen, keyId, keyFpr, keyringId, onClose}) {
-  const [keyDetails, setKeyDetails] = React.useState(null);
-  const [keyExported, setKeyExported] = React.useState(false);
-  const [fileInfo, setFileInfo] = React.useState({name: 'backup.asc', url: '', sizeStr: 'unknown size'});
+  const [keyDetails, setKeyDetails] = useState(null);
+  const [keyExported, setKeyExported] = useState(false);
+  const [fileInfo, setFileInfo] = useState({name: '', url: '', sizeStr: ''});
+  const [loadError, setLoadError] = useState(false);
+  // holds the latest object URL so cleanup can revoke it without depending on fileInfo state
+  const objectUrlRef = useRef('');
 
   useEffect(() => {
     if (isOpen && keyFpr && keyringId) {
       const fetchKey = async () => {
         try {
-          const [key] = await port.send('getArmoredKeys', {
-            keyringId,
-            keyFprs: keyFpr,
-            options: {pub: true, priv: true, all: false},
-          });
+          setLoadError(false);
+          const [[key], details] = await Promise.all([
+            port.send('getArmoredKeys', {
+              keyringId,
+              keyFprs: keyFpr,
+              options: {pub: true, priv: true, all: false},
+            }),
+            port.send('getKeyDetails', {
+              keyringId,
+              fingerprint: keyFpr,
+            }),
+          ]);
           if (!key || !key.armoredPrivate || !key.armoredPublic) {
             throw new Error('Key not found or invalid');
           }
           const armoredExport = `${key.armoredPrivate}\n${key.armoredPublic}`;
-
-          const keyDetails = await port.send('getKeyDetails', {
-            keyringId,
-            fingerprint: keyFpr,
-          });
-          const userEmail = keyDetails.users[0].email;
+          const userEmail = details.users[0].email;
           setKeyDetails({
             type: 'key-pair',
-            name: keyDetails.users[0].name,
+            name: details.users[0].name,
             email: userEmail,
             keyId,
           });
@@ -99,69 +117,82 @@ function KeyBackup({isOpen, keyId, keyFpr, keyringId, onClose}) {
             fileName,
             {type: 'application/pgp-keys'}
           );
-          const fileURLRef = window.URL.createObjectURL(file);
+          objectUrlRef.current = window.URL.createObjectURL(file);
           setFileInfo({
             name: fileName,
-            url: fileURLRef,
+            url: objectUrlRef.current,
             sizeStr: getFileSize(file.size)
           });
         } catch (error) {
           console.error('Failed to fetch armored keys:', error);
+          setLoadError(true);
         }
       };
       fetchKey();
     }
 
     return () => {
-      // Cleanup: revoke the object URL if it exists
-      if (fileInfo.url) {
-        window.URL.revokeObjectURL(fileInfo.url);
+      if (objectUrlRef.current) {
+        window.URL.revokeObjectURL(objectUrlRef.current);
+        objectUrlRef.current = '';
       }
     };
-  // we don't want to have `fileInfo` in the dependency array since it would cause the effect to run again
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, keyId, keyFpr, keyringId]);
+
+  const fileReady = Boolean(fileInfo.url);
 
   return (
     <Modal
       isOpen={isOpen}
-      onClosed={onClose}
       toggle={onClose}
     >
       <ModalHeader toggle={onClose}>
-        {l10n.map.keybackup_restore_dialog_headline}
+        {l10n.map.keybackup_dialog_headline}
       </ModalHeader>
       <ModalBody>
-        {keyDetails && <KeyDetails {...keyDetails} />}
-        <p>
-          {l10n.map.keybackup_backup_description}
-        </p>
-        <Alert type="warning" header={l10n.map.alert_header_important}>
-          {l10n.map.keybackup_backup_store_location}
-        </Alert>
-        <div className="form-inline form-group">
-          <label htmlFor="fileName" className="my-1">{l10n.map.key_export_filename}</label>
-          <input id="fileName" type="text" value={fileInfo.name} disabled className="form-control flex-grow-1 mx-sm-2" />
-          <small className="text-muted">
-            {fileInfo.sizeStr}
-          </small>
-        </div>
+        {keyExported ? (
+          <Fade key="saved">
+            <p className="mb-1 font-weight-bold">
+              <span className="icon icon-lock mr-1"></span>{l10n.map.keybackup_keep_safe_headline}
+            </p>
+            <p>{l10n.map.keybackup_keep_safe_text}</p>
+            {fileReady && <DownloadRow name={fileInfo.name} sizeStr={fileInfo.sizeStr} />}
+          </Fade>
+        ) : (
+          <Fade key="info">
+            {loadError && <Alert type="danger" className="mb-3">{l10n.map.keybackup_load_error}</Alert>}
+            {keyDetails && <KeyDetails {...keyDetails} />}
+            <p>{l10n.map.keybackup_backup_description}</p>
+            <Alert type="warning" className="mb-3">{l10n.map.keybackup_backup_store_location}</Alert>
+            {fileReady && <DownloadRow name={fileInfo.name} sizeStr={fileInfo.sizeStr} />}
+          </Fade>
+        )}
       </ModalBody>
       <ModalFooter>
-        <div className="btn-bar justify-content-between w-100">
-          <Button onClick={onClose}>
-            {keyExported ? l10n.map.dialog_popup_close : l10n.map.dialog_no_button}
-          </Button>
-          <a
-            className="btn btn-primary"
-            download={fileInfo.name}
-            href={fileInfo.url}
-            role="button"
-            onClick={() => {
-              setKeyExported(true);
-            }}
-          >{l10n.map.keybackup_setup_dialog_button}</a>
-        </div>
+        {keyExported ? (
+          <div className="btn-bar justify-content-between w-100">
+            <Button onClick={() => setKeyExported(false)}>{l10n.map.form_back}</Button>
+            <Button color="primary" onClick={onClose}>{l10n.map.keybackup_done_button}</Button>
+          </div>
+        ) : (
+          <div className="btn-bar justify-content-between w-100">
+            <Button onClick={onClose}>{l10n.map.dialog_no_button}</Button>
+            <a
+              className={`btn btn-primary ${fileReady ? '' : 'disabled'}`}
+              download={fileInfo.name}
+              href={fileInfo.url}
+              role="button"
+              aria-disabled={!fileReady}
+              onClick={event => {
+                if (!fileReady) {
+                  event.preventDefault();
+                  return;
+                }
+                setKeyExported(true);
+              }}
+            >{l10n.map.keybackup_save_button}</a>
+          </div>
+        )}
       </ModalFooter>
     </Modal>
   );

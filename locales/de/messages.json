@@ -813,7 +813,7 @@
   },
   "key_gen_success": {
     "description": "Key generation success message",
-    "message": "Neuer Schlüssel erstellt und in den Schlüsselbund importiert"
+    "message": "Ihr neuer Schlüssel wurde erstellt und Ihrem Schlüsselbund hinzugefügt"
   },
   "key_gen_upload": {
     "description": "Upload key to Mailvelope key server checkbox",
@@ -1123,11 +1123,35 @@
   },
   "keybackup_backup_store_location": {
     "description": "A hint how to store the key.",
-    "message": "Bewahren Sie das Backup an einem sicheren Ort auf, z. B. auf einem USB-Stick oder in einem Passwortmanager."
+    "message": "Bewahren Sie diese Datei an einem sicheren Ort auf — zum Beispiel auf einem USB-Stick oder in einem Passwortmanager."
   },
   "keybackup_backup_description": {
     "description": "A hint about the importance of a private key backup.",
-    "message": "Ein Backup des privaten Schlüssels ist unerlässlich, um Ihre verschlüsselten Daten im Falle eines Datenverlusts oder einer Neuinstallation Ihres Betriebssystems, Browsers oder dieser Browser Erweiterung wiederherzustellen."
+    "message": "Mit einer Sicherung können Sie Ihre verschlüsselten E-Mails wiederherstellen, falls Sie den Zugriff auf dieses Gerät verlieren, Ihren Browser neu installieren oder die Erweiterung entfernen."
+  },
+  "keybackup_dialog_headline": {
+    "description": "Title of the dialog recommending a private key backup after key creation.",
+    "message": "Sichern Sie Ihren privaten Schlüssel"
+  },
+  "keybackup_load_error": {
+    "description": "Shown when the key could not be loaded to prepare the backup file.",
+    "message": "Ihre Sicherung konnte nicht vorbereitet werden. Sie können Ihren Schlüssel später im Schlüsselbund exportieren."
+  },
+  "keybackup_save_button": {
+    "description": "Primary button that downloads the private key backup file.",
+    "message": "Sicherung speichern"
+  },
+  "keybackup_keep_safe_headline": {
+    "description": "Heading shown after the backup download has been started.",
+    "message": "Bewahren Sie Ihre Sicherung gut auf"
+  },
+  "keybackup_keep_safe_text": {
+    "description": "Guidance shown after the backup download has been started.",
+    "message": "Sobald die Datei gespeichert ist, verschieben Sie sie an einen sicheren Ort und halten Sie sie geheim. Sie benötigen sie, um Ihre verschlüsselten E-Mails wiederherzustellen, falls Sie einmal den Zugriff verlieren."
+  },
+  "keybackup_done_button": {
+    "description": "Button that closes the backup dialog after the file is downloaded.",
+    "message": "Fertig"
   },
   "keydetails_change_exp_date_dialog_note": {
     "description": "Important note in change expiration date dialog.",
