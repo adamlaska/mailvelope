@@ -1,8 +1,10 @@
 export default {
   displayName: 'integration',
 
-  // Use jest-puppeteer preset for Puppeteer integration
-  preset: 'jest-puppeteer',
+  // Drive Puppeteer directly via a custom environment + global setup/teardown
+  testEnvironment: '<rootDir>/test/integration/setup/puppeteer-environment.js',
+  globalSetup: '<rootDir>/test/integration/setup/global-setup.js',
+  globalTeardown: '<rootDir>/test/integration/setup/global-teardown.js',
 
   // Jest 30 performance optimizations
   // Run integration tests sequentially to avoid Puppeteer concurrency issues
@@ -71,10 +73,7 @@ export default {
 
   // Global variables
   globals: {
-    'NODE_ENV': 'test',
-    'jest-puppeteer': {
-      config: '<rootDir>/test/jest-puppeteer.config.js'
-    }
+    'NODE_ENV': 'test'
   }
 };
 
