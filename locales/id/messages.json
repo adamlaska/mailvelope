@@ -104,9 +104,6 @@
   "analytics_consent_interstitial_learn_more": {
     "message": "Pelajari bagaimana metrik itu aman"
   },
-  "analytics_consent_interstitial_learn_more_explanation": {
-    "message": "Bila Anda ikut, data analitik akan diagregasi dan diminimumkan memakai Clean Insights yang menyimpan data ini tanpa hubungan ke karakteristik yang mengidentifikasi. Kami menghormati pilihan Anda dan tidak melaporkan apa pun yang Anda pilih untuk tidak dikontribusikan."
-  },
   "analytics_consent_interstitial_message": {
     "message": "Mailvelope menanyakan ke 1% dari pengguna baru untuk berkontribusi ke metrik anonim. Bila Anda memilih ya, Mailvelope and mendaftarkan langkah sukses dalam perjalanan onboarding Anda. Apakah Anda akan berkontribusi?"
   },
@@ -145,9 +142,6 @@
   },
   "decrypt_att_frame_help_text": {
     "message": "Klik di sini untuk melihat pesan"
-  },
-  "decrypt_attachment_label": {
-    "message": "Lampiran"
   },
   "decrypt_cleartext_warning": {
     "message": "Teks berikut tidak terenkripsi."
@@ -206,9 +200,6 @@
   "decrypt_show_message_btn": {
     "message": "Tampilkan pesan"
   },
-  "decrypt_signer_label": {
-    "message": "Pengirim"
-  },
   "decrypt_text_area_label": {
     "message": "Teks untuk didekrip"
   },
@@ -234,9 +225,6 @@
     "message": "Simpan"
   },
   "dialog_yes_btn": {
-    "message": "Yes"
-  },
-  "dialog_yes_button": {
     "message": "Yes"
   },
   "editor_blur_warn": {
@@ -290,38 +278,17 @@
   "editor_label_subject": {
     "message": "Subyek"
   },
-  "editor_link_file_encryption": {
-    "message": "Enkripsikan berkas"
-  },
-  "editor_no_default_key_caption_long": {
-    "message": "Surel tidak dapat ditandatangani secara digital karena kunci bawaan hilang"
-  },
-  "editor_no_default_key_caption_short": {
-    "message": "Surel tidak dapat ditandatangani secara digital"
-  },
   "editor_remove_upload": {
     "message": "Hapus"
   },
   "editor_sign_button": {
     "message": "Hanya tanda tangan"
   },
-  "editor_sign_caption_long": {
-    "message": "Ketika surel dikirim, itu juga akan ditandatangani secara digital"
-  },
-  "editor_sign_caption_short": {
-    "message": "Surel akan ditandatangani secara digital"
-  },
-  "editor_transfer": {
-    "message": "Transfer"
-  },
   "encrypt_change_signer_dialog_signer_label": {
     "message": "Pilih tanda tangan"
   },
   "encrypt_change_signer_dialog_title": {
     "message": "Ganti tanda tangan"
-  },
-  "encrypt_dialog_no_recipient": {
-    "message": "Silahkan tambah penerima."
   },
   "encrypt_download_all_button": {
     "message": "Unduh semua"
@@ -398,26 +365,11 @@
   "form_back": {
     "message": "Kembali"
   },
-  "form_busy": {
-    "message": "Memproses"
-  },
   "form_cancel": {
     "message": "Batal"
   },
-  "form_clear": {
-    "message": "Bersihkan"
-  },
-  "form_close": {
-    "message": "Tutup"
-  },
   "form_confirm": {
     "message": "Konfirmasi"
-  },
-  "form_continue": {
-    "message": "Lanjutkan"
-  },
-  "form_definition_error_no_recipient_key": {
-    "message": "Tidak ada kunci enkripsi yang valid untuk alamat penerima."
   },
   "form_definition_error_signature_invalid": {
     "message": "Formulir tanda tangan tidak valid."
@@ -428,17 +380,11 @@
   "form_destination_default": {
     "message": "Data terenkripsi akan dikembalikan ke halaman."
   },
-  "form_forward": {
-    "message": "Selanjutnya"
-  },
   "form_import": {
     "message": "Impor"
   },
   "form_loading": {
     "message": "Memuat formulir"
-  },
-  "form_next": {
-    "message": "Selanjutnya"
   },
   "form_no": {
     "message": "Tidak"
@@ -457,9 +403,6 @@
   },
   "form_submit": {
     "message": "Kirim"
-  },
-  "form_undo": {
-    "message": "Undo"
   },
   "form_yes": {
     "message": "Ya"
@@ -521,9 +464,6 @@
   "import_frame_help_text": {
     "message": "Klik untuk mengimpor kunci"
   },
-  "install_landing_page_hint": {
-    "message": "Klik di sini, untuk membuka ekstensi."
-  },
   "key_default_active_btn_title": {
     "message": "Kunci ditetapkan sebagai kunci bawaan"
   },
@@ -554,17 +494,11 @@
   "key_export_filename": {
     "message": "Nama berkas"
   },
-  "key_export_header": {
-    "message": "Ekspor Kunci"
-  },
   "key_export_warning_private": {
     "message": "Berkas ini memuat kunci privat. Simpan berkas di tempat yang aman dan jangan bagikan dengan orang lain."
   },
   "key_gen_advanced_btn": {
     "message": "Lanjutan"
-  },
-  "key_gen_another": {
-    "message": "Hasilkan ...lainnya"
   },
   "key_gen_demail": {
     "message": "Alamat De-Mail"
@@ -599,9 +533,6 @@
   "key_gen_pwd_empty": {
     "message": "Kolom kata sandi kosong"
   },
-  "key_gen_pwd_match": {
-    "message": "Kata sandi cocok"
-  },
   "key_gen_pwd_reenter": {
     "message": "Masukkan ulang Kata sandi"
   },
@@ -635,17 +566,11 @@
   "key_import_default_headline": {
     "message": "Konfirmasi kunci"
   },
-  "key_import_dialog_header": {
-    "message": "Tambahkan kunci ke rangkaian kunci"
-  },
   "key_import_error": {
     "message": "Impor Eror."
   },
   "key_import_error_no_uid": {
     "message": "Tidak ditemukan ID pengguna yang valid di kunci $1"
-  },
-  "key_import_error_parse": {
-    "message": "Kesalahan membaca kunci berlapis PGP: $1"
   },
   "key_import_exception": {
     "message": "Sebuah galat terjadi saat memproses kunci"
@@ -733,9 +658,6 @@
   },
   "key_import_search_ph": {
     "message": "Alamat Surel / ID Kunci / Sidik Jari"
-  },
-  "key_import_textarea": {
-    "message": "Impor kunci sebagai teks"
   },
   "key_import_too_big": {
     "message": "Teks kunci yang Anda coba impor terlalu panjang. Coba lagi dengan bagian yang lebih kecil."
@@ -872,9 +794,6 @@
   "keygen_dialog_password_error_length": {
     "message": "Kata sandi membutuhkan setidaknya $1 karakter"
   },
-  "keygen_dialog_password_placeholder": {
-    "message": "Minimal 4 karakter"
-  },
   "keygen_dialog_prolog": {
     "message": "Tetapkan kata sandi untuk kunci Anda guna melindungi komunikasi terenkripsi Anda:"
   },
@@ -890,9 +809,6 @@
   "keygrid_all_keys": {
     "message": "Semua Kunci"
   },
-  "keygrid_creation_date": {
-    "message": "Tanggal Pembuatan"
-  },
   "keygrid_creation_date_short": {
     "message": "Dibuat"
   },
@@ -902,23 +818,8 @@
   "keygrid_default_label": {
     "message": "Bawaan"
   },
-  "keygrid_delete": {
-    "message": "Hapus"
-  },
   "keygrid_delete_confirmation": {
     "message": "Apakah Anda yakin ingin menghapus kunci ini?"
-  },
-  "keygrid_display_all_keys": {
-    "message": "Tampilkan semua kunci"
-  },
-  "keygrid_display_priv_key": {
-    "message": "Tampilkan Kunci Privat"
-  },
-  "keygrid_display_pub_key": {
-    "message": "Tampilkan kunci publik"
-  },
-  "keygrid_expiration_date": {
-    "message": "Tanggal Kedaluwarsa"
   },
   "keygrid_export": {
     "message": "Mengekspor"
@@ -953,9 +854,6 @@
   "keygrid_primary_key": {
     "message": "Kunci Utama"
   },
-  "keygrid_private_keys": {
-    "message": "Kunci Privat"
-  },
   "keygrid_public_keys": {
     "message": "Kunci Publik"
   },
@@ -964,12 +862,6 @@
   },
   "keygrid_refresh_title": {
     "message": "Muat ulang pasangan kunci"
-  },
-  "keygrid_send_pub_key": {
-    "message": "Kirim kunci publik lewat surel"
-  },
-  "keygrid_signer_name": {
-    "message": "Penandatangan"
   },
   "keygrid_signer_unknown": {
     "message": "Tidak diketahui penandatangannya"
@@ -992,14 +884,8 @@
   "keygrid_subkey": {
     "message": "Sub-kunci"
   },
-  "keygrid_subkeys": {
-    "message": "Sub-kunci"
-  },
   "keygrid_user_email": {
     "message": "Surel"
-  },
-  "keygrid_user_ids": {
-    "message": "ID Pengguna"
   },
   "keygrid_user_name": {
     "message": "Nama"
@@ -1028,9 +914,6 @@
   "keyring_confirm_keys_plural": {
     "message": "Konfirmasi kunci $1 untuk diimpor"
   },
-  "keyring_export_keys": {
-    "message": "Mengekspor Rangkaian Kunci"
-  },
   "keyring_generate_key": {
     "message": "Membuat Kunci"
   },
@@ -1045,9 +928,6 @@
   },
   "keyring_import_search_description": {
     "message": "Cari kunci publik untuk ditambahkan ke rangkaian kunci Anda. Mailvelope memindai banyak direktori kunci dan menyarankan kunci publik yang kemungkinan besar sedang digunakan."
-  },
-  "keyring_import_search_keys": {
-    "message": "Cari kunci"
   },
   "keyring_main": {
     "message": "Rangkaian Kunci Utama"
@@ -1154,9 +1034,6 @@
   "options_home": {
     "message": "Pilihan"
   },
-  "options_settings": {
-    "message": "Pengaturan"
-  },
   "options_title": {
     "message": "Opsi Mailvelope"
   },
@@ -1193,9 +1070,6 @@
   "provider_gmail_dialog_description": {
     "message": "Menggunakan API Gmail memperluas fungsionalitas Mailvelope dengan Gmail dan menyederhanakan pengiriman dan membaca surel terenkripsi dan lampiran."
   },
-  "provider_gmail_dialog_gsuite_alert": {
-    "message": "This feature is free for Gmail accounts. If you are part of a Google Workspace (<0>workspace.google.com</0>) organization, you will need to purchase a license from the <1>Mailvelope website</1>."
-  },
   "provider_gmail_dialog_privacy_policy": {
     "message": "Mohon baca Kebijakan Privasi kami"
   },
@@ -1220,9 +1094,6 @@
   "provider_gmail_licensing_dialog_deactivate_btn": {
     "message": "Lanjutkan tanpa API Gmail"
   },
-  "provider_gmail_licensing_dialog_para_1": {
-    "message": "Use of the Gmail API within Google Workspace organizations is <0>subject to a fee</0>."
-  },
   "provider_gmail_licensing_dialog_para_2": {
     "message": "Anda dapat melanjutkan menggunakan Mailvelope dengan Gmail secara gratis, tetapi <0>dengan API, alur kerja Anda</0> untuk menulis dan membaca surel terenkripsi dan lampirannya akan <1>lebih cepat dan lebih mudah</1>."
   },
@@ -1234,9 +1105,6 @@
   },
   "provider_gmail_licensing_dialog_title": {
     "message": "Wajib menggunakan lisensi Mailvelope Bisnis"
-  },
-  "provider_gmail_licensing_table_caption": {
-    "message": "Licenses to use the Gmail API integration within Google Workspace (<0>workspace.google.com</0>) can be purchased from the <1>Mailvelope website</1>."
   },
   "provider_gmail_licensing_table_title": {
     "message": "Lisensi Mailvelope"
@@ -1258,9 +1126,6 @@
   },
   "pwd_dialog_header": {
     "message": "Masukkan kata sandi kunci"
-  },
-  "pwd_dialog_pwd_please": {
-    "message": "Silakan masukkan kata sandi Anda"
   },
   "pwd_dialog_reason_add_user": {
     "message": "Masukkan kata sandi kunci Anda untuk membuat ID pengguna."
@@ -1288,12 +1153,6 @@
   },
   "pwd_dialog_reason_sign": {
     "message": "Masukkan kata sandi kunci Anda untuk menandatangani pesan ini."
-  },
-  "pwd_dialog_title": {
-    "message": "Masukkan Kata Sandi | Mailvelope"
-  },
-  "pwd_dialog_userid": {
-    "message": "ID Pengguna:"
   },
   "pwd_dialog_wrong_pwd": {
     "message": "Kata sandi salah"
@@ -1490,9 +1349,6 @@
   "security_log_backup_restore": {
     "message": "Klik untuk memulihkan cadangan"
   },
-  "security_log_content_copy": {
-    "message": "Salin dalam dialog verifikasi"
-  },
   "security_log_decrypt_ui": {
     "message": "Dekripsi"
   },
@@ -1516,9 +1372,6 @@
   },
   "security_log_email_viewer": {
     "message": "Email PGP Terdekripsi"
-  },
-  "security_log_encrypt_dialog": {
-    "message": "Enkripsikan Dialog"
   },
   "security_log_encrypt_form": {
     "message": "Enkripsikan Formulir"
@@ -1556,20 +1409,11 @@
   "security_log_sign_operation": {
     "message": "Pesan telah ditandatangani dengan kunci: $1"
   },
-  "security_log_signature_modal_close": {
-    "message": "Klik untuk menutup dialog tanda tangan"
-  },
-  "security_log_signature_modal_open": {
-    "message": "Klik untuk membuka dialog tanda tangan"
-  },
   "security_log_source": {
     "message": "Sumber"
   },
   "security_log_text": {
     "message": "Catatan keamanan menunjukkan tindakan pengguna di semua komponen Mailvelope."
-  },
-  "security_log_text_input": {
-    "message": "Masukkan ke kolom teks"
   },
   "security_log_textarea_click": {
     "message": "Klik pada area teks"
@@ -1583,9 +1427,6 @@
   "security_log_timestamp": {
     "message": "Penanda waktu"
   },
-  "security_log_verify_dialog": {
-    "message": "Verifikasi dialog"
-  },
   "security_log_viewer": {
     "message": "Penampil Mailvelope"
   },
@@ -1594,9 +1435,6 @@
   },
   "settings_analytics": {
     "message": "Analitik"
-  },
-  "settings_backup": {
-    "message": "Cadangan"
   },
   "settings_general": {
     "message": "Umum"
@@ -1630,15 +1468,6 @@
   },
   "text_decrypt_button": {
     "message": "Dekripsi"
-  },
-  "text_decrypting": {
-    "message": "Teks dekripsi"
-  },
-  "text_encrypting": {
-    "message": "Teks enkripsi"
-  },
-  "upload_aborting_warning": {
-    "message": "Pengunggahan berkas akan dibatalkan."
   },
   "upload_attachment": {
     "message": "Tambahkan berkas"
@@ -1729,9 +1558,6 @@
   },
   "watchlist_command_create": {
     "message": "Tambah "
-  },
-  "watchlist_command_edit": {
-    "message": "Sunting"
   },
   "watchlist_delete_confirmation": {
     "message": "Apakah Anda benar-benar ingin menghapus situs ini dari daftar domain resmi?"

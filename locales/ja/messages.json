@@ -104,9 +104,6 @@
   "analytics_consent_interstitial_learn_more": {
     "message": "データ収集はなぜ安全か"
   },
-  "analytics_consent_interstitial_learn_more_explanation": {
-    "message": "あなたがデータを提供することを選択すると、解析データは集計され、クリーンインサイトを使って最小化されます。私たちはあなたの選択を尊重し、あなたが同意しない場合、データを収集しません。"
-  },
   "analytics_consent_interstitial_message": {
     "message": "Mailvelopeは新規ユーザーの１％だけにデータ提供を求めます。あなたが同意した場合、Mailvelopeはインストールのステップを記録します。"
   },
@@ -145,9 +142,6 @@
   },
   "decrypt_att_frame_help_text": {
     "message": "ここをクリックして、メッセージを表示します。"
-  },
-  "decrypt_attachment_label": {
-    "message": "添付ファイル"
   },
   "decrypt_cleartext_warning": {
     "message": "以下のテキストは暗号されていません！"
@@ -206,9 +200,6 @@
   "decrypt_show_message_btn": {
     "message": "メッセージを表示"
   },
-  "decrypt_signer_label": {
-    "message": "差出人"
-  },
   "decrypt_text_area_label": {
     "message": "復号するテキスト"
   },
@@ -234,9 +225,6 @@
     "message": "保存"
   },
   "dialog_yes_btn": {
-    "message": "はい"
-  },
-  "dialog_yes_button": {
     "message": "はい"
   },
   "editor_blur_warn": {
@@ -290,38 +278,17 @@
   "editor_label_subject": {
     "message": "件名"
   },
-  "editor_link_file_encryption": {
-    "message": "ファイルを暗号化"
-  },
-  "editor_no_default_key_caption_long": {
-    "message": "デフォルトの鍵がないので、メールの署名ができません。"
-  },
-  "editor_no_default_key_caption_short": {
-    "message": "メールに署名ができません。"
-  },
   "editor_remove_upload": {
     "message": "削除"
   },
   "editor_sign_button": {
     "message": "署名のみ"
   },
-  "editor_sign_caption_long": {
-    "message": "メールが送信される時、自動で署名されます。"
-  },
-  "editor_sign_caption_short": {
-    "message": "メールは署名されます。"
-  },
-  "editor_transfer": {
-    "message": "転送"
-  },
   "encrypt_change_signer_dialog_signer_label": {
     "message": "署名を選択"
   },
   "encrypt_change_signer_dialog_title": {
     "message": "署名を変更"
-  },
-  "encrypt_dialog_no_recipient": {
-    "message": "宛先を追加してください。"
   },
   "encrypt_download_all_button": {
     "message": "一括ダウンロード"
@@ -398,26 +365,11 @@
   "form_back": {
     "message": "戻る"
   },
-  "form_busy": {
-    "message": "処理中"
-  },
   "form_cancel": {
     "message": "取り消し"
   },
-  "form_clear": {
-    "message": "消去"
-  },
-  "form_close": {
-    "message": "閉じる"
-  },
   "form_confirm": {
     "message": "確認"
-  },
-  "form_continue": {
-    "message": "続ける"
-  },
-  "form_definition_error_no_recipient_key": {
-    "message": "相手の公開鍵がありません。"
   },
   "form_definition_error_signature_invalid": {
     "message": "フォームの署名が有効ではありません。"
@@ -428,17 +380,11 @@
   "form_destination_default": {
     "message": "暗号化されたデータはこのページに戻ります。"
   },
-  "form_forward": {
-    "message": "進む"
-  },
   "form_import": {
     "message": "インポート"
   },
   "form_loading": {
     "message": "フォームを読み込んでいます。"
-  },
-  "form_next": {
-    "message": "次へ"
   },
   "form_no": {
     "message": "いいえ"
@@ -457,9 +403,6 @@
   },
   "form_submit": {
     "message": "送信"
-  },
-  "form_undo": {
-    "message": "やり直し"
   },
   "form_yes": {
     "message": "はい"
@@ -521,9 +464,6 @@
   "import_frame_help_text": {
     "message": "クリックして鍵をインポート"
   },
-  "install_landing_page_hint": {
-    "message": "クリックして拡張機能を開く"
-  },
   "key_default_active_btn_title": {
     "message": "デフォルト鍵に設定"
   },
@@ -554,17 +494,11 @@
   "key_export_filename": {
     "message": "ファイル名"
   },
-  "key_export_header": {
-    "message": "鍵をエクスポート"
-  },
   "key_export_warning_private": {
     "message": "このファイルには秘密鍵が含まれています。安全な場所に保管し、他人と共有してはいけません。"
   },
   "key_gen_advanced_btn": {
     "message": "詳細設定"
-  },
-  "key_gen_another": {
-    "message": "別の鍵を生成"
   },
   "key_gen_demail": {
     "message": "De-Mailアドレス"
@@ -599,9 +533,6 @@
   "key_gen_pwd_empty": {
     "message": "パスワードが空欄です。"
   },
-  "key_gen_pwd_match": {
-    "message": "パスワードが一致しました。"
-  },
   "key_gen_pwd_reenter": {
     "message": "パスワードを再入力してください。"
   },
@@ -635,17 +566,11 @@
   "key_import_default_headline": {
     "message": "鍵を確認"
   },
-  "key_import_dialog_header": {
-    "message": "鍵リングに鍵を追加"
-  },
   "key_import_error": {
     "message": "インポートエラー"
   },
   "key_import_error_no_uid": {
     "message": "鍵 $1 に有効なuserIDがありません。"
-  },
-  "key_import_error_parse": {
-    "message": "読み取りでエラー（PGP鍵: $1）"
   },
   "key_import_exception": {
     "message": "鍵の処理中にエラーが起きました。"
@@ -733,9 +658,6 @@
   },
   "key_import_search_ph": {
     "message": "メールアドレス / 鍵ID / フィンガープリント"
-  },
-  "key_import_textarea": {
-    "message": "テキスト形式で鍵をインポート"
   },
   "key_import_too_big": {
     "message": "インポートしようとして鍵ファイルは長すぎます。短い部分に分けてください。"
@@ -872,9 +794,6 @@
   "keygen_dialog_password_error_length": {
     "message": "パスワードは $1  文字以上にしてください。"
   },
-  "keygen_dialog_password_placeholder": {
-    "message": "最低４文字"
-  },
   "keygen_dialog_prolog": {
     "message": "暗号通信を保護するため、鍵のパスワードを決めてください:"
   },
@@ -890,9 +809,6 @@
   "keygrid_all_keys": {
     "message": "すべて"
   },
-  "keygrid_creation_date": {
-    "message": "生成日"
-  },
   "keygrid_creation_date_short": {
     "message": "生成"
   },
@@ -902,23 +818,8 @@
   "keygrid_default_label": {
     "message": "デフォルト"
   },
-  "keygrid_delete": {
-    "message": "削除"
-  },
   "keygrid_delete_confirmation": {
     "message": "この鍵を本当に削除しますか？"
-  },
-  "keygrid_display_all_keys": {
-    "message": "すべての鍵を表示"
-  },
-  "keygrid_display_priv_key": {
-    "message": "秘密鍵を表示"
-  },
-  "keygrid_display_pub_key": {
-    "message": "公開鍵を表示"
-  },
-  "keygrid_expiration_date": {
-    "message": "期限"
   },
   "keygrid_export": {
     "message": "エクスポート"
@@ -953,9 +854,6 @@
   "keygrid_primary_key": {
     "message": "主鍵"
   },
-  "keygrid_private_keys": {
-    "message": "秘密鍵"
-  },
   "keygrid_public_keys": {
     "message": "公開鍵"
   },
@@ -964,12 +862,6 @@
   },
   "keygrid_refresh_title": {
     "message": "鍵リングを再読み込み"
-  },
-  "keygrid_send_pub_key": {
-    "message": "公開鍵をメールで送る"
-  },
-  "keygrid_signer_name": {
-    "message": "署名人"
   },
   "keygrid_signer_unknown": {
     "message": "未確認の署名人"
@@ -992,14 +884,8 @@
   "keygrid_subkey": {
     "message": "補助鍵（Subkey）"
   },
-  "keygrid_subkeys": {
-    "message": "補助鍵（Subkey）"
-  },
   "keygrid_user_email": {
     "message": "メール"
-  },
-  "keygrid_user_ids": {
-    "message": "User IDs"
   },
   "keygrid_user_name": {
     "message": "氏名"
@@ -1028,9 +914,6 @@
   "keyring_confirm_keys_plural": {
     "message": "インポートする $1 個の鍵を確認"
   },
-  "keyring_export_keys": {
-    "message": "鍵リングをエクスポート"
-  },
   "keyring_generate_key": {
     "message": "鍵を生成"
   },
@@ -1045,9 +928,6 @@
   },
   "keyring_import_search_description": {
     "message": "鍵リングに追加する公開鍵を検索。Mailvelopeは、利用されている可能性が高い鍵を複数の鍵ディレクトリで検索します。"
-  },
-  "keyring_import_search_keys": {
-    "message": "鍵を検索"
   },
   "keyring_main": {
     "message": "主鍵リング"
@@ -1154,9 +1034,6 @@
   "options_home": {
     "message": "オプション"
   },
-  "options_settings": {
-    "message": "設定"
-  },
   "options_title": {
     "message": "Mailvelopeのオプション"
   },
@@ -1193,9 +1070,6 @@
   "provider_gmail_dialog_description": {
     "message": "Gmail APIを使うと、Gmailで簡単にMailvelopeを利用できます。"
   },
-  "provider_gmail_dialog_gsuite_alert": {
-    "message": "This feature is free for Gmail accounts. If you are part of a Google Workspace (<0>workspace.google.com</0>) organization, you will need to purchase a license from the <1>Mailvelope website</1>."
-  },
   "provider_gmail_dialog_privacy_policy": {
     "message": "プライバシーポリシーをご覧ください。"
   },
@@ -1220,9 +1094,6 @@
   "provider_gmail_licensing_dialog_deactivate_btn": {
     "message": "Gmail APIを使わず続ける"
   },
-  "provider_gmail_licensing_dialog_para_1": {
-    "message": "Use of the Gmail API within Google Workspace organizations is <0>subject to a fee</0>."
-  },
   "provider_gmail_licensing_dialog_para_2": {
     "message": "Mailvelopeは無料のGmailでも使用でします。ただ、<0>APIを使うと</0>、暗号化とファイル添付が<1>高速・簡単に</1>なります。"
   },
@@ -1234,9 +1105,6 @@
   },
   "provider_gmail_licensing_dialog_title": {
     "message": "Mailvelope Businessライセンスが必要です"
-  },
-  "provider_gmail_licensing_table_caption": {
-    "message": "Licenses to use the Gmail API integration within Google Workspace (<0>workspace.google.com</0>) can be purchased from the <1>Mailvelope website</1>."
   },
   "provider_gmail_licensing_table_title": {
     "message": "Mailvelopeライセンス"
@@ -1258,9 +1126,6 @@
   },
   "pwd_dialog_header": {
     "message": "鍵のパスワードを入力"
-  },
-  "pwd_dialog_pwd_please": {
-    "message": "パスワードを入力"
   },
   "pwd_dialog_reason_add_user": {
     "message": "ユーザーIDを新規作成するため、鍵のパスワードを入力してください"
@@ -1288,12 +1153,6 @@
   },
   "pwd_dialog_reason_sign": {
     "message": "署名するため、鍵のパスワードを入力してください"
-  },
-  "pwd_dialog_title": {
-    "message": "パスワードを入力"
-  },
-  "pwd_dialog_userid": {
-    "message": "User ID:"
   },
   "pwd_dialog_wrong_pwd": {
     "message": "パスワードが違います"
@@ -1475,9 +1334,6 @@
   "security_hide_armored_head": {
     "message": "Mailvelopeのバージョンを隠す"
   },
-  "security_log_action": {
-    "message": "Action"
-  },
   "security_log_add_attachment": {
     "message": "クリックされた添付ファイル追加ボタン"
   },
@@ -1489,9 +1345,6 @@
   },
   "security_log_backup_restore": {
     "message": "バックアップから復元"
-  },
-  "security_log_content_copy": {
-    "message": "認証ダイアログにコピー"
   },
   "security_log_decrypt_ui": {
     "message": "復号"
@@ -1516,9 +1369,6 @@
   },
   "security_log_email_viewer": {
     "message": "PGPメールの復号"
-  },
-  "security_log_encrypt_dialog": {
-    "message": "暗号化ダイアログ"
   },
   "security_log_encrypt_form": {
     "message": "暗号化フォーム"
@@ -1556,20 +1406,8 @@
   "security_log_sign_operation": {
     "message": "メッセージは以下の鍵で署名されました: $1"
   },
-  "security_log_signature_modal_close": {
-    "message": "署名ダイアログを閉じる"
-  },
-  "security_log_signature_modal_open": {
-    "message": "署名ダイアログを開く"
-  },
-  "security_log_source": {
-    "message": "Source"
-  },
   "security_log_text": {
     "message": "セキュリティログは、Mailvelope内のユーザーのActionを表示します。"
-  },
-  "security_log_text_input": {
-    "message": "テキストの入力"
   },
   "security_log_textarea_click": {
     "message": "テキストエリアをクリック"
@@ -1583,20 +1421,11 @@
   "security_log_timestamp": {
     "message": "時刻"
   },
-  "security_log_verify_dialog": {
-    "message": "確認ダイアログ"
-  },
   "security_log_viewer": {
     "message": "Mailvelopeビューア"
   },
   "security_openpgp_header": {
     "message": "OpenPGPの設定"
-  },
-  "settings_analytics": {
-    "message": "Analytics"
-  },
-  "settings_backup": {
-    "message": "バックアップ"
   },
   "settings_general": {
     "message": "一般"
@@ -1630,15 +1459,6 @@
   },
   "text_decrypt_button": {
     "message": "復号"
-  },
-  "text_decrypting": {
-    "message": "テキスト復号"
-  },
-  "text_encrypting": {
-    "message": "テキスト暗号化"
-  },
-  "upload_aborting_warning": {
-    "message": "ファイルのアップロードを中断します"
   },
   "upload_attachment": {
     "message": "ファイルを追加"
@@ -1729,9 +1549,6 @@
   },
   "watchlist_command_create": {
     "message": "追加"
-  },
-  "watchlist_command_edit": {
-    "message": "編集"
   },
   "watchlist_delete_confirmation": {
     "message": "認証済みドメインのリストからこのサイトを削除しますか？"

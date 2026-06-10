@@ -104,9 +104,6 @@
   "analytics_consent_interstitial_learn_more": {
     "message": "تعلم كيف تكون المقاييس آمنة"
   },
-  "analytics_consent_interstitial_learn_more_explanation": {
-    "message": "إذا قمت بالاشتراك، سوف تُجمّع بيانات التحليلات وتختزل باستخدام Clean Insights التي تخزن هذه البيانات دون ربطها بخصائص التعريف. نحن نحترم اختيارك ولن نرفع أي معطيات إذا اخترت عدم المشاركة."
-  },
   "analytics_consent_interstitial_message": {
     "message": "يطلب Mailvelope من 1٪ من مستخدميه ومستخدماته الجدد المساهمة في تسجيل مقاييس مجهولة المصدر. إذا وافقت، سوف يسجّل Mailvelope خطواتك الناجحة في رحلتك التأهيلية. هل ستساهم (ين)؟"
   },
@@ -145,9 +142,6 @@
   },
   "decrypt_att_frame_help_text": {
     "message": "اضغط هنا لعرض الرسالة"
-  },
-  "decrypt_attachment_label": {
-    "message": "المرفقات"
   },
   "decrypt_cleartext_warning": {
     "message": "إن النص التالي غير مُعمَّى."
@@ -206,9 +200,6 @@
   "decrypt_show_message_btn": {
     "message": "أظهر الرسالة"
   },
-  "decrypt_signer_label": {
-    "message": "المُرسِل"
-  },
   "decrypt_text_area_label": {
     "message": "النص المراد فك تعميته"
   },
@@ -234,9 +225,6 @@
     "message": "حفظ"
   },
   "dialog_yes_btn": {
-    "message": "‮نعم"
-  },
-  "dialog_yes_button": {
     "message": "‮نعم"
   },
   "editor_blur_warn": {
@@ -290,38 +278,17 @@
   "editor_label_subject": {
     "message": "الموضوع"
   },
-  "editor_link_file_encryption": {
-    "message": "تعمية الملفات"
-  },
-  "editor_no_default_key_caption_long": {
-    "message": "لم يتمكن من توقيع الرسالة بسبب انعدام وجود المفتاح الافتراضي"
-  },
-  "editor_no_default_key_caption_short": {
-    "message": "لم يتمكن من توقيع الرسالة رقميا"
-  },
   "editor_remove_upload": {
     "message": "إزالة"
   },
   "editor_sign_button": {
     "message": "وقّع فقط"
   },
-  "editor_sign_caption_long": {
-    "message": "عند إرسال الرسالة، سيتم أيضا توقيعها رقميا"
-  },
-  "editor_sign_caption_short": {
-    "message": "سيتم توقيع الرسالة رقميا"
-  },
-  "editor_transfer": {
-    "message": "نقل"
-  },
   "encrypt_change_signer_dialog_signer_label": {
     "message": "حدد التوقيع"
   },
   "encrypt_change_signer_dialog_title": {
     "message": "عدِّل التوقيع"
-  },
-  "encrypt_dialog_no_recipient": {
-    "message": "يُرجى إضافة مُستلِم."
   },
   "encrypt_download_all_button": {
     "message": "نزِّل الكل"
@@ -398,26 +365,11 @@
   "form_back": {
     "message": "الرجوع"
   },
-  "form_busy": {
-    "message": "تتم المعالجة"
-  },
   "form_cancel": {
     "message": "إلغاء"
   },
-  "form_clear": {
-    "message": "محو"
-  },
-  "form_close": {
-    "message": "أَغلِق"
-  },
   "form_confirm": {
     "message": "تأكيد"
-  },
-  "form_continue": {
-    "message": "استمرار"
-  },
-  "form_definition_error_no_recipient_key": {
-    "message": "لا يوجد مفتاح تعمية ملائم لعنوان المُستلِم."
   },
   "form_definition_error_signature_invalid": {
     "message": "توقيع الاستمارة باطل."
@@ -428,17 +380,11 @@
   "form_destination_default": {
     "message": "سيتم إرجاع البيانات المعماة إلى الصفحة."
   },
-  "form_forward": {
-    "message": "الأمام"
-  },
   "form_import": {
     "message": "استيراد"
   },
   "form_loading": {
     "message": "الاستمارة قيد التنزيل"
-  },
-  "form_next": {
-    "message": "التالي"
   },
   "form_no": {
     "message": "لا"
@@ -457,9 +403,6 @@
   },
   "form_submit": {
     "message": "ارسال"
-  },
-  "form_undo": {
-    "message": "تراجع"
   },
   "form_yes": {
     "message": "نعم"
@@ -521,9 +464,6 @@
   "import_frame_help_text": {
     "message": "اضغط لاستيراد المفتاح"
   },
-  "install_landing_page_hint": {
-    "message": "اضغط هنا لفتح الامتداد."
-  },
   "key_default_active_btn_title": {
     "message": "تم تحديد المفتاح كافتراضي"
   },
@@ -554,17 +494,11 @@
   "key_export_filename": {
     "message": "‮اسم الملف"
   },
-  "key_export_header": {
-    "message": "تصدير المفاتيح"
-  },
   "key_export_warning_private": {
     "message": "إن هذا الملف يحوي مفاتيح خاصة. احفظ الملف في مكان آمن ولا تشاركه مع الآخرين."
   },
   "key_gen_advanced_btn": {
     "message": "متقدم"
-  },
-  "key_gen_another": {
-    "message": "وَلِّد أخرى..."
   },
   "key_gen_demail": {
     "message": "عنوان De-Mail"
@@ -599,9 +533,6 @@
   "key_gen_pwd_empty": {
     "message": "حقل كلمة السر فارغ"
   },
-  "key_gen_pwd_match": {
-    "message": "كلمتا السر متطابقتان"
-  },
   "key_gen_pwd_reenter": {
     "message": "أَعِد إدخال كلمة السر"
   },
@@ -635,17 +566,11 @@
   "key_import_default_headline": {
     "message": "تأكيد المفتاح"
   },
-  "key_import_dialog_header": {
-    "message": "إضافة مفتاح إلى مستودع المفاتيح"
-  },
   "key_import_error": {
     "message": "حدث خطأ في الاستيراد."
   },
   "key_import_error_no_uid": {
     "message": "لم يعثر على مُعرِّف المستخدم في المفتاح  $1"
-  },
-  "key_import_error_parse": {
-    "message": "حدث خطأ أثناء قراءة مفتاح PGP المُدرَّع : $1"
   },
   "key_import_exception": {
     "message": "حدث خطأ أثناء معالجة المفاتيح"
@@ -733,9 +658,6 @@
   },
   "key_import_search_ph": {
     "message": "عنوان البريد الإلكتروني / مُعرِّف المفتاح / البصمة"
-  },
-  "key_import_textarea": {
-    "message": "استيراد المفتاح كنص"
   },
   "key_import_too_big": {
     "message": "نص المفتاح الذي تحاول استيراده أكبر من أن تجري معالجته. حاول القيام بذلك بأجزاء أصغر."
@@ -872,9 +794,6 @@
   "keygen_dialog_password_error_length": {
     "message": "كلمة السر يجب أن تتكون من  $1 حروف على الأقل"
   },
-  "keygen_dialog_password_placeholder": {
-    "message": "4 أحرف على الأقل"
-  },
   "keygen_dialog_prolog": {
     "message": "يُرجى تعيين كلمة السر لمفتاحك لأجل حماية اتصالاتك المُعمَّاة :"
   },
@@ -890,9 +809,6 @@
   "keygrid_all_keys": {
     "message": "الكل"
   },
-  "keygrid_creation_date": {
-    "message": "تاريخ الإنشاء"
-  },
   "keygrid_creation_date_short": {
     "message": "أٌنشِيء"
   },
@@ -902,23 +818,8 @@
   "keygrid_default_label": {
     "message": "‮المبدئيّ"
   },
-  "keygrid_delete": {
-    "message": "حذف"
-  },
   "keygrid_delete_confirmation": {
     "message": "هل تريد حقا حذف هذا المفتاح ؟"
-  },
-  "keygrid_display_all_keys": {
-    "message": "عرض جميع المفاتيح"
-  },
-  "keygrid_display_priv_key": {
-    "message": "عرض المفتاح الخاص"
-  },
-  "keygrid_display_pub_key": {
-    "message": "عرض المفتاح العلني"
-  },
-  "keygrid_expiration_date": {
-    "message": "تاريخ الانتهاء"
   },
   "keygrid_export": {
     "message": "تصدير"
@@ -953,9 +854,6 @@
   "keygrid_primary_key": {
     "message": "المفتاح الرئيسي"
   },
-  "keygrid_private_keys": {
-    "message": "المفاتيح السرية"
-  },
   "keygrid_public_keys": {
     "message": "المفاتيح العلنية"
   },
@@ -964,12 +862,6 @@
   },
   "keygrid_refresh_title": {
     "message": "أنعش مستودع المفاتيح"
-  },
-  "keygrid_send_pub_key": {
-    "message": "أرسل المفتاح العمومي عبر البريد الإلكتروني"
-  },
-  "keygrid_signer_name": {
-    "message": "الموقعين"
   },
   "keygrid_signer_unknown": {
     "message": "الموقعين الغير معروفين"
@@ -992,14 +884,8 @@
   "keygrid_subkey": {
     "message": "المفتاح الفرعي"
   },
-  "keygrid_subkeys": {
-    "message": "المفاتيح التابعة"
-  },
   "keygrid_user_email": {
     "message": "البريد الإلكتروني"
-  },
-  "keygrid_user_ids": {
-    "message": "مُعرِّفات المستخدمين"
   },
   "keygrid_user_name": {
     "message": "الإسم"
@@ -1028,9 +914,6 @@
   "keyring_confirm_keys_plural": {
     "message": "تأكيد $1 مفاتيح المراد استيرادها"
   },
-  "keyring_export_keys": {
-    "message": "تصدير المفاتيح"
-  },
   "keyring_generate_key": {
     "message": "توليد المفاتيح"
   },
@@ -1045,9 +928,6 @@
   },
   "keyring_import_search_description": {
     "message": "يمكن البحث عن المفاتيح العلنية المراد إضافتها إلى مستوع مفاتيحك. يقوم Mailvelope بإجراء البحث في عدة مجلدات للمفاتيح ثم يقترح عليك المفتاح العلني الأكثر ملائمة للاستخدام."
-  },
-  "keyring_import_search_keys": {
-    "message": "البحث عن المفاتيح"
   },
   "keyring_main": {
     "message": "مستودع المفاتيح الأساسي"
@@ -1154,9 +1034,6 @@
   "options_home": {
     "message": "خيارات"
   },
-  "options_settings": {
-    "message": "الإعدادات"
-  },
   "options_title": {
     "message": "خيارات Mailvelope"
   },
@@ -1193,9 +1070,6 @@
   "provider_gmail_dialog_description": {
     "message": "استخدم واجهة برمجة تطبيقات Gmail لتمديد وظائف Mailvelope بواسطة Gmail والتي تسهِّل إرسال وقراءة الرسائل الإلكترونية والمرفقات المُعمَّاة."
   },
-  "provider_gmail_dialog_gsuite_alert": {
-    "message": "This feature is free for Gmail accounts. If you are part of a Google Workspace (<0>workspace.google.com</0>) organization, you will need to purchase a license from the <1>Mailvelope website</1>."
-  },
   "provider_gmail_dialog_privacy_policy": {
     "message": "يُرجى الاطلاع على سياسة خصوصيتنا"
   },
@@ -1220,9 +1094,6 @@
   "provider_gmail_licensing_dialog_deactivate_btn": {
     "message": "الاستمرار بدون واجهة برمجة تطبيقات Gmail"
   },
-  "provider_gmail_licensing_dialog_para_1": {
-    "message": "Use of the Gmail API within Google Workspace organizations is <0>subject to a fee</0>."
-  },
   "provider_gmail_licensing_dialog_para_2": {
     "message": "يمكنك الاستمرار في الاستخدام المجاني لـ Mailvelope مع Gmail، لكن بوجود <0>واجهة برمجة تطبيقاتك، سيكون سير عملك</0><1>أسرع وأيسر</1> عند كتابة أو قراءة رسائلك ومرفقاتك المُعمَّاة."
   },
@@ -1234,9 +1105,6 @@
   },
   "provider_gmail_licensing_dialog_title": {
     "message": "ترخيص استخدام Mailvelope للأعمال ضروري"
-  },
-  "provider_gmail_licensing_table_caption": {
-    "message": "Licenses to use the Gmail API integration within Google Workspace (<0>workspace.google.com</0>) can be purchased from the <1>Mailvelope website</1>."
   },
   "provider_gmail_licensing_table_title": {
     "message": "ترخيص Mailvelope"
@@ -1258,9 +1126,6 @@
   },
   "pwd_dialog_header": {
     "message": "أدخل كلمة سر المفتاح"
-  },
-  "pwd_dialog_pwd_please": {
-    "message": "يُرجى إدخال كلمة السر"
   },
   "pwd_dialog_reason_add_user": {
     "message": "يُرجى إدخال كلمة سر مفتاحك لإنشاء مُعرِّف المستخدم."
@@ -1288,12 +1153,6 @@
   },
   "pwd_dialog_reason_sign": {
     "message": "الرجاء إدخال كلمة السر الخاصة بمفتاحك لتوقيع هذه الرسالة."
-  },
-  "pwd_dialog_title": {
-    "message": "أدخِل كلمة سر | Mailvelope"
-  },
-  "pwd_dialog_userid": {
-    "message": "مُعرِّف المستخدم :"
   },
   "pwd_dialog_wrong_pwd": {
     "message": "كلمة السر غير صحيحة"
@@ -1490,9 +1349,6 @@
   "security_log_backup_restore": {
     "message": "اضغط لاستعادة نسخة احتياطية."
   },
-  "security_log_content_copy": {
-    "message": "انسخ في مربع حوار التحقق"
-  },
   "security_log_decrypt_ui": {
     "message": "فك التعمية"
   },
@@ -1516,9 +1372,6 @@
   },
   "security_log_email_viewer": {
     "message": "الرسالة بعد فك التعمية"
-  },
-  "security_log_encrypt_dialog": {
-    "message": "مربع حوار التعمية"
   },
   "security_log_encrypt_form": {
     "message": "عمِّ الاستمارة"
@@ -1556,20 +1409,11 @@
   "security_log_sign_operation": {
     "message": "وُقعت الرسالة بواسطة المفتاح :  $1"
   },
-  "security_log_signature_modal_close": {
-    "message": "اضغط لإغلاق مربع الحوار التوقيع"
-  },
-  "security_log_signature_modal_open": {
-    "message": "اضغط لفتح مربع الحوار التوقيع"
-  },
   "security_log_source": {
     "message": "المصدر"
   },
   "security_log_text": {
     "message": "يظهر سجل الأمان نشاط المستخدم في جميع مكونات Mailvelope."
-  },
-  "security_log_text_input": {
-    "message": "أدخل في خانة النص"
   },
   "security_log_textarea_click": {
     "message": "اضغط داخل خانة النص"
@@ -1583,9 +1427,6 @@
   "security_log_timestamp": {
     "message": "التوقيت الزمني"
   },
-  "security_log_verify_dialog": {
-    "message": "تأكيد الحوار"
-  },
   "security_log_viewer": {
     "message": "عارض Mailvelope"
   },
@@ -1594,9 +1435,6 @@
   },
   "settings_analytics": {
     "message": "إحصائيات"
-  },
-  "settings_backup": {
-    "message": "النسخ الاحتياطي"
   },
   "settings_general": {
     "message": "عام"
@@ -1630,15 +1468,6 @@
   },
   "text_decrypt_button": {
     "message": "فك التعمية"
-  },
-  "text_decrypting": {
-    "message": "فك التعمية النص"
-  },
-  "text_encrypting": {
-    "message": "تعمية النص"
-  },
-  "upload_aborting_warning": {
-    "message": "سيُجهَض تحميل المرفق."
   },
   "upload_attachment": {
     "message": "اضف ملف"
@@ -1729,9 +1558,6 @@
   },
   "watchlist_command_create": {
     "message": "إضافة إدخال جديد"
-  },
-  "watchlist_command_edit": {
-    "message": "تحرير"
   },
   "watchlist_delete_confirmation": {
     "message": "هل ترغب/ين حقّا في إزالة هذا الموقع من قائمة النطاقات المسموح بها؟"

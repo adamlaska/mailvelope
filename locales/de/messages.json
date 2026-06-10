@@ -1530,7 +1530,7 @@
     "message": "Schlüssel Import Dialog"
   },
   "security_log_key_backup": {
-    "message": "Key Backup"
+    "message": "Schlüssel-Sicherung"
   },
   "security_log_key_generator": {
     "message": "Schlüsselgenerator"

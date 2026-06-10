@@ -71,47 +71,11 @@
   "analytics_consent_description": {
     "message": "ចែករំលែកព័ត៌មានស្ថិតិវិភាគដែលបានផ្គុំគ្នា និងអនាមិកជាមួយ Mailvelope"
   },
-  "analytics_consent_disabled_tooltip": {
-    "message": "You can only opt-in to analytics upon installation and only if randomly selected."
-  },
   "analytics_consent_interstitial_Btn_Learn_More": {
     "message": "ស្វែងយល់បន្ថែម"
   },
   "analytics_consent_interstitial_Faq": {
     "message": "Read more about Mailvelope metrics in our FAQ."
-  },
-  "analytics_consent_interstitial_We_Collect_Minimal_Data": {
-    "message": "Mailvelope counts the steps that get you closer to using it with your email service. It does not record every move you make."
-  },
-  "analytics_consent_interstitial_We_Collect_Minimal_Data_Title": {
-    "message": "We Collect Minimal Data"
-  },
-  "analytics_consent_interstitial_We_Respect_your_Choice": {
-    "message": "If you choose not to contribute, nothing is recorded. If you choose to contribute, you can change your mind at any time by opting out in settings."
-  },
-  "analytics_consent_interstitial_We_Respect_your_Choice_Title": {
-    "message": "We Respect your Choice"
-  },
-  "analytics_consent_interstitial_Your_Privacy_is_Preserved_Pt1": {
-    "message": "Mailvelope uses"
-  },
-  "analytics_consent_interstitial_Your_Privacy_is_Preserved_Pt2": {
-    "message": "which securely stores data without connecting it to identifiable information. Further, your IP address is not recorded or processed."
-  },
-  "analytics_consent_interstitial_Your_Privacy_is_Preserved_Title": {
-    "message": "Your Privacy is Preserved"
-  },
-  "analytics_consent_interstitial_learn_more": {
-    "message": "Learn how metrics are safe"
-  },
-  "analytics_consent_interstitial_learn_more_explanation": {
-    "message": "If you opt-in, analytics data will be aggregated and minimized using Clean Insights which stores this data without connection to identifying characteristics. We respect your choice and don't report anything if you chose not to contribute."
-  },
-  "analytics_consent_interstitial_message": {
-    "message": "Mailvelope is asking 1% of new users to contribute to anonymous metrics. If you say yes, Mailvelope will register successful steps in your onboarding journey. Will you contribute?"
-  },
-  "analytics_interstitial_header": {
-    "message": "Help us improve?"
   },
   "auth_domain_api_label": {
     "message": "អនុញ្ញាត API"
@@ -146,9 +110,6 @@
   "decrypt_att_frame_help_text": {
     "message": "ចុចទីនេះ ដើម្បីបង្ហាញសារ"
   },
-  "decrypt_attachment_label": {
-    "message": "ឯកសារភ្ជាប់"
-  },
   "decrypt_cleartext_warning": {
     "message": "អក្សរខាងក្រោមមិនបានធ្វើកូដនីយកម្មទេ។"
   },
@@ -161,12 +122,6 @@
   "decrypt_digital_signature_failure": {
     "message": "ហត្ថលេខាមិនត្រឹមត្រូវ"
   },
-  "decrypt_digital_signature_inconsistent": {
-    "message": "Inconsistent signatures: message and file not signed with same key"
-  },
-  "decrypt_digital_signature_missing": {
-    "message": "Signature missing"
-  },
   "decrypt_digital_signature_null": {
     "message": "មិនស្គាល់ហត្ថលេខា"
   },
@@ -175,15 +130,6 @@
   },
   "decrypt_digital_signature_null_info_short": {
     "message": "សោ រកមិនឃើញ។"
-  },
-  "decrypt_digital_signature_sender_mismatch": {
-    "message": "Sender address mismatch"
-  },
-  "decrypt_digital_signature_sender_mismatch_tooltip": {
-    "message": "This message contains a digital signature, but a mismatch was detected. The message was sent from an email address that doesn't match the signer's public key."
-  },
-  "decrypt_digital_signature_uncertain_sender": {
-    "message": "Uncertain sender identity"
   },
   "decrypt_file_error_header": {
     "message": "ការដោះកូដសារឯកសារ $1 គឺមិនអាចធ្វើបានទេ។"
@@ -205,9 +151,6 @@
   },
   "decrypt_show_message_btn": {
     "message": "បង្ហាញសារ"
-  },
-  "decrypt_signer_label": {
-    "message": "អ្នកផ្ញើ"
   },
   "decrypt_text_area_label": {
     "message": "អក្សរសម្រាប់វិកូដនីយកម្ម"
@@ -234,9 +177,6 @@
     "message": "រក្សាទុក"
   },
   "dialog_yes_btn": {
-    "message": "មែន"
-  },
-  "dialog_yes_button": {
     "message": "មែន"
   },
   "editor_blur_warn": {
@@ -290,38 +230,17 @@
   "editor_label_subject": {
     "message": "ប្រធានបទ"
   },
-  "editor_link_file_encryption": {
-    "message": "​ឯកសារកូតនីយកម្ម"
-  },
-  "editor_no_default_key_caption_long": {
-    "message": "អ៊ីម៉ែលមិនអាចបាន​ចុះហត្ថលេខាឌីជីថល ដោយសារសោដើមបានបាត់"
-  },
-  "editor_no_default_key_caption_short": {
-    "message": "អ៊ីម៉េល មិនអាចចុះហត្ថលេខាដោយប្រព័ន្ធឌីជីថល"
-  },
   "editor_remove_upload": {
     "message": "ដកចេញ"
   },
   "editor_sign_button": {
     "message": "ហត្ថលេខាតែមួយគត់"
   },
-  "editor_sign_caption_long": {
-    "message": "នៅពេលអ៊ីម៉េលត្រូវបានផ្ញើចេញ វានឹងចុះហត្ថលេខាដោយប្រព័ន្ធឌីជីថល"
-  },
-  "editor_sign_caption_short": {
-    "message": "អ៊ីម៉េល នឹងត្រូវចុះហត្ថលេខាដោយប្រព័ន្ធឌីជីថល"
-  },
-  "editor_transfer": {
-    "message": "បញ្ជូន"
-  },
   "encrypt_change_signer_dialog_signer_label": {
     "message": "ជ្រើសរើសហត្ថលេខា"
   },
   "encrypt_change_signer_dialog_title": {
     "message": "ផ្លាស់ប្តូរហត្ថលេខា"
-  },
-  "encrypt_dialog_no_recipient": {
-    "message": "សូមបន្ថែមអ្នកទទួលម្នាក់។"
   },
   "encrypt_download_all_button": {
     "message": "ទាញយកទាំងអស់"
@@ -371,12 +290,6 @@
   "encrypt_upload_file_warning_too_big": {
     "message": "មានឯកសារមួយធំពេក។"
   },
-  "ext_description": {
-    "message": "Protect your email conversations and attachments on Gmail, Nextcloud, Outlook & more with PGP and end-to-end encryption."
-  },
-  "ext_name": {
-    "message": "Mailvelope - Secure your email with PGP"
-  },
   "feature_banner_new_security_background_btn": {
     "message": "កំណត់ដោយខ្លួនឯងឥឡូវនេះ"
   },
@@ -398,26 +311,11 @@
   "form_back": {
     "message": "ត្រលប់ក្រោយ"
   },
-  "form_busy": {
-    "message": "កំពុងដំណើរការ"
-  },
   "form_cancel": {
     "message": "បោះបង់"
   },
-  "form_clear": {
-    "message": "សំអាត"
-  },
-  "form_close": {
-    "message": "បិទ"
-  },
   "form_confirm": {
     "message": "យល់ព្រម"
-  },
-  "form_continue": {
-    "message": "បន្ត"
-  },
-  "form_definition_error_no_recipient_key": {
-    "message": "មិនមានសោកូដនីយកម្មត្រឹមត្រូវសម្រាប់អាសយដ្ឋានអ្នកទទួល។"
   },
   "form_definition_error_signature_invalid": {
     "message": "ទម្រង់ហត្ថលេខាមិនត្រឹមត្រូវ។"
@@ -428,17 +326,11 @@
   "form_destination_default": {
     "message": "ទិន្នន័យកូដនីយកម្មនឹងត្រូវត្រឡប់ទៅកាន់ទំព័រនេះ។"
   },
-  "form_forward": {
-    "message": "បញ្ជូនបន្ត"
-  },
   "form_import": {
     "message": "នាំចូល"
   },
   "form_loading": {
     "message": "កំពុងផ្ទុកទម្រង់"
-  },
-  "form_next": {
-    "message": "បន្ទាប់"
   },
   "form_no": {
     "message": "ទេ"
@@ -458,9 +350,6 @@
   "form_submit": {
     "message": "ផ្ញើ"
   },
-  "form_undo": {
-    "message": "ត្រលប់មកដើមវិញ"
-  },
   "form_yes": {
     "message": "មែន"
   },
@@ -472,9 +361,6 @@
   },
   "general_gnupg_check_availability": {
     "message": "អនុញ្ញាតឱ្យយើងពិនិត្យមើលពេលរកបាន។"
-  },
-  "general_gnupg_installed_question": {
-    "message": "Do you have GnuPG installed? If not <0>Download here</0>. To check availability again <1>Restart Mailvelope</1>. If you are sure it is installed, please follow <2>this wiki</2> to make sure it has been set up properly."
   },
   "general_gnupg_not_available": {
     "message": "GnuPG មិនមានទេ"
@@ -515,14 +401,8 @@
   "gnupg_error_unusable_pub_key": {
     "message": "សូមត្រួតពិនិត្យ ប្រសិនបើសោសាធារណៈមាននៅបង្កោមសោ GnuPG និងត្រឹមត្រូវ៖ $1"
   },
-  "header_analyticsconsent_modal": {
-    "message": "Thank you for helping!"
-  },
   "import_frame_help_text": {
     "message": "ចុច ដើម្បីនាំចូលសោរ"
-  },
-  "install_landing_page_hint": {
-    "message": "ចុចទីនេះ ដើម្បីបើកមុខងារបន្ថែម។"
   },
   "key_default_active_btn_title": {
     "message": "សោបានកំណត់ជាសោលំនាំដើម"
@@ -554,17 +434,11 @@
   "key_export_filename": {
     "message": "ឈ្មោះឯកសារ"
   },
-  "key_export_header": {
-    "message": "នាំចេញសោរ"
-  },
   "key_export_warning_private": {
     "message": "ឯកសារនេះមានសោរឯកជន។ រក្សាឯកសារនេះនៅទីកន្លែងសុវត្ថិភាព និងមិនត្រូវចែករំលែកជាមួយអ្នកដទៃទេ។"
   },
   "key_gen_advanced_btn": {
     "message": "កម្រិតខ្ពស់"
-  },
-  "key_gen_another": {
-    "message": "បង្កើតមួយទៀត..."
   },
   "key_gen_demail": {
     "message": "កំណត់អាសយដ្ឋានអ៊ីម៉េលម្តងទៀត"
@@ -599,9 +473,6 @@
   "key_gen_pwd_empty": {
     "message": "កន្លែងបញ្ចូលពាក្យសម្ងាត់នៅទទេរ"
   },
-  "key_gen_pwd_match": {
-    "message": "ពាក្យ​សម្ងាត់​ត្រូវ​គ្នា"
-  },
   "key_gen_pwd_reenter": {
     "message": "បញ្ចូល​ពាក្យសម្ងាត់​ សារឡើងវិញ"
   },
@@ -635,17 +506,11 @@
   "key_import_default_headline": {
     "message": "បញ្ជាក់សោ"
   },
-  "key_import_dialog_header": {
-    "message": "បន្ថែមសោរទៅបណ្តុំសោរ"
-  },
   "key_import_error": {
     "message": "នាំចូលមានបញ្ហា។"
   },
   "key_import_error_no_uid": {
     "message": "រកមិនឃើញលេខID អ្នកប្រើប្រាស់ក្នុងសោ $1"
-  },
-  "key_import_error_parse": {
-    "message": "កំហុសក្នុងការអានសោ PGP ៖ $1"
   },
   "key_import_exception": {
     "message": "បញ្ហាមួយកើតឡើងនៅពេលដំណើរការសោរនេះ"
@@ -733,9 +598,6 @@
   },
   "key_import_search_ph": {
     "message": "អាសយដ្ឋានអ៊ីមែល / លេខសម្គាល់សោ / ស្នាមម្រាមដៃ"
-  },
-  "key_import_textarea": {
-    "message": "បញ្ជូលសោរជាអក្សរ"
   },
   "key_import_too_big": {
     "message": "សោរអក្សរ ដែលអ្នកព្យាយាមនាំចូលមានទំហំធំពេក។ ព្យាយាមនាំចូលបំណែកសោរ ដែលតូចជាងនេះ។"
@@ -872,9 +734,6 @@
   "keygen_dialog_password_error_length": {
     "message": "ពាក្យសម្ងាត់ទាមទារយ៉ាងហោច $1 ខ្ទង់"
   },
-  "keygen_dialog_password_placeholder": {
-    "message": "យ៉ាងតិច 4 ខ្ទង់"
-  },
   "keygen_dialog_prolog": {
     "message": "សូមដាក់​ពាក្យសម្ងាត់ ដើម្បីការពារ​ការទំនាក់ទំនង​របស់អ្នកដោយកូដនីយកម្ម៖"
   },
@@ -890,9 +749,6 @@
   "keygrid_all_keys": {
     "message": "ទាំងអស់"
   },
-  "keygrid_creation_date": {
-    "message": "កាលបរិច្ឆេទបង្កើត"
-  },
   "keygrid_creation_date_short": {
     "message": "បានបង្កើត"
   },
@@ -902,23 +758,8 @@
   "keygrid_default_label": {
     "message": "លំនាំដើម"
   },
-  "keygrid_delete": {
-    "message": "លុប"
-  },
   "keygrid_delete_confirmation": {
     "message": "តើ​អ្នក​ប្រាកដ​ថាចង់​លុបសោរនេះមែនទេ?"
-  },
-  "keygrid_display_all_keys": {
-    "message": "បង្ហាញសោរទាំងអស់"
-  },
-  "keygrid_display_priv_key": {
-    "message": "បង្ហាញសោរឯកជន"
-  },
-  "keygrid_display_pub_key": {
-    "message": "បង្ហាញសោរសាធារណៈ"
-  },
-  "keygrid_expiration_date": {
-    "message": "កាលបរិច្ឆេទផុតកំណត់"
   },
   "keygrid_export": {
     "message": "នាំចេញ"
@@ -953,9 +794,6 @@
   "keygrid_primary_key": {
     "message": "សោរចំបង"
   },
-  "keygrid_private_keys": {
-    "message": "សោរឯកជន"
-  },
   "keygrid_public_keys": {
     "message": "សោរសាធារណៈ"
   },
@@ -964,12 +802,6 @@
   },
   "keygrid_refresh_title": {
     "message": "ផ្ទុកបណ្តុំសោរឡើងវិញ"
-  },
-  "keygrid_send_pub_key": {
-    "message": "ផ្ញើសោរសាធារណៈតាមអ៊ីម៉េល"
-  },
-  "keygrid_signer_name": {
-    "message": "អ្នកចុះហត្ថលេខា"
   },
   "keygrid_signer_unknown": {
     "message": "អ្នកចុះហត្ថលេខាដែលគេមិនស្គាល់"
@@ -992,14 +824,8 @@
   "keygrid_subkey": {
     "message": "សោរបន្ទាប់បន្សំ"
   },
-  "keygrid_subkeys": {
-    "message": "សោរបន្ទាប់បន្សំ"
-  },
   "keygrid_user_email": {
     "message": "អ៊ីម៉េល"
-  },
-  "keygrid_user_ids": {
-    "message": "លេខ​សម្គាល់​អ្នកប្រើ៖"
   },
   "keygrid_user_name": {
     "message": "ឈ្មោះ"
@@ -1028,9 +854,6 @@
   "keyring_confirm_keys_plural": {
     "message": "បញ្ជាក់ដោយវាយបញ្ចូលសោ $1 ដើម្បីនាំចូល"
   },
-  "keyring_export_keys": {
-    "message": "នាំចេញបណ្តុំសោរ"
-  },
   "keyring_generate_key": {
     "message": "បង្កើតសោរ"
   },
@@ -1045,9 +868,6 @@
   },
   "keyring_import_search_description": {
     "message": "ស្វែងរកសោសាធារណៈដើម្បីបន្ថែមទៅកាន់ចង្កោមសោរបស់អ្នក។ Mailvelope ស្កេនថតឯកសារសំខាន់ៗជាច្រើន ហើយណែនាំសោសាធារណៈ ដែលទំនងជាកំពុងប្រើភាគច្រើនបំផុត។"
-  },
-  "keyring_import_search_keys": {
-    "message": "ស្វែងរកសោ"
   },
   "keyring_main": {
     "message": "សោរចំបង"
@@ -1154,14 +974,8 @@
   "options_home": {
     "message": "ជម្រើស"
   },
-  "options_settings": {
-    "message": "ការកំណត់"
-  },
   "options_title": {
     "message": "ជម្រើស​ Mailvelope"
-  },
-  "paragraph_analyticsconsent_modal": {
-    "message": "You can opt out at any time from settings."
   },
   "preferred": {
     "message": "ចំណូលចិត្ត"
@@ -1193,9 +1007,6 @@
   "provider_gmail_dialog_description": {
     "message": "ការប្រើប្រាស់ Gmail API ដើម្បីបន្ថែមមុខងាររបស់ Mailvelope ជាមួយ Gmail និងសម្រួលទៅដល់ការផ្ញើ និងអានអ៊ីមែល និងឯកសារភ្ជាប់ដែលបានបំប្លែងកូដរួចហើយ។"
   },
-  "provider_gmail_dialog_gsuite_alert": {
-    "message": "This feature is free for Gmail accounts. If you are part of a Google Workspace (<0>workspace.google.com</0>) organization, you will need to purchase a license from the <1>Mailvelope website</1>."
-  },
   "provider_gmail_dialog_privacy_policy": {
     "message": "សូមអានគោលការណ៍ឯកជនភាពរបស់យើង"
   },
@@ -1220,9 +1031,6 @@
   "provider_gmail_licensing_dialog_deactivate_btn": {
     "message": "បន្តដោយមិនមាន Gmail API"
   },
-  "provider_gmail_licensing_dialog_para_1": {
-    "message": "Use of the Gmail API within Google Workspace organizations is <0>subject to a fee</0>."
-  },
   "provider_gmail_licensing_dialog_para_2": {
     "message": "អ្នកអាចបន្តប្រើប្រាស់ Mailvelope ជាមួយ Gmail ដោយឥតគិតថ្លៃ ប៉ុន្តែ <0>ជាមួយ API ដំណើរការការងាររបស់អ្នក</0> សម្រាប់ការសរសេរ និងអានអ៊ីមែលដែលបានបំប្លែងកូដហើយ និងឯកសារភ្ជាប់របស់ពួកវានឹង <1>កាន់តែលឿន និងងាយស្រួលជាងមុន</1>។"
   },
@@ -1234,9 +1042,6 @@
   },
   "provider_gmail_licensing_dialog_title": {
     "message": "តម្រូវឲ្យមានអាជ្ញាបណ្ណអាជីវកម្ម Mailvelope"
-  },
-  "provider_gmail_licensing_table_caption": {
-    "message": "Licenses to use the Gmail API integration within Google Workspace (<0>workspace.google.com</0>) can be purchased from the <1>Mailvelope website</1>."
   },
   "provider_gmail_licensing_table_title": {
     "message": "អាជ្ញាបណ្ណ Mailvelope"
@@ -1258,9 +1063,6 @@
   },
   "pwd_dialog_header": {
     "message": "បញ្ចូល ពាក្យសម្ងាត់"
-  },
-  "pwd_dialog_pwd_please": {
-    "message": "សូមបញ្ជូន​ពាក្យសម្ងាត់​របស់អ្នក"
   },
   "pwd_dialog_reason_add_user": {
     "message": "សូមបញ្ចូលពាក្យសម្ងាត់នៃសោរបស់អ្នក ដើម្បីបង្កើតលេខសម្គាល់អ្នកប្រើ។"
@@ -1288,12 +1090,6 @@
   },
   "pwd_dialog_reason_sign": {
     "message": "សូមបញ្ចូល​ពាក្យសម្ងាត់​របស់អ្នក ដើម្បី​ចុះហត្ថលេខា សារនេះ។"
-  },
-  "pwd_dialog_title": {
-    "message": "បញ្ចូលពាក្យសម្ងាត់ | Mailvelope"
-  },
-  "pwd_dialog_userid": {
-    "message": "លេខប្រើ៖"
   },
   "pwd_dialog_wrong_pwd": {
     "message": "ខុស​ពាក្យសម្ងាត់"
@@ -1490,9 +1286,6 @@
   "security_log_backup_restore": {
     "message": "ចុច ដើម្បីស្តារការបម្រុងទុក"
   },
-  "security_log_content_copy": {
-    "message": "ចម្លងក្នុងផ្ទាំងផ្ទៀងផ្ទាត់"
-  },
   "security_log_decrypt_ui": {
     "message": "បើកកូដនីយកម្ម"
   },
@@ -1516,9 +1309,6 @@
   },
   "security_log_email_viewer": {
     "message": "បើកកូដនីយកម្មអ៊ីម៉ែល PGP"
-  },
-  "security_log_encrypt_dialog": {
-    "message": "ផ្ទាំង​កូដនីយកម្ម"
   },
   "security_log_encrypt_form": {
     "message": "ទម្រង់កូដនីយកម្ម"
@@ -1556,20 +1346,11 @@
   "security_log_sign_operation": {
     "message": "សារដែលបាន​ចុះហត្ថលេខាជាមួយសោ៖ $1"
   },
-  "security_log_signature_modal_close": {
-    "message": "ចុច ដើម្បីបិទផ្ទាំងចុះហត្ថលេខា"
-  },
-  "security_log_signature_modal_open": {
-    "message": "ចុច ដើម្បីបើកផ្ទាំងចុះហត្ថលេខា"
-  },
   "security_log_source": {
     "message": "ប្រភព"
   },
   "security_log_text": {
     "message": "កំណត់ត្រាសុវត្ថិភាពបង្ហាញសកម្មភាពអ្នកប្រើប្រាស់គ្រប់មុខងាររបស់ Mailvelope។"
-  },
-  "security_log_text_input": {
-    "message": "បញ្ចូលក្នុងកន្លែងសរសេរអក្សរ"
   },
   "security_log_textarea_click": {
     "message": "ចុចក្នុងតំបន់អក្សរ"
@@ -1583,9 +1364,6 @@
   "security_log_timestamp": {
     "message": "តែមពេលវេលា"
   },
-  "security_log_verify_dialog": {
-    "message": "ផ្ទាំងផ្ទៀងផ្ទាត់"
-  },
   "security_log_viewer": {
     "message": "កម្មវិធីបើក Mailvelope"
   },
@@ -1594,9 +1372,6 @@
   },
   "settings_analytics": {
     "message": "ស្ថិតិ​វិភាគ"
-  },
-  "settings_backup": {
-    "message": "បម្រុង"
   },
   "settings_general": {
     "message": "ទូទៅ"
@@ -1630,15 +1405,6 @@
   },
   "text_decrypt_button": {
     "message": "បើកកូដនីយកម្ម"
-  },
-  "text_decrypting": {
-    "message": "បើកកូដនីយកម្មជាអក្សរ"
-  },
-  "text_encrypting": {
-    "message": "ធ្វើកូដនីយកម្មជាអក្សរ"
-  },
-  "upload_aborting_warning": {
-    "message": "ឯកសារបញ្ជូននឹងត្រូវបានបោះបង់ចោល។"
   },
   "upload_attachment": {
     "message": "បន្ថែម​ឯកសារ"
@@ -1729,9 +1495,6 @@
   },
   "watchlist_command_create": {
     "message": "បញ្ចូលថ្មី"
-  },
-  "watchlist_command_edit": {
-    "message": "កែប្រែ"
   },
   "watchlist_delete_confirmation": {
     "message": "តើអ្នកពិតជាចង់លុបគេហទំព័រនេះចេញពីតារាងឈ្មោះគេហទំព័រដែលបានអនុញ្ញាត?"

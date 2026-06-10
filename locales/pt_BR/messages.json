@@ -104,9 +104,6 @@
   "analytics_consent_interstitial_learn_more": {
     "message": "Aprenda como as métricas são seguras"
   },
-  "analytics_consent_interstitial_learn_more_explanation": {
-    "message": "Se você optar por participar, os dados analíticos serão agregados e minimizados usando o Clean Insights, que armazena esses dados sem conexão com características de identificação. Respeitamos sua escolha e não reportaremos nada caso você opte por não contribuir."
-  },
   "analytics_consent_interstitial_message": {
     "message": "O Mailvelope está solicitando que 1% dos novos usuários contribuam com métricas anônimas. Se você concordar, o Mailvelope registrará as etapas bem-sucedidas da sua jornada de integração. Você contribuirá?"
   },
@@ -145,9 +142,6 @@
   },
   "decrypt_att_frame_help_text": {
     "message": "Clique aqui para visualizar a mensagem"
-  },
-  "decrypt_attachment_label": {
-    "message": "Anexos"
   },
   "decrypt_cleartext_warning": {
     "message": "O texto a seguir não foi cifrado."
@@ -206,9 +200,6 @@
   "decrypt_show_message_btn": {
     "message": "Mostrar mensagem"
   },
-  "decrypt_signer_label": {
-    "message": "Remetente"
-  },
   "decrypt_text_area_label": {
     "message": "Texto para cifrar"
   },
@@ -234,9 +225,6 @@
     "message": "Salvar"
   },
   "dialog_yes_btn": {
-    "message": "Sim"
-  },
-  "dialog_yes_button": {
     "message": "Sim"
   },
   "editor_blur_warn": {
@@ -290,38 +278,17 @@
   "editor_label_subject": {
     "message": "Assunto"
   },
-  "editor_link_file_encryption": {
-    "message": "Criptografar arquivos"
-  },
-  "editor_no_default_key_caption_long": {
-    "message": "O e-mail não pode ser assinado digitalmente porque a chave padrão está ausente"
-  },
-  "editor_no_default_key_caption_short": {
-    "message": "O Email não pode ser assinado digitalmente"
-  },
   "editor_remove_upload": {
     "message": "Remover"
   },
   "editor_sign_button": {
     "message": " Apenas Assinar"
   },
-  "editor_sign_caption_long": {
-    "message": "Quando o Email é enviado, ele será também assinado digitalmente"
-  },
-  "editor_sign_caption_short": {
-    "message": "O Email será assinado digitalmente"
-  },
-  "editor_transfer": {
-    "message": "Transferir"
-  },
   "encrypt_change_signer_dialog_signer_label": {
     "message": "Selecionar assinatura"
   },
   "encrypt_change_signer_dialog_title": {
     "message": "Alterar assinatura"
-  },
-  "encrypt_dialog_no_recipient": {
-    "message": "Por favor, adicione um destinatário."
   },
   "encrypt_download_all_button": {
     "message": "Baixar todos"
@@ -398,26 +365,11 @@
   "form_back": {
     "message": "Volta"
   },
-  "form_busy": {
-    "message": "Ocupado"
-  },
   "form_cancel": {
     "message": "Cancelar"
   },
-  "form_clear": {
-    "message": "Limpar"
-  },
-  "form_close": {
-    "message": "Fechar"
-  },
   "form_confirm": {
     "message": "Confirmar"
-  },
-  "form_continue": {
-    "message": "Continuar"
-  },
-  "form_definition_error_no_recipient_key": {
-    "message": "Nenhuma chave de criptografia válida para o endereço do destinatário."
   },
   "form_definition_error_signature_invalid": {
     "message": "A assinatura do formulário não é válida."
@@ -428,17 +380,11 @@
   "form_destination_default": {
     "message": "Os dados cifrados serão retornados à página."
   },
-  "form_forward": {
-    "message": "Avança"
-  },
   "form_import": {
     "message": "Importar"
   },
   "form_loading": {
     "message": "Carregando formulário"
-  },
-  "form_next": {
-    "message": "Próximo"
   },
   "form_no": {
     "message": "Não"
@@ -457,9 +403,6 @@
   },
   "form_submit": {
     "message": "Enviar"
-  },
-  "form_undo": {
-    "message": "Desfazer"
   },
   "form_yes": {
     "message": "Sim"
@@ -521,9 +464,6 @@
   "import_frame_help_text": {
     "message": "Clique para importar a chave"
   },
-  "install_landing_page_hint": {
-    "message": "Clique aqui, para abrir a extensão."
-  },
   "key_default_active_btn_title": {
     "message": "A chave definida como chave padrão"
   },
@@ -554,17 +494,11 @@
   "key_export_filename": {
     "message": "Nome do arquivo"
   },
-  "key_export_header": {
-    "message": "Exportar Chave"
-  },
   "key_export_warning_private": {
     "message": "Este arquivo também contém chaves privadas. Mantenha o arquivo em um lugar seguro e não compartilhe com ninguém."
   },
   "key_gen_advanced_btn": {
     "message": "Avançado"
-  },
-  "key_gen_another": {
-    "message": "Gerar outra..."
   },
   "key_gen_demail": {
     "message": "Endereço De-Mail"
@@ -599,9 +533,6 @@
   "key_gen_pwd_empty": {
     "message": "O campo de senha está vazio"
   },
-  "key_gen_pwd_match": {
-    "message": "Senhas correspondem"
-  },
   "key_gen_pwd_reenter": {
     "message": "Re-inserir Senha"
   },
@@ -635,17 +566,11 @@
   "key_import_default_headline": {
     "message": "Confirmar chave"
   },
-  "key_import_dialog_header": {
-    "message": "Adicionar chave ao chaveiro"
-  },
   "key_import_error": {
     "message": "Importar Erro."
   },
   "key_import_error_no_uid": {
     "message": "Não foi encontrado ID de usuário válido na chave $1"
-  },
-  "key_import_error_parse": {
-    "message": "Erro ao ler a chave PGP blindada $1"
   },
   "key_import_exception": {
     "message": "Um erro ocorreu durante o processamento de chaves"
@@ -733,9 +658,6 @@
   },
   "key_import_search_ph": {
     "message": "Endereço de e-mail / ID da chave / Impressão digital"
-  },
-  "key_import_textarea": {
-    "message": "Importar chave como texto"
   },
   "key_import_too_big": {
     "message": "O texto da chave que você tentou importar é muito longo. Tente fazer isso com partes menores. "
@@ -872,9 +794,6 @@
   "keygen_dialog_password_error_length": {
     "message": "A senha requer pelo menos $1 caracteres"
   },
-  "keygen_dialog_password_placeholder": {
-    "message": "min 4 caracteres"
-  },
   "keygen_dialog_prolog": {
     "message": "Atribua uma senha para sua chave para proteger sua comunicação criptografada:"
   },
@@ -890,9 +809,6 @@
   "keygrid_all_keys": {
     "message": "Tudo"
   },
-  "keygrid_creation_date": {
-    "message": "Data de criação"
-  },
   "keygrid_creation_date_short": {
     "message": "Criada"
   },
@@ -902,23 +818,8 @@
   "keygrid_default_label": {
     "message": "Padrão"
   },
-  "keygrid_delete": {
-    "message": "Deletar"
-  },
   "keygrid_delete_confirmation": {
     "message": "Tem certeza de que deseja remover esta chave?"
-  },
-  "keygrid_display_all_keys": {
-    "message": "Exibir todas as chaves"
-  },
-  "keygrid_display_priv_key": {
-    "message": "Exibir a chave privada"
-  },
-  "keygrid_display_pub_key": {
-    "message": "Exibir a chave pública"
-  },
-  "keygrid_expiration_date": {
-    "message": "Data de validade"
   },
   "keygrid_export": {
     "message": "Exportar"
@@ -953,9 +854,6 @@
   "keygrid_primary_key": {
     "message": "Chave principal"
   },
-  "keygrid_private_keys": {
-    "message": "Chaves privadas"
-  },
   "keygrid_public_keys": {
     "message": "Chaves públicas"
   },
@@ -964,12 +862,6 @@
   },
   "keygrid_refresh_title": {
     "message": "Recarregue o chaveiro"
-  },
-  "keygrid_send_pub_key": {
-    "message": "Enviar chave pública via email"
-  },
-  "keygrid_signer_name": {
-    "message": "Signatário"
   },
   "keygrid_signer_unknown": {
     "message": "Signatário desconhecido"
@@ -992,14 +884,8 @@
   "keygrid_subkey": {
     "message": "Subchave"
   },
-  "keygrid_subkeys": {
-    "message": "Subchaves"
-  },
   "keygrid_user_email": {
     "message": "Email"
-  },
-  "keygrid_user_ids": {
-    "message": "Identificações de usuário"
   },
   "keygrid_user_name": {
     "message": "Nome"
@@ -1028,9 +914,6 @@
   "keyring_confirm_keys_plural": {
     "message": "Confirme as chaves $1 para importar"
   },
-  "keyring_export_keys": {
-    "message": "Exportar chaves"
-  },
   "keyring_generate_key": {
     "message": "Gerar chave"
   },
@@ -1045,9 +928,6 @@
   },
   "keyring_import_search_description": {
     "message": "Encontre chaves públicas para adicionar ao seu chaveiro. O Mailvelope verifica vários diretórios de chaves e sugere a chave pública com maior probabilidade de ser usada."
-  },
-  "keyring_import_search_keys": {
-    "message": "Procurar por chaves"
   },
   "keyring_main": {
     "message": "Chaveiro Principal"
@@ -1154,9 +1034,6 @@
   "options_home": {
     "message": "Opções"
   },
-  "options_settings": {
-    "message": "Configurações"
-  },
   "options_title": {
     "message": "Opções do Mailvelope"
   },
@@ -1193,9 +1070,6 @@
   "provider_gmail_dialog_description": {
     "message": "Usar a API do Gmail amplia a funcionalidade do Mailvelope com o Gmail e simplifica o envio e a leitura de e-mails e anexos criptografados."
   },
-  "provider_gmail_dialog_gsuite_alert": {
-    "message": "This feature is free for Gmail accounts. If you are part of a Google Workspace (<0>workspace.google.com</0>) organization, you will need to purchase a license from the <1>Mailvelope website</1>."
-  },
   "provider_gmail_dialog_privacy_policy": {
     "message": "Por favor, leia nossa Política de Privacidade"
   },
@@ -1220,9 +1094,6 @@
   "provider_gmail_licensing_dialog_deactivate_btn": {
     "message": "Continuar sem a API do Gmail"
   },
-  "provider_gmail_licensing_dialog_para_1": {
-    "message": "Use of the Gmail API within Google Workspace organizations is <0>subject to a fee</0>."
-  },
   "provider_gmail_licensing_dialog_para_2": {
     "message": "Você pode continuar a usar o Mailvelope com o Gmail gratuitamente, mas <0>com a API, seu fluxo de trabalho</0> para escrever e ler e-mails criptografados e seus anexos será <1>muito mais rápido e fácil</1>."
   },
@@ -1234,9 +1105,6 @@
   },
   "provider_gmail_licensing_dialog_title": {
     "message": "Licença comercial Mailvelope necessária"
-  },
-  "provider_gmail_licensing_table_caption": {
-    "message": "Licenses to use the Gmail API integration within Google Workspace (<0>workspace.google.com</0>) can be purchased from the <1>Mailvelope website</1>."
   },
   "provider_gmail_licensing_table_title": {
     "message": "Licença Mailvelope"
@@ -1258,9 +1126,6 @@
   },
   "pwd_dialog_header": {
     "message": "Digite a senha da chave"
-  },
-  "pwd_dialog_pwd_please": {
-    "message": "Por favor, insira sua senha"
   },
   "pwd_dialog_reason_add_user": {
     "message": "Digite sua senha principal para criar o ID do usuário."
@@ -1288,12 +1153,6 @@
   },
   "pwd_dialog_reason_sign": {
     "message": "Digite a senha da chave para assinar esta mensagem."
-  },
-  "pwd_dialog_title": {
-    "message": "Digitação de senha | Mailvelope"
-  },
-  "pwd_dialog_userid": {
-    "message": "Identificação do usuário:"
   },
   "pwd_dialog_wrong_pwd": {
     "message": "Senha incorreta"
@@ -1490,9 +1349,6 @@
   "security_log_backup_restore": {
     "message": "Clique para restaurar o backup"
   },
-  "security_log_content_copy": {
-    "message": "Copiar na janela de verificação"
-  },
   "security_log_decrypt_ui": {
     "message": "Decriptar"
   },
@@ -1516,9 +1372,6 @@
   },
   "security_log_email_viewer": {
     "message": "Email PGP descriptografado"
-  },
-  "security_log_encrypt_dialog": {
-    "message": "Criptografar Diálogo"
   },
   "security_log_encrypt_form": {
     "message": "Criptografar formulário"
@@ -1556,20 +1409,11 @@
   "security_log_sign_operation": {
     "message": "A mensagem foi assinada com a chave: $1"
   },
-  "security_log_signature_modal_close": {
-    "message": "Clique para fechar a janela de assinatura"
-  },
-  "security_log_signature_modal_open": {
-    "message": "Clique para abrir a janela de assinatura"
-  },
   "security_log_source": {
     "message": "Fonte"
   },
   "security_log_text": {
     "message": "O registo de segurança mostra as ações do usuário em componentes integrados do Mailvelope."
-  },
-  "security_log_text_input": {
-    "message": "Inserir no campo de texto"
   },
   "security_log_textarea_click": {
     "message": "Clique na área de texto"
@@ -1583,9 +1427,6 @@
   "security_log_timestamp": {
     "message": "Marca temporal"
   },
-  "security_log_verify_dialog": {
-    "message": "Verificar Diálogo"
-  },
   "security_log_viewer": {
     "message": "Visualizador de Mailvelope"
   },
@@ -1594,9 +1435,6 @@
   },
   "settings_analytics": {
     "message": "Análises"
-  },
-  "settings_backup": {
-    "message": "Backup"
   },
   "settings_general": {
     "message": "Geral"
@@ -1630,15 +1468,6 @@
   },
   "text_decrypt_button": {
     "message": "Decriptar"
-  },
-  "text_decrypting": {
-    "message": "Descriptografia de texto"
-  },
-  "text_encrypting": {
-    "message": "Criptografia de texto"
-  },
-  "upload_aborting_warning": {
-    "message": "O carregamento de arquivos será abortado."
   },
   "upload_attachment": {
     "message": "Adicionar arquivo"
@@ -1729,9 +1558,6 @@
   },
   "watchlist_command_create": {
     "message": "Adicionar novas informações"
-  },
-  "watchlist_command_edit": {
-    "message": "Editar"
   },
   "watchlist_delete_confirmation": {
     "message": "Você realmente deseja remover este site da lista de domínios autorizados?"

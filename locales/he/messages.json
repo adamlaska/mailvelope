@@ -71,47 +71,11 @@
   "analytics_consent_description": {
     "message": "שתף מידע אנליטיקה צבור ועלום שם עם Mailvelope"
   },
-  "analytics_consent_disabled_tooltip": {
-    "message": "You can only opt-in to analytics upon installation and only if randomly selected."
-  },
   "analytics_consent_interstitial_Btn_Learn_More": {
     "message": "למד עוד"
   },
   "analytics_consent_interstitial_Faq": {
     "message": "Read more about Mailvelope metrics in our FAQ."
-  },
-  "analytics_consent_interstitial_We_Collect_Minimal_Data": {
-    "message": "Mailvelope counts the steps that get you closer to using it with your email service. It does not record every move you make."
-  },
-  "analytics_consent_interstitial_We_Collect_Minimal_Data_Title": {
-    "message": "We Collect Minimal Data"
-  },
-  "analytics_consent_interstitial_We_Respect_your_Choice": {
-    "message": "If you choose not to contribute, nothing is recorded. If you choose to contribute, you can change your mind at any time by opting out in settings."
-  },
-  "analytics_consent_interstitial_We_Respect_your_Choice_Title": {
-    "message": "We Respect your Choice"
-  },
-  "analytics_consent_interstitial_Your_Privacy_is_Preserved_Pt1": {
-    "message": "Mailvelope uses"
-  },
-  "analytics_consent_interstitial_Your_Privacy_is_Preserved_Pt2": {
-    "message": "which securely stores data without connecting it to identifiable information. Further, your IP address is not recorded or processed."
-  },
-  "analytics_consent_interstitial_Your_Privacy_is_Preserved_Title": {
-    "message": "Your Privacy is Preserved"
-  },
-  "analytics_consent_interstitial_learn_more": {
-    "message": "Learn how metrics are safe"
-  },
-  "analytics_consent_interstitial_learn_more_explanation": {
-    "message": "If you opt-in, analytics data will be aggregated and minimized using Clean Insights which stores this data without connection to identifying characteristics. We respect your choice and don't report anything if you chose not to contribute."
-  },
-  "analytics_consent_interstitial_message": {
-    "message": "Mailvelope is asking 1% of new users to contribute to anonymous metrics. If you say yes, Mailvelope will register successful steps in your onboarding journey. Will you contribute?"
-  },
-  "analytics_interstitial_header": {
-    "message": "Help us improve?"
   },
   "auth_domain_api_label": {
     "message": "התר API"
@@ -146,9 +110,6 @@
   "decrypt_att_frame_help_text": {
     "message": "לחץ כאן כדי לראות את ההודעה"
   },
-  "decrypt_attachment_label": {
-    "message": "צרופות"
-  },
   "decrypt_cleartext_warning": {
     "message": "הטקסט להלן לא הוצפן."
   },
@@ -161,12 +122,6 @@
   "decrypt_digital_signature_failure": {
     "message": "חתימה בלתי תקפה"
   },
-  "decrypt_digital_signature_inconsistent": {
-    "message": "Inconsistent signatures: message and file not signed with same key"
-  },
-  "decrypt_digital_signature_missing": {
-    "message": "Signature missing"
-  },
   "decrypt_digital_signature_null": {
     "message": "חתימה בלתי ידועה"
   },
@@ -175,15 +130,6 @@
   },
   "decrypt_digital_signature_null_info_short": {
     "message": "מפתח לא נמצא."
-  },
-  "decrypt_digital_signature_sender_mismatch": {
-    "message": "Sender address mismatch"
-  },
-  "decrypt_digital_signature_sender_mismatch_tooltip": {
-    "message": "This message contains a digital signature, but a mismatch was detected. The message was sent from an email address that doesn't match the signer's public key."
-  },
-  "decrypt_digital_signature_uncertain_sender": {
-    "message": "Uncertain sender identity"
   },
   "decrypt_file_error_header": {
     "message": "הצפנה של הקובץ $1 בלתי אפשרית."
@@ -205,9 +151,6 @@
   },
   "decrypt_show_message_btn": {
     "message": "הראה הודעה"
-  },
-  "decrypt_signer_label": {
-    "message": "שולח"
   },
   "decrypt_text_area_label": {
     "message": "טקסט לפענח"
@@ -234,9 +177,6 @@
     "message": "שמור"
   },
   "dialog_yes_btn": {
-    "message": "כן"
-  },
-  "dialog_yes_button": {
     "message": "כן"
   },
   "editor_blur_warn": {
@@ -290,38 +230,17 @@
   "editor_label_subject": {
     "message": "נושא"
   },
-  "editor_link_file_encryption": {
-    "message": "הצפן קבצים"
-  },
-  "editor_no_default_key_caption_long": {
-    "message": "הדוא״ל אינו יכול להיחתם דיגיטלית מאחר שמפתח ברירת המחדל חסר"
-  },
-  "editor_no_default_key_caption_short": {
-    "message": "הדוא״ל אינו יכול להיחתם דיגיטלית"
-  },
   "editor_remove_upload": {
     "message": "הסר"
   },
   "editor_sign_button": {
     "message": "חתום בלבד"
   },
-  "editor_sign_caption_long": {
-    "message": "כאשר הדוא״ל יישלח, הוא גם ייחתם דיגיטלית"
-  },
-  "editor_sign_caption_short": {
-    "message": "הדוא״ל ייחתם דיגיטלית"
-  },
-  "editor_transfer": {
-    "message": "העבר"
-  },
   "encrypt_change_signer_dialog_signer_label": {
     "message": "בחר חתימה"
   },
   "encrypt_change_signer_dialog_title": {
     "message": "שנה חתימה"
-  },
-  "encrypt_dialog_no_recipient": {
-    "message": "אנא הוסף נמען."
   },
   "encrypt_download_all_button": {
     "message": "הורד הכל"
@@ -371,12 +290,6 @@
   "encrypt_upload_file_warning_too_big": {
     "message": "אחד מהקבצים גדול מדי."
   },
-  "ext_description": {
-    "message": "Protect your email conversations and attachments on Gmail, Nextcloud, Outlook & more with PGP and end-to-end encryption."
-  },
-  "ext_name": {
-    "message": "Mailvelope - Secure your email with PGP"
-  },
   "feature_banner_new_security_background_btn": {
     "message": "התאם אישית עכשיו"
   },
@@ -398,26 +311,11 @@
   "form_back": {
     "message": "הקודם"
   },
-  "form_busy": {
-    "message": "מעבד"
-  },
   "form_cancel": {
     "message": "בטל"
   },
-  "form_clear": {
-    "message": "נקה"
-  },
-  "form_close": {
-    "message": "סגור"
-  },
   "form_confirm": {
     "message": "אשר"
-  },
-  "form_continue": {
-    "message": "המשך"
-  },
-  "form_definition_error_no_recipient_key": {
-    "message": "אין מפתח הצפנה תקף עבור כתובת הנמען."
   },
   "form_definition_error_signature_invalid": {
     "message": "חתימת הטופס אינה תקפה."
@@ -428,17 +326,11 @@
   "form_destination_default": {
     "message": "הנתונים המוצפנים יוחזרו אל הדף."
   },
-  "form_forward": {
-    "message": "העבר הלאה"
-  },
   "form_import": {
     "message": "ייבא"
   },
   "form_loading": {
     "message": "טוען מן"
-  },
-  "form_next": {
-    "message": "הבא"
   },
   "form_no": {
     "message": "לא"
@@ -458,9 +350,6 @@
   "form_submit": {
     "message": "שליחה"
   },
-  "form_undo": {
-    "message": "בטל עשייה"
-  },
   "form_yes": {
     "message": "כן"
   },
@@ -472,9 +361,6 @@
   },
   "general_gnupg_check_availability": {
     "message": "התר לנו לבדוק זמינות"
-  },
-  "general_gnupg_installed_question": {
-    "message": "Do you have GnuPG installed? If not <0>Download here</0>. To check availability again <1>Restart Mailvelope</1>. If you are sure it is installed, please follow <2>this wiki</2> to make sure it has been set up properly."
   },
   "general_gnupg_not_available": {
     "message": "GnuPG אינו זמין"
@@ -515,14 +401,8 @@
   "gnupg_error_unusable_pub_key": {
     "message": "אנא בדוק אם המפתחות הציבוריים הבאים זמינים במחזיק מפתחות GnuPG שלך ואם הם תקפים: $1"
   },
-  "header_analyticsconsent_modal": {
-    "message": "Thank you for helping!"
-  },
   "import_frame_help_text": {
     "message": "לחץ כדי לייבא מפתח"
-  },
-  "install_landing_page_hint": {
-    "message": "לחץ כאן כדי לפתוח את ההרחבה."
   },
   "key_default_active_btn_title": {
     "message": "המפתח נקבע כמפתח ברירת מחדל"
@@ -554,17 +434,11 @@
   "key_export_filename": {
     "message": "שם קובץ"
   },
-  "key_export_header": {
-    "message": "ייצא מפתח"
-  },
   "key_export_warning_private": {
     "message": "קובץ זה מכיל גם מפתחות פרטיים. שמור את הקובץ במקום בטוח ואל תשתף אותו עם אחרים."
   },
   "key_gen_advanced_btn": {
     "message": "מתקדם"
-  },
-  "key_gen_another": {
-    "message": "חולל נוסף…"
   },
   "key_gen_demail": {
     "message": "כתובת De-Mail"
@@ -599,9 +473,6 @@
   "key_gen_pwd_empty": {
     "message": "שדה הסיסמה ריק"
   },
-  "key_gen_pwd_match": {
-    "message": "הסיסמאות תואמות"
-  },
   "key_gen_pwd_reenter": {
     "message": "הכנס שוב סיסמה"
   },
@@ -635,17 +506,11 @@
   "key_import_default_headline": {
     "message": "אשר מפתח"
   },
-  "key_import_dialog_header": {
-    "message": "הוסף מפתח אל מחזיק מפתחות"
-  },
   "key_import_error": {
     "message": "שגיאת יבוא."
   },
   "key_import_error_no_uid": {
     "message": "זהות משתמש תקפה לא נמצאה במפתח $1"
-  },
-  "key_import_error_parse": {
-    "message": "שגיאה בקריאת מפתח PGP משוריין: $1"
   },
   "key_import_exception": {
     "message": "שגיאה התרחשה במהלך עיבוד המפתחות"
@@ -710,14 +575,8 @@
   "key_import_search_disabled": {
     "message": "חיפוש מושבת."
   },
-  "key_import_search_disabled_descr": {
-    "message": "Activate at least one key source in the settings."
-  },
   "key_import_search_found": {
     "message": "מפתח נמצא ב:"
-  },
-  "key_import_search_found_modified": {
-    "message": "last modified on:"
   },
   "key_import_search_found_source": {
     "message": "מקור:"
@@ -725,17 +584,11 @@
   "key_import_search_invalid": {
     "message": "הכנס כתובת דוא״ל תקפה, זהות מפתח תקפה (16 ספרות) או טביעת אצבע תקפה (40 ספרות)"
   },
-  "key_import_search_not_found": {
-    "message": "Key is not available in any of the searched key directories."
-  },
   "key_import_search_not_found_header": {
     "message": "מפתח לא נמצא."
   },
   "key_import_search_ph": {
     "message": "כתובת דוא״ל / זהות מפתח / טביעת אצבע"
-  },
-  "key_import_textarea": {
-    "message": "ייבא מפתח בתור טקסט"
   },
   "key_import_too_big": {
     "message": "טקסט המפתח שניסית לייבא ארוך מדי מכדי לטפל בו. נסה להוסיף אותו בחלקים קטנים יותר."
@@ -872,9 +725,6 @@
   "keygen_dialog_password_error_length": {
     "message": "סיסמה דורשת לפחות $1 תווים"
   },
-  "keygen_dialog_password_placeholder": {
-    "message": "לפחות 4 תווים"
-  },
   "keygen_dialog_prolog": {
     "message": "אנא הקצה סיסמה עבור המפתח שלך כדי להגן על התקשורת המוצפנת שלך:"
   },
@@ -890,9 +740,6 @@
   "keygrid_all_keys": {
     "message": "הכל"
   },
-  "keygrid_creation_date": {
-    "message": "תאריך יצירה"
-  },
   "keygrid_creation_date_short": {
     "message": "נוצר"
   },
@@ -902,23 +749,8 @@
   "keygrid_default_label": {
     "message": "ברירת מחדל"
   },
-  "keygrid_delete": {
-    "message": "מחק"
-  },
   "keygrid_delete_confirmation": {
     "message": "האם אתה בטוח שאתה רוצה להסיר מפתח זה?"
-  },
-  "keygrid_display_all_keys": {
-    "message": "הצג את כל המפתחות"
-  },
-  "keygrid_display_priv_key": {
-    "message": "הצג מפתח פרטי"
-  },
-  "keygrid_display_pub_key": {
-    "message": "הצג מפתח ציבורי"
-  },
-  "keygrid_expiration_date": {
-    "message": "תאריך תפוגה"
   },
   "keygrid_export": {
     "message": "ייצא"
@@ -953,9 +785,6 @@
   "keygrid_primary_key": {
     "message": "מפתח ראשי"
   },
-  "keygrid_private_keys": {
-    "message": "מפתחות פרטיים"
-  },
   "keygrid_public_keys": {
     "message": "מפתחות ציבוריים"
   },
@@ -964,12 +793,6 @@
   },
   "keygrid_refresh_title": {
     "message": "טען מחדש את מחזיק המפתחות"
-  },
-  "keygrid_send_pub_key": {
-    "message": "שלח מפתח ציבורי באמצעות דוא״ל"
-  },
-  "keygrid_signer_name": {
-    "message": "חותם"
   },
   "keygrid_signer_unknown": {
     "message": "חותם בלתי ידוע"
@@ -992,14 +815,8 @@
   "keygrid_subkey": {
     "message": "תת־מפתח"
   },
-  "keygrid_subkeys": {
-    "message": "תת־מפתחות"
-  },
   "keygrid_user_email": {
     "message": "דוא״ל"
-  },
-  "keygrid_user_ids": {
-    "message": "זהויות משתמש"
   },
   "keygrid_user_name": {
     "message": "שם"
@@ -1028,9 +845,6 @@
   "keyring_confirm_keys_plural": {
     "message": "אשר $1 מפתחות ליבוא"
   },
-  "keyring_export_keys": {
-    "message": "ייצא מחזיק מפתחות"
-  },
   "keyring_generate_key": {
     "message": "חולל מפתח"
   },
@@ -1042,12 +856,6 @@
   },
   "keyring_import_keys": {
     "message": "ייבא מפתחות"
-  },
-  "keyring_import_search_description": {
-    "message": "Find public keys to add to your keyring. Mailvelope scans multiple key directories and suggests the public key that is most likely in use."
-  },
-  "keyring_import_search_keys": {
-    "message": "חפש מפתחות"
   },
   "keyring_main": {
     "message": "מחזיק מפתחות ראשי"
@@ -1154,14 +962,8 @@
   "options_home": {
     "message": "אפשרויות"
   },
-  "options_settings": {
-    "message": "הגדרות"
-  },
   "options_title": {
     "message": "אפשרויות Mailvelope"
-  },
-  "paragraph_analyticsconsent_modal": {
-    "message": "You can opt out at any time from settings."
   },
   "preferred": {
     "message": "מתועדף"
@@ -1193,9 +995,6 @@
   "provider_gmail_dialog_description": {
     "message": "שימוש ב־API של Google מרחיב את התפקודיות של Mailvelope עם Gmail ומפשיט שליחה וקריאה של דוא״לים מוצפנים וצרופות."
   },
-  "provider_gmail_dialog_gsuite_alert": {
-    "message": "This feature is free for Gmail accounts. If you are part of a Google Workspace (<0>workspace.google.com</0>) organization, you will need to purchase a license from the <1>Mailvelope website</1>."
-  },
   "provider_gmail_dialog_privacy_policy": {
     "message": "אנא קרא את מדיניות הפרטיות שלנו"
   },
@@ -1220,9 +1019,6 @@
   "provider_gmail_licensing_dialog_deactivate_btn": {
     "message": "המשך בלי API של Gmail"
   },
-  "provider_gmail_licensing_dialog_para_1": {
-    "message": "Use of the Gmail API within Google Workspace organizations is <0>subject to a fee</0>."
-  },
   "provider_gmail_licensing_dialog_para_2": {
     "message": "אתה יכול להמשיך להשתמש ב־Mailvelope עם Gmail בחינם, אבל <0>עם API, זרימת העבודה שלך</0> עבור כתיבה וקריאה של דוא״לים מוצפנים והצרופות שלהם תהיה <1>הרבה יותר מהירה וקלה</1>."
   },
@@ -1234,9 +1030,6 @@
   },
   "provider_gmail_licensing_dialog_title": {
     "message": "רישיון Mailvelope Business דרוש"
-  },
-  "provider_gmail_licensing_table_caption": {
-    "message": "Licenses to use the Gmail API integration within Google Workspace (<0>workspace.google.com</0>) can be purchased from the <1>Mailvelope website</1>."
   },
   "provider_gmail_licensing_table_title": {
     "message": "רישיון Mailvelope"
@@ -1258,9 +1051,6 @@
   },
   "pwd_dialog_header": {
     "message": "הכנס סיסמת מפתח"
-  },
-  "pwd_dialog_pwd_please": {
-    "message": "אנא הכנס את הסיסמה שלך"
   },
   "pwd_dialog_reason_add_user": {
     "message": "אנא הכנס את סיסמת המפתח שלך כדי ליצור את זהות המשתמש."
@@ -1288,12 +1078,6 @@
   },
   "pwd_dialog_reason_sign": {
     "message": "אנא הכנס את סיסמת המפתח שלך כדי להחתים הודעה זו."
-  },
-  "pwd_dialog_title": {
-    "message": "הכנס סיסמה | Mailvelope"
-  },
-  "pwd_dialog_userid": {
-    "message": "זהות משתמש:"
   },
   "pwd_dialog_wrong_pwd": {
     "message": "סיסמה שגויה"
@@ -1490,9 +1274,6 @@
   "security_log_backup_restore": {
     "message": "לחץ כדי לשחזר גיבוי"
   },
-  "security_log_content_copy": {
-    "message": "העתק בדו־שיח וידוא"
-  },
   "security_log_decrypt_ui": {
     "message": "פענח"
   },
@@ -1516,9 +1297,6 @@
   },
   "security_log_email_viewer": {
     "message": "דוא״ל PGP מפוענח"
-  },
-  "security_log_encrypt_dialog": {
-    "message": "דו־שיח הצפנה"
   },
   "security_log_encrypt_form": {
     "message": "טופס הצפנה"
@@ -1556,20 +1334,11 @@
   "security_log_sign_operation": {
     "message": "הודעה נחתמה עם מפתח: $1"
   },
-  "security_log_signature_modal_close": {
-    "message": "לחץ כדי לסגור את דוח־שיח החתימה"
-  },
-  "security_log_signature_modal_open": {
-    "message": "לחץ כדי לפתוח את דו־שיח החתימה"
-  },
   "security_log_source": {
     "message": "מקור"
   },
   "security_log_text": {
     "message": "יומן האבטחה מראה פעולות משתמש בכל הרכיבים של Mailvelope."
-  },
-  "security_log_text_input": {
-    "message": "קלט בשדה טקסט"
   },
   "security_log_textarea_click": {
     "message": "לחיצה באזור טקסט"
@@ -1583,9 +1352,6 @@
   "security_log_timestamp": {
     "message": "חותמת זמן"
   },
-  "security_log_verify_dialog": {
-    "message": "וודא דו־שיח"
-  },
   "security_log_viewer": {
     "message": "מציג Mailvelope"
   },
@@ -1595,14 +1361,8 @@
   "settings_analytics": {
     "message": "אנליטיקה"
   },
-  "settings_backup": {
-    "message": "גיבוי"
-  },
   "settings_general": {
     "message": "כללי"
-  },
-  "settings_keyserver": {
-    "message": "Key Directories"
   },
   "settings_provider": {
     "message": "API של Gmail"
@@ -1630,15 +1390,6 @@
   },
   "text_decrypt_button": {
     "message": "פענח"
-  },
-  "text_decrypting": {
-    "message": "פענוח טקסט"
-  },
-  "text_encrypting": {
-    "message": "הצפנת טקסט"
-  },
-  "upload_aborting_warning": {
-    "message": "העלאת קובץ תתבטל."
   },
   "upload_attachment": {
     "message": "הוסף קובץ"
@@ -1729,9 +1480,6 @@
   },
   "watchlist_command_create": {
     "message": "הוסף כניסה חדשה"
-  },
-  "watchlist_command_edit": {
-    "message": "ערוך"
   },
   "watchlist_delete_confirmation": {
     "message": "האם אתה באמת רוצה להסיר אתר זה מהרשימה של התחומים המורשים?"

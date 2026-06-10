@@ -104,9 +104,6 @@
   "analytics_consent_interstitial_learn_more": {
     "message": "Дізнайтеся, наскільки безпечні метрики"
   },
-  "analytics_consent_interstitial_learn_more_explanation": {
-    "message": "Якщо ви дасте згоду, аналітичні дані будуть агреговані та мінімізовані за допомогою Clean Insights, який зберігає ці дані без зв'язку з ідентифікаційними характеристиками. Ми поважаємо ваш вибір і не повідомляємо нічого, якщо ви вирішили не брати участь."
-  },
   "analytics_consent_interstitial_message": {
     "message": "Mailvelope просить 1% нових користувачів зробити свій внесок в анонімну метрику. Якщо ви скажете «так», Mailvelope буде реєструвати успішні кроки вашої адаптації. Чи зробите ви свій внесок?"
   },
@@ -145,9 +142,6 @@
   },
   "decrypt_att_frame_help_text": {
     "message": "Натисніть тут, щоб переглянути повідомлення"
-  },
-  "decrypt_attachment_label": {
-    "message": "Вкладення"
   },
   "decrypt_cleartext_warning": {
     "message": "Наступний текст не був зашифрований."
@@ -206,9 +200,6 @@
   "decrypt_show_message_btn": {
     "message": "Показати повідомлення"
   },
-  "decrypt_signer_label": {
-    "message": "Відправник"
-  },
   "decrypt_text_area_label": {
     "message": "Текст для розшифрування"
   },
@@ -234,9 +225,6 @@
     "message": "Зберегти"
   },
   "dialog_yes_btn": {
-    "message": "Так"
-  },
-  "dialog_yes_button": {
     "message": "Так"
   },
   "editor_blur_warn": {
@@ -290,38 +278,17 @@
   "editor_label_subject": {
     "message": "Тема"
   },
-  "editor_link_file_encryption": {
-    "message": "Зашифрувати файли"
-  },
-  "editor_no_default_key_caption_long": {
-    "message": "Лист не може бути підписаний цифровим підписом, тому що відсутній основний ключ"
-  },
-  "editor_no_default_key_caption_short": {
-    "message": "Лист не може бути підписаний цифровим підписом"
-  },
   "editor_remove_upload": {
     "message": "Вилучити"
   },
   "editor_sign_button": {
     "message": "Тільки підписати"
   },
-  "editor_sign_caption_long": {
-    "message": "Коли лист буде надіслано, його також буде підписано цифровим підписом"
-  },
-  "editor_sign_caption_short": {
-    "message": "Лист буде підписаний цифровим підписом"
-  },
-  "editor_transfer": {
-    "message": "Перенести"
-  },
   "encrypt_change_signer_dialog_signer_label": {
     "message": "Виберіть підпис"
   },
   "encrypt_change_signer_dialog_title": {
     "message": "Змінити підпис"
-  },
-  "encrypt_dialog_no_recipient": {
-    "message": "Будь ласка, додайте отримувача."
   },
   "encrypt_download_all_button": {
     "message": "Завантажити все"
@@ -398,26 +365,11 @@
   "form_back": {
     "message": "Назад"
   },
-  "form_busy": {
-    "message": "Обробка"
-  },
   "form_cancel": {
     "message": "Скасувати"
   },
-  "form_clear": {
-    "message": "Очистити"
-  },
-  "form_close": {
-    "message": "Закрити"
-  },
   "form_confirm": {
     "message": "Підтвердити"
-  },
-  "form_continue": {
-    "message": "Продовжити"
-  },
-  "form_definition_error_no_recipient_key": {
-    "message": "Немає дійсного ключа шифрування для адреси одержувача."
   },
   "form_definition_error_signature_invalid": {
     "message": "Зазначена форма підпису недійсна."
@@ -428,17 +380,11 @@
   "form_destination_default": {
     "message": "Зашифровану інформацію буде перенаправлено на сторінку."
   },
-  "form_forward": {
-    "message": "Уперед"
-  },
   "form_import": {
     "message": "Імпорт"
   },
   "form_loading": {
     "message": "Форма завантаження"
-  },
-  "form_next": {
-    "message": "Далі"
   },
   "form_no": {
     "message": "Ні"
@@ -457,9 +403,6 @@
   },
   "form_submit": {
     "message": "Надіслати"
-  },
-  "form_undo": {
-    "message": "Скасувати"
   },
   "form_yes": {
     "message": "Так"
@@ -521,9 +464,6 @@
   "import_frame_help_text": {
     "message": "Натисніть, щоб імпортувати ключ"
   },
-  "install_landing_page_hint": {
-    "message": "Натисніть, щоб відкрити розширення."
-  },
   "key_default_active_btn_title": {
     "message": "Ключ встановлено як ключ за замовчуванням"
   },
@@ -554,17 +494,11 @@
   "key_export_filename": {
     "message": "Ім'я файла"
   },
-  "key_export_header": {
-    "message": "Експортувати ключ"
-  },
   "key_export_warning_private": {
     "message": "Цей файл також містить приватні ключі. Зберігайте цей файл у безпечному місці та не діліться ним зі сторонніми особами."
   },
   "key_gen_advanced_btn": {
     "message": "Розширені"
-  },
-  "key_gen_another": {
-    "message": "Генерувати інший…"
   },
   "key_gen_demail": {
     "message": "De-Mail адреса"
@@ -599,9 +533,6 @@
   "key_gen_pwd_empty": {
     "message": "Порожнє поле паролю"
   },
-  "key_gen_pwd_match": {
-    "message": "Паролі співпадають"
-  },
   "key_gen_pwd_reenter": {
     "message": "Введіть пароль ще раз"
   },
@@ -635,17 +566,11 @@
   "key_import_default_headline": {
     "message": "Підтвердити ключ"
   },
-  "key_import_dialog_header": {
-    "message": "Додати ключ до зв'язки ключів"
-  },
   "key_import_error": {
     "message": "Помилка імпорту."
   },
   "key_import_error_no_uid": {
     "message": "У ключі $1 не знайдено дійсного ID користувача"
-  },
-  "key_import_error_parse": {
-    "message": "Помилка зчитування захищеного PGP ключа: $1"
   },
   "key_import_exception": {
     "message": "При обробці ключів виникла помилка"
@@ -733,9 +658,6 @@
   },
   "key_import_search_ph": {
     "message": "Адреса електронної пошти / ID ключа / Відбиток пальця"
-  },
-  "key_import_textarea": {
-    "message": "Імпортувати ключ як текст"
   },
   "key_import_too_big": {
     "message": "Текст ключа, який ви намагалися імпортувати, надто довгий. Спробуйте зробити це меншими частинами."
@@ -872,9 +794,6 @@
   "keygen_dialog_password_error_length": {
     "message": "Для пароля потрібно щонайменше $1 символів"
   },
-  "keygen_dialog_password_placeholder": {
-    "message": "мін. 4 символи"
-  },
   "keygen_dialog_prolog": {
     "message": "Встановіть пароль для свого ключа, щоб захистити шифроване спілкування:"
   },
@@ -890,9 +809,6 @@
   "keygrid_all_keys": {
     "message": "Всі"
   },
-  "keygrid_creation_date": {
-    "message": "Дата створення"
-  },
   "keygrid_creation_date_short": {
     "message": "Створено"
   },
@@ -902,23 +818,8 @@
   "keygrid_default_label": {
     "message": "Усталено"
   },
-  "keygrid_delete": {
-    "message": "Вилучити"
-  },
   "keygrid_delete_confirmation": {
     "message": "Ви впевнені, що хочете вилучити цей ключ?"
-  },
-  "keygrid_display_all_keys": {
-    "message": "Показати усі ключі"
-  },
-  "keygrid_display_priv_key": {
-    "message": "Показати приватний ключ"
-  },
-  "keygrid_display_pub_key": {
-    "message": "Показати публічний ключ"
-  },
-  "keygrid_expiration_date": {
-    "message": "Закінчення терміну дії"
   },
   "keygrid_export": {
     "message": "Експортувати"
@@ -953,9 +854,6 @@
   "keygrid_primary_key": {
     "message": "Головний ключ"
   },
-  "keygrid_private_keys": {
-    "message": "Приватні ключі"
-  },
   "keygrid_public_keys": {
     "message": "Публічні ключі"
   },
@@ -964,12 +862,6 @@
   },
   "keygrid_refresh_title": {
     "message": "Перезавантажити зв'язку ключів"
-  },
-  "keygrid_send_pub_key": {
-    "message": "Надіслати публічний ключ листом"
-  },
-  "keygrid_signer_name": {
-    "message": "Підписувач"
   },
   "keygrid_signer_unknown": {
     "message": "Підписувач невідомий"
@@ -992,14 +884,8 @@
   "keygrid_subkey": {
     "message": "Підключ"
   },
-  "keygrid_subkeys": {
-    "message": "Субключі"
-  },
   "keygrid_user_email": {
     "message": "Електронна пошта"
-  },
-  "keygrid_user_ids": {
-    "message": "ID користувача"
   },
   "keygrid_user_name": {
     "message": "Ім'я"
@@ -1028,9 +914,6 @@
   "keyring_confirm_keys_plural": {
     "message": "Підтвердити $1 ключі для імпорту"
   },
-  "keyring_export_keys": {
-    "message": "Експортувати зв'язку ключів"
-  },
   "keyring_generate_key": {
     "message": "Генерувати ключ"
   },
@@ -1045,9 +928,6 @@
   },
   "keyring_import_search_description": {
     "message": "Знайдіть відкриті ключі, щоб додати їх до зв’язки. Mailvelope сканує декілька ключових каталогів і пропонує відкритий ключ, який найімовірніше використовується."
-  },
-  "keyring_import_search_keys": {
-    "message": "Пошук ключів"
   },
   "keyring_main": {
     "message": "Основна зв'язка ключів"
@@ -1154,9 +1034,6 @@
   "options_home": {
     "message": "Опції"
   },
-  "options_settings": {
-    "message": "Налаштування"
-  },
   "options_title": {
     "message": "Опції Mailvelope "
   },
@@ -1259,9 +1136,6 @@
   "pwd_dialog_header": {
     "message": "Введіть пароль ключа"
   },
-  "pwd_dialog_pwd_please": {
-    "message": "Будь ласка, введіть свій пароль"
-  },
   "pwd_dialog_reason_add_user": {
     "message": "Для створення ID користувача, введіть пароль."
   },
@@ -1288,12 +1162,6 @@
   },
   "pwd_dialog_reason_sign": {
     "message": "Введіть пароль ключа, щоб підписати це повідомлення."
-  },
-  "pwd_dialog_title": {
-    "message": "Введіть пароль | Mailvelope"
-  },
-  "pwd_dialog_userid": {
-    "message": "Ідентифікатор користувача"
   },
   "pwd_dialog_wrong_pwd": {
     "message": "Неправильний пароль"
@@ -1490,9 +1358,6 @@
   "security_log_backup_restore": {
     "message": "Натисніть, щоб відновити резервну копію"
   },
-  "security_log_content_copy": {
-    "message": "Скопіювати до діалогу верифікації"
-  },
   "security_log_decrypt_ui": {
     "message": "Розшифрувати"
   },
@@ -1516,9 +1381,6 @@
   },
   "security_log_email_viewer": {
     "message": "Розкодований PGP-лист"
-  },
-  "security_log_encrypt_dialog": {
-    "message": "Діалог шифрування"
   },
   "security_log_encrypt_form": {
     "message": "Форма шифрування"
@@ -1556,20 +1418,11 @@
   "security_log_sign_operation": {
     "message": "Повідомлення було підписано ключем: $1"
   },
-  "security_log_signature_modal_close": {
-    "message": "Натиснути, щоб закрити діалог підписування"
-  },
-  "security_log_signature_modal_open": {
-    "message": "Натиснути, щоб відкрити діалог підписування"
-  },
   "security_log_source": {
     "message": "Джерело"
   },
   "security_log_text": {
     "message": "Журнал безпеки показує дії користувача в усіх компонентах Mailvelope."
-  },
-  "security_log_text_input": {
-    "message": "Введення у текстове поле"
   },
   "security_log_textarea_click": {
     "message": "Натискання у текстовій області"
@@ -1583,9 +1436,6 @@
   "security_log_timestamp": {
     "message": "Часова мітка"
   },
-  "security_log_verify_dialog": {
-    "message": "Діалог верифікації"
-  },
   "security_log_viewer": {
     "message": "Переглядач Mailvelope"
   },
@@ -1594,9 +1444,6 @@
   },
   "settings_analytics": {
     "message": "Аналітика"
-  },
-  "settings_backup": {
-    "message": "Резервна копія"
   },
   "settings_general": {
     "message": "Загальні"
@@ -1630,15 +1477,6 @@
   },
   "text_decrypt_button": {
     "message": "Розшифрувати"
-  },
-  "text_decrypting": {
-    "message": "Розшифрування тексту"
-  },
-  "text_encrypting": {
-    "message": "Зашифрування тексту"
-  },
-  "upload_aborting_warning": {
-    "message": "Завантаження файлу буде перервано."
   },
   "upload_attachment": {
     "message": "Додати файл"
@@ -1729,9 +1567,6 @@
   },
   "watchlist_command_create": {
     "message": "Додати новий"
-  },
-  "watchlist_command_edit": {
-    "message": "Змінити"
   },
   "watchlist_delete_confirmation": {
     "message": "Ви дійсно хочете прибрати цей сайт зі списку поштовиків?"

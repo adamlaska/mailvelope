@@ -95,17 +95,11 @@
   "analytics_consent_interstitial_Your_Privacy_is_Preserved_Pt1": {
     "message": "Mailvelope использует"
   },
-  "analytics_consent_interstitial_Your_Privacy_is_Preserved_Pt2": {
-    "message": "which securely stores data without connecting it to identifiable information. Further, your IP address is not recorded or processed."
-  },
   "analytics_consent_interstitial_Your_Privacy_is_Preserved_Title": {
     "message": "Ваша частная жизнь под защитой"
   },
   "analytics_consent_interstitial_learn_more": {
     "message": "Подробнее о безопасности данных"
-  },
-  "analytics_consent_interstitial_learn_more_explanation": {
-    "message": "Если вы согласитесь, данные аналитики будут обобщаться и минимизироваться в соответствии с методологией Clean Insights. Эти данные не будут связаны с идентифицирующей вас информацией. Мы с уважением относимся к вашему выбору, в том числе если вы откажетесь участвовать."
   },
   "analytics_consent_interstitial_message": {
     "message": "Mailvelope просит 1% новых пользователей поучаствовать в анонимном сборе данных. С вашего разрешения мы запишем ваши успешные шаги по установке и настройке Mailvelope. Вы согласны нам помочь?  "
@@ -145,9 +139,6 @@
   },
   "decrypt_att_frame_help_text": {
     "message": "Нажмите, чтобы увидеть сообщение"
-  },
-  "decrypt_attachment_label": {
-    "message": "Вложения"
   },
   "decrypt_cleartext_warning": {
     "message": "Следующий текст не был зашифрован."
@@ -206,9 +197,6 @@
   "decrypt_show_message_btn": {
     "message": "Показать сообщение"
   },
-  "decrypt_signer_label": {
-    "message": "Отправитель"
-  },
   "decrypt_text_area_label": {
     "message": "Текст для расшифровки"
   },
@@ -234,9 +222,6 @@
     "message": "Сохранить"
   },
   "dialog_yes_btn": {
-    "message": "Да"
-  },
-  "dialog_yes_button": {
     "message": "Да"
   },
   "editor_blur_warn": {
@@ -290,38 +275,17 @@
   "editor_label_subject": {
     "message": "Тема"
   },
-  "editor_link_file_encryption": {
-    "message": "Зашифровать файлы"
-  },
-  "editor_no_default_key_caption_long": {
-    "message": "Отсутствует основной ключ. Цифровая подпись невозможна."
-  },
-  "editor_no_default_key_caption_short": {
-    "message": "Сообщение не может быть подписано"
-  },
   "editor_remove_upload": {
     "message": "Удалить"
   },
   "editor_sign_button": {
     "message": "Только подпись"
   },
-  "editor_sign_caption_long": {
-    "message": "Отправленные сообщения будут снабжены цифровой подписью"
-  },
-  "editor_sign_caption_short": {
-    "message": "Сообщение будет снабжено цифровой подписью"
-  },
-  "editor_transfer": {
-    "message": "Отправить"
-  },
   "encrypt_change_signer_dialog_signer_label": {
     "message": "Выбор подписи"
   },
   "encrypt_change_signer_dialog_title": {
     "message": "Изменение подписи"
-  },
-  "encrypt_dialog_no_recipient": {
-    "message": "Пожалуйста, добавьте адресата."
   },
   "encrypt_download_all_button": {
     "message": "Скачать все"
@@ -398,26 +362,11 @@
   "form_back": {
     "message": "Назад"
   },
-  "form_busy": {
-    "message": "Обработка"
-  },
   "form_cancel": {
     "message": "Отмена"
   },
-  "form_clear": {
-    "message": "Очистить"
-  },
-  "form_close": {
-    "message": "Закрыть"
-  },
   "form_confirm": {
     "message": "Подтвердить"
-  },
-  "form_continue": {
-    "message": "Продолжить"
-  },
-  "form_definition_error_no_recipient_key": {
-    "message": "Нет подходящего ключа для адресата."
   },
   "form_definition_error_signature_invalid": {
     "message": "Ошибка формы подписи."
@@ -428,17 +377,11 @@
   "form_destination_default": {
     "message": "Зашифрованные данные появятся на этой странице."
   },
-  "form_forward": {
-    "message": "Переслать"
-  },
   "form_import": {
     "message": "Импорт"
   },
   "form_loading": {
     "message": "Загрузка формы"
-  },
-  "form_next": {
-    "message": "Далее"
   },
   "form_no": {
     "message": "Нет"
@@ -457,9 +400,6 @@
   },
   "form_submit": {
     "message": "Отправить"
-  },
-  "form_undo": {
-    "message": "Отменить действие"
   },
   "form_yes": {
     "message": "Да"
@@ -521,9 +461,6 @@
   "import_frame_help_text": {
     "message": "Нажмите для импорта ключа"
   },
-  "install_landing_page_hint": {
-    "message": "Нажмите для открытия расширения."
-  },
   "key_default_active_btn_title": {
     "message": "Ключ помечен как основной"
   },
@@ -554,17 +491,11 @@
   "key_export_filename": {
     "message": "Имя файла"
   },
-  "key_export_header": {
-    "message": "Экспортировать ключ"
-  },
   "key_export_warning_private": {
     "message": "В этом файле содержатся также закрытые ключи. Храните файл в надежном месте, не давайте к нему доступ другим людям."
   },
   "key_gen_advanced_btn": {
     "message": "Дополнительно"
-  },
-  "key_gen_another": {
-    "message": "Создать другой..."
   },
   "key_gen_demail": {
     "message": "Адрес De-Mail"
@@ -599,9 +530,6 @@
   "key_gen_pwd_empty": {
     "message": "В поле пароля ничего нет"
   },
-  "key_gen_pwd_match": {
-    "message": "Пароли совпадают"
-  },
   "key_gen_pwd_reenter": {
     "message": "Повторите пароль"
   },
@@ -635,17 +563,11 @@
   "key_import_default_headline": {
     "message": "Подтвердить ключ"
   },
-  "key_import_dialog_header": {
-    "message": "Добавить ключ в связку ключей"
-  },
   "key_import_error": {
     "message": "Ошибка импорта."
   },
   "key_import_error_no_uid": {
     "message": "В ключе $1 нет ID пользователя"
-  },
-  "key_import_error_parse": {
-    "message": "Ошибка чтения защищенного PGP-ключа: $1"
   },
   "key_import_exception": {
     "message": "Ошибка при работе с ключами"
@@ -733,9 +655,6 @@
   },
   "key_import_search_ph": {
     "message": "Адрес электронной почты / Идентификатор ключа / Отпечаток"
-  },
-  "key_import_textarea": {
-    "message": "Импортировать ключ как текст"
   },
   "key_import_too_big": {
     "message": "Текст слишком велик для импорта. Попробуйте импортировать по частям."
@@ -872,9 +791,6 @@
   "keygen_dialog_password_error_length": {
     "message": "В пароле должно быть не меньше $1 знаков"
   },
-  "keygen_dialog_password_placeholder": {
-    "message": "минимум 4 знака"
-  },
   "keygen_dialog_prolog": {
     "message": "Пожалуйста, придумайте пароль для своего ключа, чтобы защитить шифрованную переписку:"
   },
@@ -890,9 +806,6 @@
   "keygrid_all_keys": {
     "message": "Все"
   },
-  "keygrid_creation_date": {
-    "message": "Cоздан"
-  },
   "keygrid_creation_date_short": {
     "message": "Создан"
   },
@@ -902,23 +815,8 @@
   "keygrid_default_label": {
     "message": "По умолчанию"
   },
-  "keygrid_delete": {
-    "message": "Удал."
-  },
   "keygrid_delete_confirmation": {
     "message": "Действительно удалить этот ключ?"
-  },
-  "keygrid_display_all_keys": {
-    "message": "Показать все ключи"
-  },
-  "keygrid_display_priv_key": {
-    "message": "Показать закрытый ключ"
-  },
-  "keygrid_display_pub_key": {
-    "message": "Показать открытый ключ"
-  },
-  "keygrid_expiration_date": {
-    "message": "Истекает"
   },
   "keygrid_export": {
     "message": "Экспорт"
@@ -953,9 +851,6 @@
   "keygrid_primary_key": {
     "message": "Ключ"
   },
-  "keygrid_private_keys": {
-    "message": "Закрытые ключи"
-  },
   "keygrid_public_keys": {
     "message": "Открытые ключи"
   },
@@ -964,12 +859,6 @@
   },
   "keygrid_refresh_title": {
     "message": "Перезагрузить связку ключей"
-  },
-  "keygrid_send_pub_key": {
-    "message": "Отправить открытый ключ по email"
-  },
-  "keygrid_signer_name": {
-    "message": "Подписант"
   },
   "keygrid_signer_unknown": {
     "message": "Неизвестный подписант"
@@ -992,14 +881,8 @@
   "keygrid_subkey": {
     "message": "Подключ"
   },
-  "keygrid_subkeys": {
-    "message": "Подключи"
-  },
   "keygrid_user_email": {
     "message": "E-mail"
-  },
-  "keygrid_user_ids": {
-    "message": "ID пользователя"
   },
   "keygrid_user_name": {
     "message": "Имя"
@@ -1028,9 +911,6 @@
   "keyring_confirm_keys_plural": {
     "message": "Подтверждение $1 ключей для импорта"
   },
-  "keyring_export_keys": {
-    "message": "Экспортировать связку ключей"
-  },
   "keyring_generate_key": {
     "message": "Создать ключ"
   },
@@ -1045,9 +925,6 @@
   },
   "keyring_import_search_description": {
     "message": "Поиск открытых ключей для добавления в связку ключей. Mailvelope сканирует несколько каталогов ключей и предлагает открытый ключ, который, скорее всего, используется."
-  },
-  "keyring_import_search_keys": {
-    "message": "Поиск ключей"
   },
   "keyring_main": {
     "message": "Основная связка ключей"
@@ -1154,9 +1031,6 @@
   "options_home": {
     "message": "Настройки"
   },
-  "options_settings": {
-    "message": "Прочее"
-  },
   "options_title": {
     "message": "Настройки Mailvelope"
   },
@@ -1193,9 +1067,6 @@
   "provider_gmail_dialog_description": {
     "message": "Использование Gmail API расширяет функционал Mailvelope в паре с Gmail. Отправлять и получать шифрованные письма и вложения станет проще."
   },
-  "provider_gmail_dialog_gsuite_alert": {
-    "message": "This feature is free for Gmail accounts. If you are part of a Google Workspace (<0>workspace.google.com</0>) organization, you will need to purchase a license from the <1>Mailvelope website</1>."
-  },
   "provider_gmail_dialog_privacy_policy": {
     "message": "Наша политика приватности"
   },
@@ -1220,9 +1091,6 @@
   "provider_gmail_licensing_dialog_deactivate_btn": {
     "message": "Продолжить без Gmail API"
   },
-  "provider_gmail_licensing_dialog_para_1": {
-    "message": "Use of the Gmail API within Google Workspace organizations is <0>subject to a fee</0>."
-  },
   "provider_gmail_licensing_dialog_para_2": {
     "message": "Можно использовать Mailvelope с Gmail бесплатно, однако <0>с API ваш рабочий процесс</0> (создание и чтение шифрованных сообщений и вложений) будет <1>заметно быстрее и проще</1>."
   },
@@ -1234,9 +1102,6 @@
   },
   "provider_gmail_licensing_dialog_title": {
     "message": "Нужна лицензия Mailvelope Business"
-  },
-  "provider_gmail_licensing_table_caption": {
-    "message": "Licenses to use the Gmail API integration within Google Workspace (<0>workspace.google.com</0>) can be purchased from the <1>Mailvelope website</1>."
   },
   "provider_gmail_licensing_table_title": {
     "message": "Лицензия Mailvelope"
@@ -1258,9 +1123,6 @@
   },
   "pwd_dialog_header": {
     "message": "Введите пароль ключа"
-  },
-  "pwd_dialog_pwd_please": {
-    "message": "Пожалуйста, введите пароль"
   },
   "pwd_dialog_reason_add_user": {
     "message": "Для создания ID пользователя, пожалуйста, укажите пароль."
@@ -1288,12 +1150,6 @@
   },
   "pwd_dialog_reason_sign": {
     "message": "Для подписи сообщения введите пароль ключа"
-  },
-  "pwd_dialog_title": {
-    "message": "Ввод пароля | Mailvelope"
-  },
-  "pwd_dialog_userid": {
-    "message": "ID польз.:"
   },
   "pwd_dialog_wrong_pwd": {
     "message": "Неверный пароль"
@@ -1490,9 +1346,6 @@
   "security_log_backup_restore": {
     "message": "Нажмите для восстановления из резервной копии"
   },
-  "security_log_content_copy": {
-    "message": "Копирование в диалоге проверки"
-  },
   "security_log_decrypt_ui": {
     "message": "Расшифровать"
   },
@@ -1516,9 +1369,6 @@
   },
   "security_log_email_viewer": {
     "message": "Расшифрованное PGP-сообщение"
-  },
-  "security_log_encrypt_dialog": {
-    "message": "Диалог шифрования"
   },
   "security_log_encrypt_form": {
     "message": "Форма шифрования"
@@ -1556,20 +1406,11 @@
   "security_log_sign_operation": {
     "message": "Сообщение подписано ключом $1"
   },
-  "security_log_signature_modal_close": {
-    "message": "Нажмите для закрытия диалога подписи"
-  },
-  "security_log_signature_modal_open": {
-    "message": "Нажмите для открытия диалога подписи"
-  },
   "security_log_source": {
     "message": "Объект"
   },
   "security_log_text": {
     "message": "Журнал содержит информацию о действиях пользователя в Mailvelope."
-  },
-  "security_log_text_input": {
-    "message": "Вставка в текстовое поле"
   },
   "security_log_textarea_click": {
     "message": "Нажатие в текстовом поле"
@@ -1583,9 +1424,6 @@
   "security_log_timestamp": {
     "message": "Время"
   },
-  "security_log_verify_dialog": {
-    "message": "Диалог проверки"
-  },
   "security_log_viewer": {
     "message": "Просмотрщик Mailvelope"
   },
@@ -1594,9 +1432,6 @@
   },
   "settings_analytics": {
     "message": "Аналитика"
-  },
-  "settings_backup": {
-    "message": "Резервная копия"
   },
   "settings_general": {
     "message": "Общие настройки"
@@ -1630,15 +1465,6 @@
   },
   "text_decrypt_button": {
     "message": "Расшифровать"
-  },
-  "text_decrypting": {
-    "message": "Расшифровка текста"
-  },
-  "text_encrypting": {
-    "message": "Шифрование текста"
-  },
-  "upload_aborting_warning": {
-    "message": "Закачка файла будет прервана."
   },
   "upload_attachment": {
     "message": "Выбрать файл"
@@ -1729,9 +1555,6 @@
   },
   "watchlist_command_create": {
     "message": "Добавить"
-  },
-  "watchlist_command_edit": {
-    "message": "Ред."
   },
   "watchlist_delete_confirmation": {
     "message": "Действительно удалить этот сайт из списка настроенных доменов?"

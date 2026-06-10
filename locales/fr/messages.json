@@ -104,9 +104,6 @@
   "analytics_consent_interstitial_learn_more": {
     "message": "Découvrir le niveau de sécurité des mesures"
   },
-  "analytics_consent_interstitial_learn_more_explanation": {
-    "message": "Si vous consentez, les données d’analyse seront agrégées et réduites au minimum par « Clean Insights », qui stocke ces données sans les relier à des caractéristiques personnelles. Nous respectons votre choix et ne signalons rien si vous ne consentez pas."
-  },
   "analytics_consent_interstitial_message": {
     "message": "Mailvelope demande à 1 % des nouvelles personnes qui l’utilisent de participer à des mesures anonymes. Si vous consentez, Mailvelope enregistrera les étapes réussies de votre parcours d’intégration. Participerez-vous ?"
   },
@@ -145,9 +142,6 @@
   },
   "decrypt_att_frame_help_text": {
     "message": "Cliquez ici pour visualiser le courriel"
-  },
-  "decrypt_attachment_label": {
-    "message": "Fichiers joints"
   },
   "decrypt_cleartext_warning": {
     "message": "Le texte suivant n’était pas chiffré."
@@ -206,9 +200,6 @@
   "decrypt_show_message_btn": {
     "message": "Afficher le courriel"
   },
-  "decrypt_signer_label": {
-    "message": "Expéditeur"
-  },
   "decrypt_text_area_label": {
     "message": "Texte à déchiffrer"
   },
@@ -234,9 +225,6 @@
     "message": "Enregistrer"
   },
   "dialog_yes_btn": {
-    "message": "Oui"
-  },
-  "dialog_yes_button": {
     "message": "Oui"
   },
   "editor_blur_warn": {
@@ -290,38 +278,17 @@
   "editor_label_subject": {
     "message": "Objet"
   },
-  "editor_link_file_encryption": {
-    "message": "Chiffrer des fichiers"
-  },
-  "editor_no_default_key_caption_long": {
-    "message": "Le courriel ne peut pas être signé numériquement, car il manque la clé par défaut"
-  },
-  "editor_no_default_key_caption_short": {
-    "message": "Le courriel ne peut pas être signé numériquement"
-  },
   "editor_remove_upload": {
     "message": "Supprimer"
   },
   "editor_sign_button": {
     "message": "Signer seulement"
   },
-  "editor_sign_caption_long": {
-    "message": "Lors de son envoi, le courriel sera aussi signé numériquement"
-  },
-  "editor_sign_caption_short": {
-    "message": "Le courriel sera signé numériquement"
-  },
-  "editor_transfer": {
-    "message": "Transférer"
-  },
   "encrypt_change_signer_dialog_signer_label": {
     "message": "Choisir une signature"
   },
   "encrypt_change_signer_dialog_title": {
     "message": "Changer la signature"
-  },
-  "encrypt_dialog_no_recipient": {
-    "message": "Ajoutez un destinataire."
   },
   "encrypt_download_all_button": {
     "message": "Tout télécharger"
@@ -398,26 +365,11 @@
   "form_back": {
     "message": "Précédent"
   },
-  "form_busy": {
-    "message": "En traitement"
-  },
   "form_cancel": {
     "message": "Annuler"
   },
-  "form_clear": {
-    "message": "Effacer"
-  },
-  "form_close": {
-    "message": "Fermer"
-  },
   "form_confirm": {
     "message": "Confirmer"
-  },
-  "form_continue": {
-    "message": "Poursuivre"
-  },
-  "form_definition_error_no_recipient_key": {
-    "message": "Il n’y a pas de clé de chiffrement valide pour l’adresse destinataire."
   },
   "form_definition_error_signature_invalid": {
     "message": "La signature du formulaire n’est pas valide."
@@ -428,17 +380,11 @@
   "form_destination_default": {
     "message": "Les données chiffrées seront retournées à la page."
   },
-  "form_forward": {
-    "message": "Suivant"
-  },
   "form_import": {
     "message": "Importer"
   },
   "form_loading": {
     "message": "Chargement du formulaire"
-  },
-  "form_next": {
-    "message": "Suivant"
   },
   "form_no": {
     "message": "Non"
@@ -457,9 +403,6 @@
   },
   "form_submit": {
     "message": "Envoyer"
-  },
-  "form_undo": {
-    "message": "Rétablir"
   },
   "form_yes": {
     "message": "Oui"
@@ -521,9 +464,6 @@
   "import_frame_help_text": {
     "message": "Cliquez pour importer la clé"
   },
-  "install_landing_page_hint": {
-    "message": "Sélectionner ici, pour ouvrir l’extension."
-  },
   "key_default_active_btn_title": {
     "message": "La clé est définie comme clé par défaut"
   },
@@ -554,17 +494,11 @@
   "key_export_filename": {
     "message": "Nom du fichier"
   },
-  "key_export_header": {
-    "message": "Exporter la clé"
-  },
   "key_export_warning_private": {
     "message": "Ce fichier contient aussi des clés privées. Conservez ce fichier en lieu sûr et ne le partagez avec personne."
   },
   "key_gen_advanced_btn": {
     "message": "Avancé"
-  },
-  "key_gen_another": {
-    "message": "En générer une autre…"
   },
   "key_gen_demail": {
     "message": "Adresse De-Mail"
@@ -599,9 +533,6 @@
   "key_gen_pwd_empty": {
     "message": "Le champ de mot de passe est vide"
   },
-  "key_gen_pwd_match": {
-    "message": "Les mots de passe correspondent"
-  },
   "key_gen_pwd_reenter": {
     "message": "Confirmer le mot de passe"
   },
@@ -635,17 +566,11 @@
   "key_import_default_headline": {
     "message": "Confirmer la clé"
   },
-  "key_import_dialog_header": {
-    "message": "Ajouter la clé au porte-clés"
-  },
   "key_import_error": {
     "message": "Erreur d’importation."
   },
   "key_import_error_no_uid": {
     "message": "Aucun ID utilisateur valide n’a été trouvé dans la clé $1"
-  },
-  "key_import_error_parse": {
-    "message": "Erreur de lecture de la clé PGP blindée : $1"
   },
   "key_import_exception": {
     "message": "Une erreur est survenue lors du traitement des clés"
@@ -733,9 +658,6 @@
   },
   "key_import_search_ph": {
     "message": "Adresse courriel / ID de clé / empreinte"
-  },
-  "key_import_textarea": {
-    "message": "Importer une clé sous forme de texte"
   },
   "key_import_too_big": {
     "message": "Le texte de clé que vous avez tenté d’importer est trop long pour être traité. Essayez de le scinder en plusieurs parties plus petites."
@@ -872,9 +794,6 @@
   "keygen_dialog_password_error_length": {
     "message": "Le mot de passe doit comporter au moins $1 caractères"
   },
-  "keygen_dialog_password_placeholder": {
-    "message": "4 caractères minimum"
-  },
   "keygen_dialog_prolog": {
     "message": "Attribuez un mot de passe à votre clé afin de protéger vos communications chiffrées :"
   },
@@ -890,9 +809,6 @@
   "keygrid_all_keys": {
     "message": "Toutes"
   },
-  "keygrid_creation_date": {
-    "message": "Date de création"
-  },
   "keygrid_creation_date_short": {
     "message": "Créée le"
   },
@@ -902,23 +818,8 @@
   "keygrid_default_label": {
     "message": "Clé par défaut"
   },
-  "keygrid_delete": {
-    "message": "Supprimer"
-  },
   "keygrid_delete_confirmation": {
     "message": "Voulez-vous vraiment supprimer cette clé ?"
-  },
-  "keygrid_display_all_keys": {
-    "message": "Afficher toutes les clés"
-  },
-  "keygrid_display_priv_key": {
-    "message": "Afficher la clé privée"
-  },
-  "keygrid_display_pub_key": {
-    "message": "Afficher la clé publique"
-  },
-  "keygrid_expiration_date": {
-    "message": "Date d’expiration"
   },
   "keygrid_export": {
     "message": "Exporter"
@@ -953,9 +854,6 @@
   "keygrid_primary_key": {
     "message": "Clé principale"
   },
-  "keygrid_private_keys": {
-    "message": "Clés privées"
-  },
   "keygrid_public_keys": {
     "message": "Clés publiques"
   },
@@ -964,12 +862,6 @@
   },
   "keygrid_refresh_title": {
     "message": "Recharger le porte-clés"
-  },
-  "keygrid_send_pub_key": {
-    "message": "Envoyer la clé publique par courriel"
-  },
-  "keygrid_signer_name": {
-    "message": "Signataire"
   },
   "keygrid_signer_unknown": {
     "message": "Signataire inconnu"
@@ -992,14 +884,8 @@
   "keygrid_subkey": {
     "message": "Sous-clé"
   },
-  "keygrid_subkeys": {
-    "message": "Sous-clés"
-  },
   "keygrid_user_email": {
     "message": "Adresse courriel"
-  },
-  "keygrid_user_ids": {
-    "message": "ID utilisateur"
   },
   "keygrid_user_name": {
     "message": "Nom"
@@ -1028,9 +914,6 @@
   "keyring_confirm_keys_plural": {
     "message": "Confirmer $1 clés à importer"
   },
-  "keyring_export_keys": {
-    "message": "Exporter le porte-clés"
-  },
   "keyring_generate_key": {
     "message": "Générer une clé"
   },
@@ -1045,9 +928,6 @@
   },
   "keyring_import_search_description": {
     "message": "Trouvez des clés publiques à ajouter à votre porte-clés. Mailvelope analyse plusieurs annuaires de clés et suggère la clé publique la plus probablement utilisée."
-  },
-  "keyring_import_search_keys": {
-    "message": "Chercher des clés"
   },
   "keyring_main": {
     "message": "Porte-clés principal"
@@ -1154,9 +1034,6 @@
   "options_home": {
     "message": "Options"
   },
-  "options_settings": {
-    "message": "Paramètres"
-  },
   "options_title": {
     "message": "Options de Mailvelope"
   },
@@ -1259,9 +1136,6 @@
   "pwd_dialog_header": {
     "message": "Saisir le mot de passe de la clé"
   },
-  "pwd_dialog_pwd_please": {
-    "message": "Saisissez votre mot de passe"
-  },
   "pwd_dialog_reason_add_user": {
     "message": "Saisissez le mot de passe de votre clé pour créer l’ID utilisateur."
   },
@@ -1288,12 +1162,6 @@
   },
   "pwd_dialog_reason_sign": {
     "message": "Saisissez le mot de passe de votre clé pour signer ce courriel."
-  },
-  "pwd_dialog_title": {
-    "message": "Saisir un mot de passe | Mailvelope"
-  },
-  "pwd_dialog_userid": {
-    "message": "ID utilisateur :"
   },
   "pwd_dialog_wrong_pwd": {
     "message": "Mot de passe erroné"
@@ -1490,9 +1358,6 @@
   "security_log_backup_restore": {
     "message": "Clic pour restaurer une sauvegarde"
   },
-  "security_log_content_copy": {
-    "message": "Copie dans une boîte de dialogue de vérification"
-  },
   "security_log_decrypt_ui": {
     "message": "Déchiffrer"
   },
@@ -1516,9 +1381,6 @@
   },
   "security_log_email_viewer": {
     "message": "Un courriel PGP a été déchiffré"
-  },
-  "security_log_encrypt_dialog": {
-    "message": "Boîte de dialogue de chiffrement"
   },
   "security_log_encrypt_form": {
     "message": "Formulaire de chiffrement"
@@ -1556,20 +1418,11 @@
   "security_log_sign_operation": {
     "message": "Le courriel a été signé avec la clé :$1"
   },
-  "security_log_signature_modal_close": {
-    "message": "Clic pour fermer la boîte de dialogue de signature"
-  },
-  "security_log_signature_modal_open": {
-    "message": "Clic pour ouvrir la boîte de dialogue de signature"
-  },
   "security_log_source": {
     "message": "Source"
   },
   "security_log_text": {
     "message": "Le journal de sécurité affiche les actions de l’utilisateur-trice dans tous les composants de Mailvelope."
-  },
-  "security_log_text_input": {
-    "message": "Saise dans un champ de texte"
   },
   "security_log_textarea_click": {
     "message": "Clic dans une zone de texte"
@@ -1583,9 +1436,6 @@
   "security_log_timestamp": {
     "message": "Estampille temporelle "
   },
-  "security_log_verify_dialog": {
-    "message": "Boîte de dialogue - Vérifier"
-  },
   "security_log_viewer": {
     "message": "Visualiseur de Mailvelope"
   },
@@ -1594,9 +1444,6 @@
   },
   "settings_analytics": {
     "message": "Analyse des données"
-  },
-  "settings_backup": {
-    "message": "Sauvegarde"
   },
   "settings_general": {
     "message": "Général"
@@ -1630,15 +1477,6 @@
   },
   "text_decrypt_button": {
     "message": "Déchiffrer"
-  },
-  "text_decrypting": {
-    "message": "Déchiffrement de texte"
-  },
-  "text_encrypting": {
-    "message": "Chiffrement de texte"
-  },
-  "upload_aborting_warning": {
-    "message": "Le téléversement de fichiers sera annulé."
   },
   "upload_attachment": {
     "message": "Ajouter un fichier"
@@ -1729,9 +1567,6 @@
   },
   "watchlist_command_create": {
     "message": "Ajouter une nouvelle entrée"
-  },
-  "watchlist_command_edit": {
-    "message": "Modifier"
   },
   "watchlist_delete_confirmation": {
     "message": "Voulez-vous vraiment supprimer ce site de la liste des domaines autorisés ?"

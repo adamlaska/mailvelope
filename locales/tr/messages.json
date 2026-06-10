@@ -104,9 +104,6 @@
   "analytics_consent_interstitial_learn_more": {
     "message": "Ölçümlerin ne kadar güvenli olduğunu öğrenin"
   },
-  "analytics_consent_interstitial_learn_more_explanation": {
-    "message": "Katkıda bulunmayı seçerseniz, istatistik verileri, bu verileri tanımlayıcı özelliklerle bağlantısı olmadan depolayan Clean Insights kullanılarak toplanır ve en aza indirilir. Tercihinize saygı duyuyoruz ve katkıda bulunmamayı seçerseniz herhangi bir şey bildirmiyoruz."
-  },
   "analytics_consent_interstitial_message": {
     "message": "Mailvelope yeni kullanıcıların %1 kadarının anonim ölçümlere katkıda bulunmalarını istiyor. Katkıda bulunmayı seçerseniz, Mailvelope katılım yolculuğunuzdaki başarılı adımları kaydedecek. Katkıda bulunmak ister misiniz?"
   },
@@ -145,9 +142,6 @@
   },
   "decrypt_att_frame_help_text": {
     "message": "İletiyi görüntülemek için buraya tıklayın"
-  },
-  "decrypt_attachment_label": {
-    "message": "Ek dosyalar"
   },
   "decrypt_cleartext_warning": {
     "message": "Şu metin şifrelenmedi."
@@ -206,9 +200,6 @@
   "decrypt_show_message_btn": {
     "message": "İletiyi görüntüle"
   },
-  "decrypt_signer_label": {
-    "message": "Gönderici"
-  },
   "decrypt_text_area_label": {
     "message": "Şifresi çözülecek metin"
   },
@@ -234,9 +225,6 @@
     "message": "Kaydet"
   },
   "dialog_yes_btn": {
-    "message": "Evet"
-  },
-  "dialog_yes_button": {
     "message": "Evet"
   },
   "editor_blur_warn": {
@@ -290,38 +278,17 @@
   "editor_label_subject": {
     "message": "Konu"
   },
-  "editor_link_file_encryption": {
-    "message": "Dosyaları şifrele"
-  },
-  "editor_no_default_key_caption_long": {
-    "message": "Varsayılan anahtar eksik olduğundan e-posta sayısal olarak imzalanamadı"
-  },
-  "editor_no_default_key_caption_short": {
-    "message": "E-posta sayısal olarak imzalanamadı"
-  },
   "editor_remove_upload": {
     "message": "Kaldır"
   },
   "editor_sign_button": {
     "message": "Yalnızca imzala"
   },
-  "editor_sign_caption_long": {
-    "message": "E-posta gönderildiğinde, sayısal olarak da imzalanır"
-  },
-  "editor_sign_caption_short": {
-    "message": "E-posta sayısal olarak imzalanacak"
-  },
-  "editor_transfer": {
-    "message": "Aktar"
-  },
   "encrypt_change_signer_dialog_signer_label": {
     "message": "İmzayı seçin"
   },
   "encrypt_change_signer_dialog_title": {
     "message": "İmzayı değiştir"
-  },
-  "encrypt_dialog_no_recipient": {
-    "message": "Lütfen bir alıcı ekleyin."
   },
   "encrypt_download_all_button": {
     "message": "Tümünü indir"
@@ -398,26 +365,11 @@
   "form_back": {
     "message": "Geri"
   },
-  "form_busy": {
-    "message": "İşleniyor"
-  },
   "form_cancel": {
     "message": "İptal"
   },
-  "form_clear": {
-    "message": "Temizle"
-  },
-  "form_close": {
-    "message": "Kapat"
-  },
   "form_confirm": {
     "message": "Onayla"
-  },
-  "form_continue": {
-    "message": "Devam et"
-  },
-  "form_definition_error_no_recipient_key": {
-    "message": "Alıcı adresi için geçerli bir şifreleme anahtarı yok."
   },
   "form_definition_error_signature_invalid": {
     "message": "Form imzası geçersiz."
@@ -428,17 +380,11 @@
   "form_destination_default": {
     "message": "Şifrelenmiş veriler sayfaya geri getirilecek. "
   },
-  "form_forward": {
-    "message": "Yönlendir"
-  },
   "form_import": {
     "message": "İçe aktar"
   },
   "form_loading": {
     "message": "Form yükleniyor"
-  },
-  "form_next": {
-    "message": "Sonraki"
   },
   "form_no": {
     "message": "Hayır"
@@ -457,9 +403,6 @@
   },
   "form_submit": {
     "message": "Gönder"
-  },
-  "form_undo": {
-    "message": "Geri al"
   },
   "form_yes": {
     "message": "Evet"
@@ -521,9 +464,6 @@
   "import_frame_help_text": {
     "message": "Anahtarı içe aktarmak için tıklayın"
   },
-  "install_landing_page_hint": {
-    "message": "Uygulamayı açmak için buraya tıklayın."
-  },
   "key_default_active_btn_title": {
     "message": "Anahtar varsayılan anahtar olarak atandı"
   },
@@ -554,17 +494,11 @@
   "key_export_filename": {
     "message": "Dosya adı"
   },
-  "key_export_header": {
-    "message": "Anahtarı dışa aktar"
-  },
   "key_export_warning_private": {
     "message": "Bu dosyada kişisel anahtarlar da bulunur. Dosyayı güvenli bir yerde saklayın ve hiç  kimse ile paylaşmayın."
   },
   "key_gen_advanced_btn": {
     "message": "Gelişmiş"
-  },
-  "key_gen_another": {
-    "message": "Başka bir anahtar üret..."
   },
   "key_gen_demail": {
     "message": "De-Mail adresi"
@@ -599,9 +533,6 @@
   "key_gen_pwd_empty": {
     "message": "Parola alanı boş"
   },
-  "key_gen_pwd_match": {
-    "message": "Parola ile onayı aynı"
-  },
   "key_gen_pwd_reenter": {
     "message": "Parolayı yeniden yazın"
   },
@@ -635,17 +566,11 @@
   "key_import_default_headline": {
     "message": "Anahtarı onayla"
   },
-  "key_import_dialog_header": {
-    "message": "Anahtarlığa ekle"
-  },
   "key_import_error": {
     "message": "İçe aktarma sorunu."
   },
   "key_import_error_no_uid": {
     "message": "$1 anahtarında geçerli bir kullanıcı kimliği bulunamadı"
-  },
-  "key_import_error_parse": {
-    "message": "Güçlendirilmiş PGP anahtarı okunurken sorun çıktı: $1"
   },
   "key_import_exception": {
     "message": "Anahtarlar işlenirken bir sorun çıktı"
@@ -733,9 +658,6 @@
   },
   "key_import_search_ph": {
     "message": "E-posta adresi / Anahtar kimliği / Parmak izi"
-  },
-  "key_import_textarea": {
-    "message": "Anahtarı metin olarak içe aktar"
   },
   "key_import_too_big": {
     "message": "İçe aktarmak istediğiniz anahtar metni işlenemeyecek kadar uzun. Bu işlemi daha küçük metin parçaları ile yapmayı deneyin."
@@ -872,9 +794,6 @@
   "keygen_dialog_password_error_length": {
     "message": "Parola en az $1 karakter uzunluğunda olmalıdır"
   },
-  "keygen_dialog_password_placeholder": {
-    "message": "en az 4 karakter"
-  },
   "keygen_dialog_prolog": {
     "message": "Lütfen şifrelenmiş iletişiminizi korumak için anahtarınıza bir parola atayın:"
   },
@@ -890,9 +809,6 @@
   "keygrid_all_keys": {
     "message": "Tümü"
   },
-  "keygrid_creation_date": {
-    "message": "Oluşturulma tarihi"
-  },
   "keygrid_creation_date_short": {
     "message": "Oluşturulma"
   },
@@ -902,23 +818,8 @@
   "keygrid_default_label": {
     "message": "Varsayılan"
   },
-  "keygrid_delete": {
-    "message": "Sil"
-  },
   "keygrid_delete_confirmation": {
     "message": "Bu anahtarı silmek istediğinize emin misiniz?"
-  },
-  "keygrid_display_all_keys": {
-    "message": "Tüm anahtarları görüntüle"
-  },
-  "keygrid_display_priv_key": {
-    "message": "Kişisel anahtarı görüntüle"
-  },
-  "keygrid_display_pub_key": {
-    "message": "Herkese açık anahtarı görüntüle"
-  },
-  "keygrid_expiration_date": {
-    "message": "Son kullanma tarihi"
   },
   "keygrid_export": {
     "message": "Dışa aktar"
@@ -953,9 +854,6 @@
   "keygrid_primary_key": {
     "message": "Ana anahtar"
   },
-  "keygrid_private_keys": {
-    "message": "Kişisel anahtarlar"
-  },
   "keygrid_public_keys": {
     "message": "Herkese açık anahtarlar"
   },
@@ -964,12 +862,6 @@
   },
   "keygrid_refresh_title": {
     "message": "Anahtarlığı yeniden yükler"
-  },
-  "keygrid_send_pub_key": {
-    "message": "Herkese açık anahtarı e-posta ile gönder"
-  },
-  "keygrid_signer_name": {
-    "message": "İmzalayan"
   },
   "keygrid_signer_unknown": {
     "message": "İmzalayan bilinmiyor"
@@ -992,14 +884,8 @@
   "keygrid_subkey": {
     "message": "Alt anahtar"
   },
-  "keygrid_subkeys": {
-    "message": "Alt anahtarlar"
-  },
   "keygrid_user_email": {
     "message": "E-posta"
-  },
-  "keygrid_user_ids": {
-    "message": "Kullanıcı kimlikleri"
   },
   "keygrid_user_name": {
     "message": "Ad"
@@ -1028,9 +914,6 @@
   "keyring_confirm_keys_plural": {
     "message": "$1 anahtarın içe aktarılmasını onaylayın"
   },
-  "keyring_export_keys": {
-    "message": "Anahtarlığı dışa aktar"
-  },
   "keyring_generate_key": {
     "message": "Anahtar üret"
   },
@@ -1045,9 +928,6 @@
   },
   "keyring_import_search_description": {
     "message": "Anahtarlığınıza eklenecek herkese açık anahtarları bulun. Mailvelope, birçok anahtar dizini tarar ve kullanılıyor olma olasılığı en yüksek olan herkese açık anahtarı önerir."
-  },
-  "keyring_import_search_keys": {
-    "message": "Anahtar arama"
   },
   "keyring_main": {
     "message": "Ana anahtarlık"
@@ -1154,9 +1034,6 @@
   "options_home": {
     "message": "Ayarlar"
   },
-  "options_settings": {
-    "message": "Ayarlar"
-  },
   "options_title": {
     "message": "Mailvelope ayarları"
   },
@@ -1259,9 +1136,6 @@
   "pwd_dialog_header": {
     "message": "Anahtar parolasını yazın"
   },
-  "pwd_dialog_pwd_please": {
-    "message": "Lütfen parolanızı yazın"
-  },
   "pwd_dialog_reason_add_user": {
     "message": "Lütfen kullanıcı kimliğini oluşturmak için anahtar parolanızı yazın."
   },
@@ -1288,12 +1162,6 @@
   },
   "pwd_dialog_reason_sign": {
     "message": "Lütfen bu iletiyi imzalamak için anahtar parolanızı yazın."
-  },
-  "pwd_dialog_title": {
-    "message": "Parolanızı yazın | Mailvelope"
-  },
-  "pwd_dialog_userid": {
-    "message": "Kullanıcı kimliği:"
   },
   "pwd_dialog_wrong_pwd": {
     "message": "Parola hatalı"
@@ -1490,9 +1358,6 @@
   "security_log_backup_restore": {
     "message": "Yedeği geri yükle üzerine tıklama"
   },
-  "security_log_content_copy": {
-    "message": "Doğrulama penceresinde kopyalama"
-  },
   "security_log_decrypt_ui": {
     "message": "Şifreyi çöz"
   },
@@ -1516,9 +1381,6 @@
   },
   "security_log_email_viewer": {
     "message": "PGP e-posta şifresinin çözülmesi"
-  },
-  "security_log_encrypt_dialog": {
-    "message": "Şifreleme penceresi"
   },
   "security_log_encrypt_form": {
     "message": "Şifreleme formu"
@@ -1556,20 +1418,11 @@
   "security_log_sign_operation": {
     "message": "İleti şu anahtar ile imzalandı: $1"
   },
-  "security_log_signature_modal_close": {
-    "message": "İmza penceresini kapat üzerine tıklandı"
-  },
-  "security_log_signature_modal_open": {
-    "message": "İmza penceresini aç üzerine tıklandı"
-  },
   "security_log_source": {
     "message": "Kaynak"
   },
   "security_log_text": {
     "message": "Güvenlik günlüğünde tüm Mailvelope bileşenlerindeki kullanıcı işlemleri görülebilir"
-  },
-  "security_log_text_input": {
-    "message": "Metin alanına yazıldı"
   },
   "security_log_textarea_click": {
     "message": "Metin alanına tıklandı"
@@ -1583,9 +1436,6 @@
   "security_log_timestamp": {
     "message": "Zaman damgası"
   },
-  "security_log_verify_dialog": {
-    "message": "Doğrulama penceresi"
-  },
   "security_log_viewer": {
     "message": "Mailvelope görüntüleyici"
   },
@@ -1594,9 +1444,6 @@
   },
   "settings_analytics": {
     "message": "İstatistikler"
-  },
-  "settings_backup": {
-    "message": "Yedekleme"
   },
   "settings_general": {
     "message": "Genel"
@@ -1630,15 +1477,6 @@
   },
   "text_decrypt_button": {
     "message": "Şifreyi çöz"
-  },
-  "text_decrypting": {
-    "message": "Şifrelenmiş metni çözme"
-  },
-  "text_encrypting": {
-    "message": "Metin şifreleme"
-  },
-  "upload_aborting_warning": {
-    "message": "Dosya yükleme işleminden vazgeçildi."
   },
   "upload_attachment": {
     "message": "Dosya ekle"
@@ -1730,9 +1568,6 @@
   "watchlist_command_create": {
     "message": "Yeni kayıt ekle"
   },
-  "watchlist_command_edit": {
-    "message": "Düzenle"
-  },
   "watchlist_delete_confirmation": {
     "message": "Bu siteyi izin verilmiş etki alanları listesinden çıkarmak istediğinize emin misiniz?"
   },
@@ -1756,9 +1591,6 @@
   },
   "watchlist_title_scan": {
     "message": "Etkin"
-  },
-  "watchlist_title_site": {
-    "message": "Site"
   },
   "word_or": {
     "message": "ya da "
