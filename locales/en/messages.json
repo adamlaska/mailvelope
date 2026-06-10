@@ -316,7 +316,7 @@
     "message": "Encrypt"
   },
   "editor_error_header": {
-    "description": "",
+    "description": "Generic title for an error dialog in the editor and decrypt view.",
     "message": "Error"
   },
   "editor_extra_key_checkbox": {
@@ -480,7 +480,7 @@
     "message": "File not signed"
   },
   "file_read_error": {
-    "description": "",
+    "description": "Error notification when a file cannot be read or decrypted; $1 is the file name.",
     "message": "Could not decrypt this file: $1"
   },
   "file_signed": {
@@ -612,7 +612,7 @@
     "message": "GnuPG connection"
   },
   "gnupg_error_unusable_pub_key": {
-    "description": "",
+    "description": "GnuPG error when recipient public keys are missing or invalid; $1 lists the fingerprints.",
     "message": "Please check if the following public keys are available in your GnuPG keyring and valid: $1"
   },
   "header_analyticsconsent_modal": {
@@ -788,7 +788,7 @@
     "message": "No valid key text found"
   },
   "key_import_invalidated_description": {
-    "description": "",
+    "description": "Warning when importing a contact's expired key; $1 is the contact's email or name.",
     "message": "Warning: The key for this contact has expired. Encrypted communication with $1 is no longer possible. You need to get the current key from this contact."
   },
   "key_import_number_of_failed": {
@@ -932,7 +932,7 @@
     "message": "Synchronize"
   },
   "key_recovery_failed": {
-    "description": "",
+    "description": "Error shown when restoring a key from backup fails.",
     "message": "Recovering key from backup failed."
   },
   "key_remove_btn": {
@@ -971,40 +971,72 @@
     "description": "Set as default key for the keyring button",
     "message": "Set as Default"
   },
+  "keybackup_backup_description": {
+    "description": "A hint about the importance of a private key backup.",
+    "message": "A backup lets you recover your encrypted email if you lose access to this device, reinstall your browser, or remove the extension."
+  },
+  "keybackup_backup_store_location": {
+    "description": "A hint how to store the key.",
+    "message": "Keep this file somewhere safe — for example, on a USB drive or in a password manager."
+  },
+  "keybackup_dialog_headline": {
+    "description": "Title of the dialog recommending a private key backup after key creation.",
+    "message": "Back up your private key"
+  },
+  "keybackup_done_button": {
+    "description": "Button that closes the backup dialog after the file is downloaded.",
+    "message": "Done"
+  },
   "keybackup_failed": {
-    "description": "",
+    "description": "Error shown when creating the key backup fails.",
     "message": "Creating key backup failed."
   },
+  "keybackup_keep_safe_headline": {
+    "description": "Heading shown after the backup download has been started.",
+    "message": "Keep your backup safe"
+  },
+  "keybackup_keep_safe_text": {
+    "description": "Guidance shown after the backup download has been started.",
+    "message": "Once the file is saved, move it somewhere safe and keep it private. You'll need it to recover your encrypted email if you ever lose access."
+  },
+  "keybackup_load_error": {
+    "description": "Shown when the key could not be loaded to prepare the backup file.",
+    "message": "Your backup couldn't be prepared. You can export your key later from the keyring."
+  },
   "keybackup_restore_dialog_button": {
-    "description": "",
+    "description": "Button in the key backup dialog to create a new recovery sheet when a backup exists.",
     "message": "Restore backup"
   },
   "keybackup_restore_dialog_description": {
-    "description": "",
+    "description": "Intro text, followed by a list, in the key backup dialog when a backup already exists.",
     "message": "Create here a new recovery sheet, if:"
   },
   "keybackup_restore_dialog_headline": {
-    "description": "",
+    "description": "Heading of the key backup dialog when a backup already exists.",
     "message": "Recommendation: Create a backup"
   },
   "keybackup_restore_dialog_list_1": {
-    "description": "",
+    "description": "First reason to create a new recovery sheet in the key backup dialog.",
     "message": "You lost the recovery sheet."
   },
   "keybackup_restore_dialog_list_2": {
-    "description": "",
+    "description": "Second reason to create a new recovery sheet in the key backup dialog.",
     "message": "A new recovery sheet has to be created for security reasons."
   },
+  "keybackup_save_button": {
+    "description": "Primary button that downloads the private key backup file.",
+    "message": "Save backup"
+  },
   "keybackup_setup_dialog_button": {
-    "description": "",
+    "description": "Button in the key backup dialog that starts the initial backup.",
     "message": "Create a backup"
   },
   "keybackup_setup_dialog_description": {
-    "description": "",
+    "description": "Intro text, followed by a list, in the key backup dialog during initial setup.",
     "message": "The backup is required to ensure your encrypted communication is:"
   },
   "keybackup_setup_dialog_headline": {
-    "description": "",
+    "description": "Heading of the key backup dialog during initial setup.",
     "message": "Recommendation: Set up a backup"
   },
   "keybackup_setup_dialog_list_1": {
@@ -1016,44 +1048,12 @@
     "message": "In order to transfer it to other devices"
   },
   "keybackup_waiting_description": {
-    "description": "",
+    "description": "Hint shown while the recovery sheet is being prepared.",
     "message": "A document with your recovery code is being prepared."
   },
   "keybackup_waiting_headline": {
-    "description": "",
+    "description": "Heading shown while the backup is being created.",
     "message": "Creating backup!"
-  },
-  "keybackup_backup_store_location": {
-    "description": "A hint how to store the key.",
-    "message": "Keep this file somewhere safe — for example, on a USB drive or in a password manager."
-  },
-  "keybackup_backup_description": {
-    "description": "A hint about the importance of a private key backup.",
-    "message": "A backup lets you recover your encrypted email if you lose access to this device, reinstall your browser, or remove the extension."
-  },
-  "keybackup_dialog_headline": {
-    "description": "Title of the dialog recommending a private key backup after key creation.",
-    "message": "Back up your private key"
-  },
-  "keybackup_load_error": {
-    "description": "Shown when the key could not be loaded to prepare the backup file.",
-    "message": "Your backup couldn't be prepared. You can export your key later from the keyring."
-  },
-  "keybackup_save_button": {
-    "description": "Primary button that downloads the private key backup file.",
-    "message": "Save backup"
-  },
-  "keybackup_keep_safe_headline": {
-    "description": "Heading shown after the backup download has been started.",
-    "message": "Keep your backup safe"
-  },
-  "keybackup_keep_safe_text": {
-    "description": "Guidance shown after the backup download has been started.",
-    "message": "Once the file is saved, move it somewhere safe and keep it private. You'll need it to recover your encrypted email if you ever lose access."
-  },
-  "keybackup_done_button": {
-    "description": "Button that closes the backup dialog after the file is downloaded.",
-    "message": "Done"
   },
   "keydetails_change_exp_date_dialog_note": {
     "description": "Important note in change expiration date dialog.",
@@ -1092,19 +1092,19 @@
     "message": "Key details"
   },
   "keygen_dialog_password_error_length": {
-    "description": "",
+    "description": "Validation error in the key generation dialog; $1 is the minimum number of characters.",
     "message": "Password requires at least $1 characters"
   },
   "keygen_dialog_prolog": {
-    "description": "",
+    "description": "Heading prompting the user to set a password in the key generation dialog.",
     "message": "Please assign a password for your key to protect your encrypted communication:"
   },
   "keygen_waiting_description": {
-    "description": "",
+    "description": "Hint shown while the key pair is being generated.",
     "message": "This process can take several minutes. Your browser may become unresponsive. Please be patient."
   },
   "keygen_waiting_headline": {
-    "description": "",
+    "description": "Heading shown while the key pair is being generated.",
     "message": "Setting up encrypted communication"
   },
   "keygrid_algorithm": {
@@ -1407,53 +1407,9 @@
     "description": "Copy to clipboard toast message.",
     "message": "Text has been copied to clipboard."
   },
-  "onboarding_skip": {
-    "description": "Skip button in onboarding",
-    "message": "Skip"
-  },
-  "onboarding_success_message": {
-    "description": "Success message in onboarding completion screen",
-    "message": "Mailvelope is ready to use."
-  },
-  "onboarding_success_title": {
-    "description": "Success title in onboarding completion screen",
-    "message": "Setup complete"
-  },
-  "onboarding_welcome_title": {
-    "description": "Welcome title in onboarding",
-    "message": "Welcome to Mailvelope"
-  },
-  "onboarding_setup_alert": {
-    "description": "Setup alert message in onboarding",
-    "message": "Next, set up your keys. This takes about 5 minutes."
-  },
-  "onboarding_gnupg_alternative_heading": {
-    "description": "Heading for the GnuPG alternative footer in onboarding",
-    "message": "Already using GnuPG?"
-  },
-  "onboarding_gnupg_alternative": {
-    "description": "Text introducing GnuPG as an alternative to generating or importing a key in onboarding",
-    "message": "You can connect Mailvelope to your existing GnuPG installation instead of generating or importing a key here."
-  },
-  "onboarding_success_alert": {
-    "description": "Success alert message in onboarding success screen",
-    "message": "You can find Mailvelope in the extension menu in the top right corner of your browser."
-  },
-  "onboarding_faq_title": {
-    "description": "FAQ card title in onboarding",
-    "message": "FAQ"
-  },
-  "onboarding_faq_what_is_key": {
-    "description": "FAQ question: What is a key",
-    "message": "What is a Mailvelope key?"
-  },
-  "onboarding_faq_should_upload_key": {
-    "description": "FAQ question: Should I upload my key to the key server?",
-    "message": "Should I upload my key to the Mailvelope key server?"
-  },
-  "onboarding_faq_where_key_stored": {
-    "description": "FAQ question: Where are my keys stored?",
-    "message": "Where are my keys stored?"
+  "onboarding_create_key_hint": {
+    "description": "A hint for create new key screen",
+    "message": "Generate a new PGP key pair that you will use to encrypt your emails."
   },
   "onboarding_faq_backup": {
     "description": "FAQ question: How can I export or backup my keypair?",
@@ -1467,41 +1423,85 @@
     "description": "FAQ question: What if I forget my password?",
     "message": "What if I forget my password?"
   },
-  "onboarding_create_key_hint": {
-    "description": "A hint for create new key screen",
-    "message": "Generate a new PGP key pair that you will use to encrypt your emails."
+  "onboarding_faq_should_upload_key": {
+    "description": "FAQ question: Should I upload my key to the key server?",
+    "message": "Should I upload my key to the Mailvelope key server?"
+  },
+  "onboarding_faq_title": {
+    "description": "FAQ card title in onboarding",
+    "message": "FAQ"
+  },
+  "onboarding_faq_what_is_key": {
+    "description": "FAQ question: What is a key",
+    "message": "What is a Mailvelope key?"
+  },
+  "onboarding_faq_where_key_stored": {
+    "description": "FAQ question: Where are my keys stored?",
+    "message": "Where are my keys stored?"
+  },
+  "onboarding_gnupg_alternative": {
+    "description": "Text introducing GnuPG as an alternative to generating or importing a key in onboarding",
+    "message": "You can connect Mailvelope to your existing GnuPG installation instead of generating or importing a key here."
+  },
+  "onboarding_gnupg_alternative_heading": {
+    "description": "Heading for the GnuPG alternative footer in onboarding",
+    "message": "Already using GnuPG?"
   },
   "onboarding_import_key_hint": {
     "description": "A hint for import key screen",
     "message": "Choose a file containing your existing PGP key pair or paste the key from the clipboard."
   },
-  "onboarding_success_created_key_title": {
-    "description": "Title for created key section on success screen",
-    "message": "Verify your email address"
+  "onboarding_setup_alert": {
+    "description": "Setup alert message in onboarding",
+    "message": "Next, set up your keys. This takes about 5 minutes."
   },
-  "onboarding_success_created_key_text": {
-    "description": "Instructions for users who created a new key",
-    "message": "Check your inbox for an email from the Mailvelope key server.\nDecrypt it using the password of your newly created key.\nOpen the verification link inside. This makes your public key available to others, so they can send you encrypted messages on Mailvelope."
+  "onboarding_skip": {
+    "description": "Skip button in onboarding",
+    "message": "Skip"
   },
-  "onboarding_success_imported_key_title": {
-    "description": "Title for imported key section on success screen",
-    "message": "Ready to send encrypted email"
-  },
-  "onboarding_success_imported_key_text": {
-    "description": "Instructions for users who imported an existing key",
-    "message": "Open your email provider and write an encrypted message.\nTo let others find your key automatically, you can upload it to the Mailvelope key server."
-  },
-  "onboarding_success_need_help": {
-    "description": "Need help section title",
-    "message": "Help & resources"
+  "onboarding_success_alert": {
+    "description": "Success alert message in onboarding success screen",
+    "message": "You can find Mailvelope in the extension menu in the top right corner of your browser."
   },
   "onboarding_success_alert_alt": {
     "description": "Alt text for the extension menu location image on the success screen",
     "message": "Extension menu location"
   },
+  "onboarding_success_created_key_text": {
+    "description": "Instructions for users who created a new key",
+    "message": "Check your inbox for an email from the Mailvelope key server.\nDecrypt it using the password of your newly created key.\nOpen the verification link inside. This makes your public key available to others, so they can send you encrypted messages on Mailvelope."
+  },
+  "onboarding_success_created_key_title": {
+    "description": "Title for created key section on success screen",
+    "message": "Verify your email address"
+  },
   "onboarding_success_help_others": {
     "description": "Help link label on success screen (other providers)",
     "message": "Others"
+  },
+  "onboarding_success_imported_key_text": {
+    "description": "Instructions for users who imported an existing key",
+    "message": "Open your email provider and write an encrypted message.\nTo let others find your key automatically, you can upload it to the Mailvelope key server."
+  },
+  "onboarding_success_imported_key_title": {
+    "description": "Title for imported key section on success screen",
+    "message": "Ready to send encrypted email"
+  },
+  "onboarding_success_message": {
+    "description": "Success message in onboarding completion screen",
+    "message": "Mailvelope is ready to use."
+  },
+  "onboarding_success_need_help": {
+    "description": "Need help section title",
+    "message": "Help & resources"
+  },
+  "onboarding_success_title": {
+    "description": "Success title in onboarding completion screen",
+    "message": "Setup complete"
+  },
+  "onboarding_welcome_title": {
+    "description": "Welcome title in onboarding",
+    "message": "Welcome to Mailvelope"
   },
   "options_docu": {
     "description": "Options navigation: Documentation.",
@@ -1587,46 +1587,6 @@
     "description": "Warning message, when Gmail is not authorized",
     "message": "Gmail is not authorized with the search pattern <0></0>. Please check the settings in <1></1>."
   },
-  "provider_gmail_mismatch_intro": {
-    "description": "Intro line in the Gmail account mismatch dialog. Sits above the comparison block which already shows both addresses.",
-    "message": "Mailvelope expects a different Gmail account than the one Google authorized."
-  },
-  "provider_gmail_mismatch_label_expected": {
-    "description": "Label for the expected (correct) account in the Gmail account mismatch comparison.",
-    "message": "Expected"
-  },
-  "provider_gmail_mismatch_label_actual": {
-    "description": "Label for the actually-authorized (wrong) account in the Gmail account mismatch comparison.",
-    "message": "Authorized"
-  },
-  "provider_gmail_mismatch_step1": {
-    "description": "First recovery step in the Gmail account mismatch dialog.",
-    "message": "Click \"Try again\" below to reopen Google's account chooser."
-  },
-  "provider_gmail_mismatch_step2": {
-    "description": "Second recovery step. Placeholder is the expected email.",
-    "message": "Pick <0></0>. If it isn't listed, choose \"Use another account\" and sign in."
-  },
-  "provider_gmail_mismatch_why_summary": {
-    "description": "Disclosure summary above the cause explanation in the Gmail account mismatch dialog.",
-    "message": "Why does this happen?"
-  },
-  "provider_gmail_mismatch_why_body": {
-    "description": "Cause explanation revealed when the user expands the disclosure in the Gmail account mismatch dialog.",
-    "message": "Chrome may be signed in with a different default Google account, or a different account was chosen on Google's sign-in screen."
-  },
-  "provider_gmail_mismatch_cancel_btn": {
-    "description": "Cancel button in the Gmail account mismatch dialog.",
-    "message": "Cancel"
-  },
-  "provider_gmail_mismatch_retry_btn": {
-    "description": "Retry button in the Gmail account mismatch dialog.",
-    "message": "Try again"
-  },
-  "provider_gmail_mismatch_title": {
-    "description": "Title of the Gmail account mismatch dialog.",
-    "message": "Wrong Google account authorized"
-  },
   "provider_gmail_licensing_dialog_business_btn_info": {
     "description": "Info text on Business button ",
     "message": "Communicating securely with organizations worldwide"
@@ -1667,6 +1627,46 @@
     "description": "Title for G Suite licensing table.",
     "message": "Mailvelope License"
   },
+  "provider_gmail_mismatch_cancel_btn": {
+    "description": "Cancel button in the Gmail account mismatch dialog.",
+    "message": "Cancel"
+  },
+  "provider_gmail_mismatch_intro": {
+    "description": "Intro line in the Gmail account mismatch dialog. Sits above the comparison block which already shows both addresses.",
+    "message": "Mailvelope expects a different Gmail account than the one Google authorized."
+  },
+  "provider_gmail_mismatch_label_actual": {
+    "description": "Label for the actually-authorized (wrong) account in the Gmail account mismatch comparison.",
+    "message": "Authorized"
+  },
+  "provider_gmail_mismatch_label_expected": {
+    "description": "Label for the expected (correct) account in the Gmail account mismatch comparison.",
+    "message": "Expected"
+  },
+  "provider_gmail_mismatch_retry_btn": {
+    "description": "Retry button in the Gmail account mismatch dialog.",
+    "message": "Try again"
+  },
+  "provider_gmail_mismatch_step1": {
+    "description": "First recovery step in the Gmail account mismatch dialog.",
+    "message": "Click \"Try again\" below to reopen Google's account chooser."
+  },
+  "provider_gmail_mismatch_step2": {
+    "description": "Second recovery step. Placeholder is the expected email.",
+    "message": "Pick <0></0>. If it isn't listed, choose \"Use another account\" and sign in."
+  },
+  "provider_gmail_mismatch_title": {
+    "description": "Title of the Gmail account mismatch dialog.",
+    "message": "Wrong Google account authorized"
+  },
+  "provider_gmail_mismatch_why_body": {
+    "description": "Cause explanation revealed when the user expands the disclosure in the Gmail account mismatch dialog.",
+    "message": "Chrome may be signed in with a different default Google account, or a different account was chosen on Google's sign-in screen."
+  },
+  "provider_gmail_mismatch_why_summary": {
+    "description": "Disclosure summary above the cause explanation in the Gmail account mismatch dialog.",
+    "message": "Why does this happen?"
+  },
   "provider_gmail_secure_forward_btn": {
     "description": "Secure forward button title/tooltip",
     "message": "Secure forward"
@@ -1692,39 +1692,39 @@
     "message": "Enter key password"
   },
   "pwd_dialog_reason_add_user": {
-    "description": "",
+    "description": "Reason shown in the password dialog when adding a user ID to a key.",
     "message": "Please enter your key password to create the user ID."
   },
   "pwd_dialog_reason_create_backup": {
-    "description": "",
+    "description": "Reason shown in the password dialog when creating a recovery sheet.",
     "message": "Please enter your key password to create a recovery sheet."
   },
   "pwd_dialog_reason_create_draft": {
-    "description": "",
+    "description": "Reason shown in the password dialog when saving a draft.",
     "message": "Enter key password to save the draft."
   },
   "pwd_dialog_reason_decrypt": {
-    "description": "",
+    "description": "Reason shown in the password dialog when decrypting a message.",
     "message": "Please enter your key password to decrypt this message."
   },
   "pwd_dialog_reason_editor": {
-    "description": "",
+    "description": "Reason shown in the password dialog when updating encrypted communication settings.",
     "message": "Please enter your key password to update settings for encrypted communication."
   },
   "pwd_dialog_reason_revoke": {
-    "description": "",
+    "description": "Reason shown in the password dialog when revoking a key.",
     "message": "Please enter your key password to revoke this key."
   },
   "pwd_dialog_reason_revoke_user": {
-    "description": "",
+    "description": "Reason shown in the password dialog when revoking a user ID.",
     "message": "Please enter your key password to revoke the user ID."
   },
   "pwd_dialog_reason_set_exdate": {
-    "description": "",
+    "description": "Reason shown in the password dialog when setting a new key expiration date.",
     "message": "Please enter your key password to set a new expiration date for the key."
   },
   "pwd_dialog_reason_sign": {
-    "description": "",
+    "description": "Reason shown in the password dialog when signing a message.",
     "message": "Please enter your key password to sign this message."
   },
   "pwd_dialog_wrong_pwd": {
@@ -1732,15 +1732,15 @@
     "message": "Wrong password"
   },
   "recovery_sheet_backup_data": {
-    "description": "",
+    "description": "Subheading on the recovery sheet introducing what is backed up.",
     "message": "Backup of your data"
   },
   "recovery_sheet_backup_local": {
-    "description": "",
+    "description": "Recovery sheet note about storing the backup locally; $1 is the provider name.",
     "message": "If you would like to exclusively save your data locally on your computer, you will find this option in the encrypted communication settings of your $1 account. "
   },
   "recovery_sheet_backup_server": {
-    "description": "",
+    "description": "Recovery sheet note about storing the encrypted backup on provider servers; $1 is the provider name.",
     "message": "To back up the data that is important for encrypted communication (e.g. key password), the data will be saved encrypted on our $1 servers by our security partner Mailvelope."
   },
   "recovery_sheet_be_aware": {
@@ -1748,7 +1748,7 @@
     "message": "Please be aware"
   },
   "recovery_sheet_check_settings": {
-    "description": "",
+    "description": "Instruction on the recovery sheet pointing to the account settings path.",
     "message": "Please check the settings in your account under:"
   },
   "recovery_sheet_creation_date": {
@@ -1756,7 +1756,7 @@
     "message": "Creation date:"
   },
   "recovery_sheet_data_lost": {
-    "description": "",
+    "description": "Warning on the recovery sheet about losing access to messages without a backup.",
     "message": "Without a backup, your encrypted messages cannot be decrypted again in case you lose your key password or in case of a defective device or problems with the browser extension!"
   },
   "recovery_sheet_encryption_note": {
@@ -1768,7 +1768,7 @@
     "message": "For the installation on other computers, enter the recovery code in the settings under:"
   },
   "recovery_sheet_explain_pgp": {
-    "description": "",
+    "description": "Explanation of PGP on the recovery sheet; $1 is the provider name.",
     "message": "Encrypted communication with $1 is a PGP-based procedure. It enables you to send encrypted emails and, at the same time, ensures that only you and the recipient are able to read them."
   },
   "recovery_sheet_extension_problems": {
@@ -1780,7 +1780,7 @@
     "message": "because you forgot the password to your key"
   },
   "recovery_sheet_further_info": {
-    "description": "",
+    "description": "Pointer to more information on the recovery sheet; $1 is the provider name.",
     "message": "You can find more information and setting options in your $1 account under"
   },
   "recovery_sheet_header": {
@@ -1792,19 +1792,19 @@
     "message": "In general, it is important"
   },
   "recovery_sheet_invite_contacts": {
-    "description": "",
+    "description": "Recovery sheet note on inviting contacts to encrypted communication; $1 is the provider name.",
     "message": "In your encrypted communication settings of your $1 account, you have the possibility to invite additional contacts to use encrypted communication via PGP. Contacts that have already been invited successfully can be recognized by the padlock icon next to the email address. "
   },
   "recovery_sheet_keep_safe": {
-    "description": "",
+    "description": "Recovery sheet recommendation to keep the printed sheet in a safe place.",
     "message": "Store a print-out of this document in a safe place and make sure no one else has access to the recovery code."
   },
   "recovery_sheet_key_server": {
-    "description": "",
+    "description": "Recovery sheet note about the provider key directory; $1 is the provider name.",
     "message": "Other $1 users who are using the PGP procedure of GMX can be directly found in a central directory in your $1 account. If you do not want to have any entries in this directory, please deactivate this function in your $1 account settings."
   },
   "recovery_sheet_mobile_devices": {
-    "description": "",
+    "description": "Heading on the recovery sheet for the mobile devices section.",
     "message": "On mobile devices"
   },
   "recovery_sheet_not_working": {
@@ -1812,11 +1812,11 @@
     "message": "If your encrypted communication is no longer working, e.g.:"
   },
   "recovery_sheet_other_computer": {
-    "description": "",
+    "description": "Heading on the recovery sheet for the other-computer section.",
     "message": "On a different computer"
   },
   "recovery_sheet_other_contacts": {
-    "description": "",
+    "description": "Section heading on the recovery sheet about communicating with other contacts.",
     "message": "Encrypted communication with other contacts"
   },
   "recovery_sheet_other_devices": {
@@ -1824,7 +1824,7 @@
     "message": "Encrypted communication on other devices"
   },
   "recovery_sheet_other_devices_setup": {
-    "description": "",
+    "description": "Section heading on the recovery sheet about setting up other devices.",
     "message": "Setting up encrypted communication on other devices"
   },
   "recovery_sheet_other_problems": {
@@ -1832,7 +1832,7 @@
     "message": "for other reasons"
   },
   "recovery_sheet_pgp_compat": {
-    "description": "",
+    "description": "Recovery sheet note that secure communication requires PGP on both sides.",
     "message": "You can communicate securely with other contacts if they are also using encrypted communication (PGP)."
   },
   "recovery_sheet_print_block": {
@@ -1840,7 +1840,7 @@
     "message": "Please store this document in a safe place!"
   },
   "recovery_sheet_print_button": {
-    "description": "",
+    "description": "Button on the recovery sheet that opens the browser print dialog.",
     "message": "Print"
   },
   "recovery_sheet_print_notice": {
@@ -1848,27 +1848,27 @@
     "message": "Please print this document and store it in a safe place!"
   },
   "recovery_sheet_provider_communication": {
-    "description": "",
+    "description": "Recovery sheet label for the provider settings path (communication entry).",
     "message": "Encrypted communication"
   },
   "recovery_sheet_provider_inbox": {
-    "description": "",
+    "description": "Recovery sheet label for the provider settings path (inbox entry).",
     "message": "Inbox"
   },
   "recovery_sheet_provider_security": {
-    "description": "",
+    "description": "Recovery sheet label for the provider settings path (security entry).",
     "message": "Security"
   },
   "recovery_sheet_provider_settings": {
-    "description": "",
+    "description": "Recovery sheet label for the provider settings path (settings entry).",
     "message": "Settings"
   },
   "recovery_sheet_qr_code": {
-    "description": "",
+    "description": "Instruction on the recovery sheet next to the QR code.",
     "message": "Scan the QR code with your mobile device."
   },
   "recovery_sheet_recommendation": {
-    "description": "",
+    "description": "Inline label introducing a recommendation on the recovery sheet.",
     "message": "Recommendation"
   },
   "recovery_sheet_recover_data": {
@@ -1876,7 +1876,7 @@
     "message": "Recovering data"
   },
   "recovery_sheet_recovery_code": {
-    "description": "",
+    "description": "Heading on the recovery sheet above the recovery code.",
     "message": "Recovery code"
   },
   "recovery_sheet_subtitle_receipt": {
@@ -1888,15 +1888,15 @@
     "message": "Recover encrypted communication"
   },
   "recovery_sheet_trusted_contacts": {
-    "description": "",
+    "description": "Recovery sheet note about verifying the identity of contacts.",
     "message": "With GMX contacts you can be sure that the users displayed are in fact valid users. You should, however, always verify the identity of contacts with an email address from another email provider."
   },
   "recovery_sheet_unknown_third": {
-    "description": "",
+    "description": "Recovery sheet warning to only set up encrypted communication on trusted devices.",
     "message": "Only set up encrypted communication on secure devices that cannot be accessed by strangers."
   },
   "recovery_sheet_unlock_backup": {
-    "description": "",
+    "description": "Recovery sheet note that the backup can only be decrypted with the recovery code.",
     "message": "The backup of your data can only be decrypted with the help of the recovery code on this recovery sheet."
   },
   "reload_tab": {
@@ -1904,19 +1904,19 @@
     "message": "Please reload the corresponding pages for the settings to take effect."
   },
   "restore_backup_dialog_button": {
-    "description": "",
+    "description": "Button to submit the entered recovery code in the restore backup dialog.",
     "message": "Confirm"
   },
   "restore_backup_dialog_headline": {
-    "description": "",
+    "description": "Heading of the restore backup dialog prompting for the recovery code.",
     "message": "Please enter your recovery code:"
   },
   "restore_password_dialog_button": {
-    "description": "",
+    "description": "Button that reveals the recovered key password in the restore backup dialog.",
     "message": "Show"
   },
   "restore_password_dialog_headline": {
-    "description": "",
+    "description": "Heading shown after a successful restore, above the recovered key password.",
     "message": "Your key password:"
   },
   "security_background_color_text": {
@@ -1984,35 +1984,35 @@
     "message": "Domain Authorization Dialog"
   },
   "security_log_backup_create": {
-    "description": "",
+    "description": "Security log entry recorded when the user starts creating a key backup.",
     "message": "Click to create backup"
   },
   "security_log_backup_restore": {
-    "description": "",
+    "description": "Security log entry recorded when the user starts restoring a key backup.",
     "message": "Click to restore backup"
   },
   "security_log_decrypt_ui": {
-    "description": "",
+    "description": "Security log source label for the decrypt view.",
     "message": "Decrypt"
   },
   "security_log_decryption_operation": {
-    "description": "",
+    "description": "Security log entry for a decryption; $1 is the key used.",
     "message": "Message has been decrypted with: $1"
   },
   "security_log_dialog_cancel": {
-    "description": "",
+    "description": "Security log entry recorded when the user cancels a dialog.",
     "message": "Click to cancel in dialog"
   },
   "security_log_dialog_encrypt": {
-    "description": "",
+    "description": "Security log entry recorded when the user triggers encryption in a dialog.",
     "message": "Click to encrypt in dialog"
   },
   "security_log_dialog_ok": {
-    "description": "",
+    "description": "Security log entry recorded when the user confirms a dialog.",
     "message": "Click to confirm in dialog"
   },
   "security_log_dialog_sign": {
-    "description": "",
+    "description": "Security log entry recorded when the user triggers signing in a dialog.",
     "message": "Click to sign in dialog"
   },
   "security_log_editor": {
@@ -2028,11 +2028,11 @@
     "message": "Encrypt Form"
   },
   "security_log_encrypt_ui": {
-    "description": "",
+    "description": "Security log source label for the encrypt view.",
     "message": "Encrypt"
   },
   "security_log_encryption_operation": {
-    "description": "",
+    "description": "Security log entry for an encryption; $1 lists the recipients.",
     "message": "Message has been encrypted for: $1"
   },
   "security_log_import_dialog": {
@@ -2048,7 +2048,7 @@
     "message": "Key Generator"
   },
   "security_log_password_click": {
-    "description": "",
+    "description": "Security log entry recorded for a click in the password dialog.",
     "message": "Click in password dialog"
   },
   "security_log_password_dialog": {
@@ -2056,7 +2056,7 @@
     "message": "Password Dialog"
   },
   "security_log_password_input": {
-    "description": "",
+    "description": "Security log entry recorded for input in the password dialog.",
     "message": "Input in password dialog"
   },
   "security_log_remove_attachment": {
@@ -2064,11 +2064,11 @@
     "message": "Attachment removed"
   },
   "security_log_restore_backup_click": {
-    "description": "",
+    "description": "Security log entry recorded for a click in the restore backup dialog.",
     "message": "Click in restore backup dialog"
   },
   "security_log_sign_operation": {
-    "description": "",
+    "description": "Security log entry for a signing; $1 is the signing key.",
     "message": "Message has been signed with key: $1"
   },
   "security_log_source": {
@@ -2168,7 +2168,7 @@
     "message": "Allowed attachment size:"
   },
   "upload_quota_warning_headline": {
-    "description": "",
+    "description": "Title of the warning when an attachment exceeds the allowed size in the editor.",
     "message": "Attachment is too big"
   },
   "user_create_btn": {
@@ -2312,7 +2312,7 @@
     "message": "or"
   },
   "wrong_restore_code": {
-    "description": "",
+    "description": "Error shown when the entered recovery code is wrong in the restore backup dialog.",
     "message": "Invalid recovery code"
   }
 }
