@@ -305,6 +305,12 @@
   "encrypt_upload_file_warning_too_big": {
     "message": "Vienas iš failų yra pernelyg didelis."
   },
+  "ext_description": {
+    "message": "Protect your email conversations and attachments on Gmail, Nextcloud, Outlook & more with PGP and end-to-end encryption."
+  },
+  "ext_name": {
+    "message": "Mailvelope - Secure your email with PGP"
+  },
   "feature_banner_new_security_background_btn": {
     "message": "Suasmeninti dabar"
   },
