@@ -100,8 +100,6 @@ export function setPreferences(preferences) {
   return mvelo.storage.set('mvelo.preferences', preferences);
 }
 
-export const SETUP_SKIPPED = 'setupSkipped';
-
 export async function getSessionPref(key) {
   const {[key]: value} = await chrome.storage.session.get(key);
   return value;
