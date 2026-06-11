@@ -1,6 +1,23 @@
 Mailvelope Changelog
 ====================
 
+v6.3.0
+-------
+__Jun 11, 2026__
+
+  * Add onboarding flow with redesigned key setup UI that guides new users through key generation or import
+  * Redesign key backup dialog with two-step save flow
+  * Show pending state for recipients in the editor while keys are looked up on the keyserver
+  * Show account mismatch dialog with retry option when Gmail authorization returns a different Google account than expected
+  * Fix UTF-8 multibyte character corruption in decrypted MIME messages (#893)
+  * Fix popup briefly flashing the normal menu before showing the setup menu on profiles without keys
+  * Fix watch list initialization race on first install in Chrome (#908)
+  * Support new cloud.microsoft domain for M365 Outlook and update Microsoft webmail entries in default authorized domain list
+  * Drop separate Edge build (Edge uses the Chrome package)
+  * [API] Modernize JSDoc pipeline and document web components
+  * Update translations and normalize l10n files to Weblate format
+  * Update dependencies; require Node 24+ and npm 11+ for builds
+
 v6.2.1
 -------
 __Jan 16, 2026__
